@@ -66,6 +66,7 @@ ED2 uses NODF as the nestedness measure because the BINMATNEST temperature has n
 ## Comparison with the paper and with the shipped results
 
 ![Headline numbers](../results/comparison/cmp_headline.png)
+![Pooled ROC and precision-recall](../results/comparison/cmp_roc_pr.png)
 ![Per-phage AUROC](../results/comparison/cmp_per_phage_auroc.png)
 ![Feature agreement](../results/comparison/cmp_feature_agreement.png)
 ![Ablation](../results/comparison/cmp_ablation.png)

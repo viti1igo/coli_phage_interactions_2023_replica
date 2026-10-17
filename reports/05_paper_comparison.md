@@ -21,7 +21,29 @@ Three sources are compared: the numbers printed in the paper (Gaborieau et al., 
 | Coverage of the best triplet (ED7) | 63 % | – | **87.6 %** | – |
 | Strains infected by PDP110_P1, and with K55 (ED5) | 3, all K55 | – | 3, all K55 | – |
 
-The table has 48 rows in total: 20 match within 5 %, 2 lie inside the paper's confidence interval, 1 p-value has the same order of magnitude, 7 differ, and 18 cannot be compared numerically (the paper gives no number, or the panel is qualitative). Chart: `cmp_headline` ([06](06_figures.md)).
+The table has 48 rows in total: 20 match within 5 %, 2 lie inside the paper's confidence interval, 1 p-value has the same order of magnitude, 7 differ, and 18 cannot be compared numerically (the paper gives no number, or the panel is qualitative). The chart shows each comparable number as our value divided by the paper's value (grey band: within 5 %); the figure legend uses blue for the run on the shipped inputs and orange for the run on regenerated inputs.
+
+![Headline numbers against the paper](../results/comparison/cmp_headline.png)
+
+Data: `results/comparison/cmp_headline.csv`.
+
+## Pooled ROC and precision–recall curves
+
+The paper reports one pooled AUROC of 0.86 (Fig 5b) and an average precision of 0.60; its curves exist only as an image, so the curves below compare the authors' shipped predictions with this run on the shipped and on the regenerated inputs. The three curves lie on top of each other: AUROC 0.857, 0.856 and 0.855, average precision 0.601, 0.598 and 0.596.
+
+![Pooled ROC and precision-recall curves](../results/comparison/cmp_roc_pr.png)
+
+Data: `results/comparison/cmp_roc_pr.csv`. Per-phage AUROC against the authors' shipped values (correlation 0.92 on shipped inputs, 0.79 on regenerated ones):
+
+![Per-phage AUROC](../results/comparison/cmp_per_phage_auroc.png)
+
+Redrawn panels next to their paper numbers (per-phage AUROC, AUROC against lytic count, prediction matrix; cocktails; defense count and mixed models; host range by morphotype; host-range UMAP):
+
+![Per-phage AUROC, AUROC vs lytic count, prediction matrix](../results/figures/fig5_a_c_d.png)
+![Cocktail experiment](../results/figures/fig6_c_e.png)
+![Mixed-model results and defense count](../results/figures/fig4_a_d.png)
+![Host range by morphotype](../results/figures/fig2_f.png)
+![Host-range UMAP](../results/figures/fig3_a.png)
 
 ## What does not match
 
@@ -43,7 +65,10 @@ Fig 1k (1,026 GenBank genomes and vConTACT2), Fig 3b and ED3 (phage annotation a
 
 ## Regenerated inputs and necessity of features
 
-How well each input was regenerated is in [03](03_feature_regeneration.md) (`cmp_feature_agreement`); the ablation on both input sets is in [04](04_feature_necessity.md). In short, the pooled AUROC survives regeneration, and the verdicts on the ABC capsule, LPS and the O-type/ST pair are the same on both input sets; three of twelve verdicts differ.
+How well each input was regenerated is in [03](03_feature_regeneration.md); the ablation on both input sets is in [04](04_feature_necessity.md).
+
+![Agreement of regenerated features with the shipped ones](../results/comparison/cmp_feature_agreement.png)
+![Feature ablation on shipped and regenerated inputs](../results/comparison/cmp_ablation.png) In short, the pooled AUROC survives regeneration, and the verdicts on the ABC capsule, LPS and the O-type/ST pair are the same on both input sets; three of twelve verdicts differ.
 
 ## Configuration differences
 
