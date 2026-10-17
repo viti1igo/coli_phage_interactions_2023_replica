@@ -64,7 +64,7 @@ _This file is updated after every step (user request). Latest update: see the St
 - [x] T32 Comparison CSVs in `results/comparison/`: `paper_vs_replication.csv` (46 rows, each with paper source), `per_phage_auroc.csv`, `feature_agreement.csv`, `matrix_and_taxonomy_agreement.csv`, `ablation_comparison.csv`, `fig4_hits_by_factor.csv`, `file_inventory.csv` (scripts/build_comparison.py).
 - [x] T33 Four comparison figures with CSVs: `cmp_headline`, `cmp_per_phage_auroc`, `cmp_feature_agreement`, `cmp_ablation` (scripts/fig_comparison.py). Dataviz: 2-series palette slots 1-2, legend, no dual axis, rendered and checked by eye; the palette validator could not run (node missing libsimdjson), so the documented validated slots were used.
 - [x] T34 `config/config_diff.csv`: 24 differences with reason, expected effect and paper line. Not yet re-read against `config/paper_config.yaml` line by line for omissions.
-- [~] T35 `docs/COMPARISON_REPORT.md` written, with the file inventory (provided vs still needed). Waiting for the user's review.
+- [x] T35 Comparison report with the file inventory (provided vs still needed): `reports/05_paper_comparison.md` in the GitHub repo (48 numbers compared, 7 differ, list of missing files). Finalised on the user's request 2026-10-18 and published; `docs/COMPARISON_REPORT.md` now points to it.
 - [x] T36 `/ponytail-audit` run over `scripts/`: 11 ranked findings in `docs/PONYTAIL_AUDIT.md` (about -135 lines, -2 envs). Nothing applied; awaiting approval. The separate `/ponytail` write-mode pass was not run (the audit covers the same ground).
 ### Checkpoint 9: ready for review.
 
@@ -92,6 +92,13 @@ _This file is updated after every step (user request). Latest update: see the St
 - [x] T44 All model runs repeated with fixed seeds (`scripts/run_seeded_models.sh`) and the R fits repeated after the refactor (`lmm_common.R`); figures and comparison tables regenerated. Fig 4c-d changed only within MCMC noise (beta -0.233 / -0.033). Found and fixed on the way: the comparison table used the preprint's 77% as the paper's average AUROC (the published article says 85%); a 4-digit rounding bug turned U = 1171.5 into 1172.
 - [x] T45 Nine English reports written in `reports/` from the current results; Vietnamese notes (`README_REPRO.md`, `docs/FEATURES.md`, `docs/RESULTS.md`) superseded.
 - [x] T46 Commit and push to the existing repository (author Axel). Pushed 2026-10-18 as commit bebecfd on `main`; local copy `publish/phage-host-feature-necessity/`.
+
+## Phase 12 - Close the gaps with the publisher's supplement (2026-10-18, approved by the user)
+- [x] T47 Downloaded the 13 publisher files (Supplementary Information, Reporting Summary, Peer Review File, Supplementary Tables 1-7, Source Data for Fig 1-6, ED6, ED7, ED9; 8.7 MB) to `docs/paper/supplement/` (`scripts/download_supplement.sh`; not pushed). Checked the authors' 14 commits and the Zenodo record: no CV-group file and no recommender code anywhere.
+- [x] T48 `scripts/compare_source_data.py`: exact phage-name map; the 403rd strain is LF110; ANOVA F 114.66 with 403 strains; Fig 5a is per strain (paper Source Data mean 0.872, ours 0.881); genus PERMANOVA 0.13 = sequential increment; Fig 4 Source Data uses pMCMC 0.01 (paper 52/1 terms, ours 51/3); ED2 Q 0.23 matches; ED7 and ED9b/ST7 labels are inconsistent inside the paper. Comparison table now 73 rows (12 differ).
+- [x] T49 ED6 B and D drawn with the paper's AMR counts (genome size vs mean MLC significant, AMR not at 0.01). No independent AMR annotation run.
+- [x] T50 Recommender re-implemented from the Methods (`scripts/recommender.py`): 2 of 100 cocktails identical, 0.97 of 3 phages in common; the haplotype step is reproduced (10 of 11), the two random-forest steps are not. Test-strain ABC/Klebsiella types and genomes are unavailable.
+- [x] T51 Reports 02, 05, 06, 07, 08 and the README updated; pushed to the existing repository (author Axel). Publisher data is not in the repository.
 
 ## Status log (newest last; updated after every step)
 - 2026-10-17 T11 timing; PanACoTA annotate Prodigal vs Prokka compared on 5 genomes (Prodigal 2-7% more CDS, 90-97% of its proteins identical to Prokka's).
@@ -122,3 +129,6 @@ _This file is updated after every step (user request). Latest update: see the St
 - 2026-10-17 Phase 10 COMPLETE (T37-T42): 19 figures in `results/figures/` (PNG, SVG, CSV each) + `stats_*.csv` (paper vs ours). Unmatched numbers listed in T38-T41. Next: Phase 9 (comparison CSVs, figures, config diff, report).
 - 2026-10-17 Phase 9 done except review (T32-T34, T36 done; T35 awaiting user review). Disk after cleanup: external 722 GiB free, internal 22 GiB free.
 - 2026-10-18 Phase 11 COMPLETE (T43-T46): repo reorganised, nine English reports in `reports/`, pushed to the existing GitHub repository.
+- 2026-10-18 T35 finalised. Time Machine local snapshots deleted on the user's instruction (24 snapshots; internal disk free 28 GiB -> 65 GiB).
+- 2026-10-18 GitHub repo history rewritten at the user's request: one commit `ab85ee0` on `main` (old commits removed from the branch); README rewritten around the from-scratch replication. Local `git gc` fails on exFAT `._*` files in `.git` (cosmetic).
+- 2026-10-18 Phase 12 COMPLETE (T47-T51).
