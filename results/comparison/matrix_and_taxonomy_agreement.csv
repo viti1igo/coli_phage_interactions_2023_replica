@@ -1,0 +1,8 @@
+rule,cells,exact_0_1_2_and_3or4_merged_pct,lytic_vs_not_agreement_pct,exact_if_lysis_at_5e6_called_3_pct,cells_missing_in_ours,table,rank,threshold_pct,phages,our_clusters,shipped_groups,adjusted_Rand_index
+max of replicate scores,35268.0,89.26,92.76,86.0,3167.0,interaction matrix (our scoring rules vs shipped),,,,,,
+mean of replicate scores (rounded up),35268.0,92.34,92.76,89.14,3167.0,interaction matrix (our scoring rules vs shipped),,,,,,
+majority vote per dilution,35268.0,96.38,98.7,93.13,3167.0,interaction matrix (our scoring rules vs shipped),,,,,,
+mean of replicate scores (rounded),35268.0,94.89,98.79,91.78,3167.0,interaction matrix (our scoring rules vs shipped),,,,,,
+median of replicate scores,35268.0,96.64,99.8,93.39,3167.0,interaction matrix (our scoring rules vs shipped),,,,,,
+,,,,,,phage taxonomy (BLAST similarity vs VIRIDIC-derived shipped groups),Genus,70.0,97.0,26.0,20.0,0.929
+,,,,,,phage taxonomy (BLAST similarity vs VIRIDIC-derived shipped groups),Species,95.0,97.0,82.0,46.0,0.241

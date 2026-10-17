@@ -1,0 +1,2 @@
+common_strains,our_tree,shipped_splits,our_splits,shared_splits,normalised_RF,patristic_pearson,patristic_spearman,patristic_median_ratio_ours_over_shipped,cv_groups_ours,cv_groups_shipped,cv_groups_ARI,umap_knn_overlap_with_shipped
+402,ESCO.nucl.grp.aln.fasttree_tree.nwk,399,399,390,0.023,1.0,1.0,1.0,300,301,0.9839,0.748

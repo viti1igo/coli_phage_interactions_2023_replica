@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="228.342281pt" viewBox="0 0 628.2 228.342281" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-18T05:57:14.607635</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 228.342281 
+L 628.2 228.342281 
+L 628.2 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 20.0898 152.086217 
+L 110.9322 152.086217 
+Q 120.1392 152.086217 120.1392 149.092457 
+L 120.1392 93.608105 
+Q 120.1392 90.614345 110.9322 90.614345 
+L 20.0898 90.614345 
+Q 10.8828 90.614345 10.8828 93.608105 
+L 10.8828 149.092457 
+Q 10.8828 152.086217 20.0898 152.086217 
+z
+" clip-path="url(#p4473e00ee7)" style="fill: #bcd3f2; stroke: #2a78d6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 142.8498 152.086217 
+L 233.6922 152.086217 
+Q 242.8992 152.086217 242.8992 149.092457 
+L 242.8992 93.608105 
+Q 242.8992 90.614345 233.6922 90.614345 
+L 142.8498 90.614345 
+Q 133.6428 90.614345 133.6428 93.608105 
+L 133.6428 149.092457 
+Q 133.6428 152.086217 142.8498 152.086217 
+z
+" clip-path="url(#p4473e00ee7)" style="fill: #bcd3f2; stroke: #2a78d6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 265.6098 152.086217 
+L 356.4522 152.086217 
+Q 365.6592 152.086217 365.6592 149.092457 
+L 365.6592 93.608105 
+Q 365.6592 90.614345 356.4522 90.614345 
+L 265.6098 90.614345 
+Q 256.4028 90.614345 256.4028 93.608105 
+L 256.4028 149.092457 
+Q 256.4028 152.086217 265.6098 152.086217 
+z
+" clip-path="url(#p4473e00ee7)" style="fill: #bcd3f2; stroke: #2a78d6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 388.3698 152.086217 
+L 479.2122 152.086217 
+Q 488.4192 152.086217 488.4192 149.092457 
+L 488.4192 93.608105 
+Q 488.4192 90.614345 479.2122 90.614345 
+L 388.3698 90.614345 
+Q 379.1628 90.614345 379.1628 93.608105 
+L 379.1628 149.092457 
+Q 379.1628 152.086217 388.3698 152.086217 
+z
+" clip-path="url(#p4473e00ee7)" style="fill: #bcd3f2; stroke: #2a78d6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 511.1298 152.086217 
+L 601.9722 152.086217 
+Q 611.1792 152.086217 611.1792 149.092457 
+L 611.1792 93.608105 
+Q 611.1792 90.614345 601.9722 90.614345 
+L 511.1298 90.614345 
+Q 501.9228 90.614345 501.9228 93.608105 
+L 501.9228 149.092457 
+Q 501.9228 152.086217 511.1298 152.086217 
+z
+" clip-path="url(#p4473e00ee7)" style="fill: #bcd3f2; stroke: #2a78d6; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(29.49975 118.627625)">Interaction matrix</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(17.246 128.229813)">403 strains x 96 phages</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(137.2935 118.627625)">Recommender trained on</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(151.174125 128.229813)">the original matrix</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 124.593146 121.350281 
+Q 128.11712 121.350281 130.18765 121.350281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+    <path d="M 126.58765 119.550281 
+L 130.18765 121.350281 
+L 126.58765 123.150281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(274.302875 118.627625)">100 unseen E. coli</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(269.289125 128.229813)">(genomic traits only)</text>
+   </g>
+   <g id="patch_8">
+    <path d="M 247.353146 121.350281 
+Q 250.87712 121.350281 252.94765 121.350281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+    <path d="M 249.34765 119.550281 
+L 252.94765 121.350281 
+L 249.34765 123.150281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(400.601 118.627625)">3-phage cocktail</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(414.481 128.229813)">per strain</text>
+   </g>
+   <g id="patch_9">
+    <path d="M 370.113146 121.350281 
+Q 373.63712 121.350281 375.70765 121.350281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+    <path d="M 372.10765 119.550281 
+L 375.70765 121.350281 
+L 372.10765 123.150281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(503.5085 113.826531)">Tested at 6 concentrations</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(500.964125 123.428719)">(5x10^3 to 5x10^8 pfu/ml)</text>
+    <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #0b0b0b" transform="translate(520.799125 133.030906)">vs baseline triplet</text>
+   </g>
+   <g id="patch_10">
+    <path d="M 492.873146 121.350281 
+Q 496.39712 121.350281 498.46765 121.350281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+    <path d="M 494.86765 119.550281 
+L 498.46765 121.350281 
+L 494.86765 123.150281 
+" style="fill: none; stroke: #52514e; stroke-width: 1.3; stroke-linecap: round"/>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start; fill: #0b0b0b" x="7.2" y="15.558281" transform="rotate(-0 7.2 15.558281)">Fig 6a  Cocktail experiment (redrawn from the legend)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p4473e00ee7">
+   <rect x="7.2" y="21.558281" width="613.8" height="199.584"/>
+  </clipPath>
+ </defs>
+</svg>

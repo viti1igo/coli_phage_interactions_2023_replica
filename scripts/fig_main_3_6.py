@@ -1,0 +1,150 @@
+"""Fig 3a (+PERMANOVA), Fig 5 a/c/d, Fig 6 c-e from shipped/our results.
+python scripts/fig_main_3_6.py -> results/figures/fig3_a.*, fig5_a_c_d.*, fig6_c_e.*, stats_fig3_6.csv"""
+import numpy as np, pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+from scipy.stats import mannwhitneyu
+from scipy.spatial.distance import pdist, squareform
+from sklearn.metrics import f1_score, average_precision_score, roc_auc_score
+from figlib import *
+
+D = f"{ROOT}/data"
+ph = pd.read_csv(f"{D}/genomics/phages/guelin_collection.csv", sep=";", index_col=0)
+M = pd.read_csv(f"{D}/interactions/interaction_matrix.csv", sep=";", index_col=0)
+
+# ---------------- Fig 3a: Jaccard distance on binary lytic vectors (NaN = no lysis), UMAP, PERMANOVA
+B = (M.fillna(0) > 0).values.T.astype(bool)           # phages x strains
+Dm = squareform(pdist(B, "jaccard")); Dm = np.nan_to_num(Dm)
+import umap
+emb = umap.UMAP(n_neighbors=15, min_dist=0.1, metric="precomputed", random_state=0).fit_transform(Dm)  # paper: parameters not stated
+
+
+def design(factors, data):
+    cols = [np.ones(len(data))]
+    for f in factors:
+        cols.append(pd.get_dummies(data[f], drop_first=True).values.astype(float))
+    return np.column_stack(cols)
+
+
+def permanova(Dm, X, Xr, perms=999, seed=0):
+    """Pseudo-F test of full design X against reduced Xr on a distance matrix (Anderson 2001); returns R2, adjusted R2, p."""
+    n = len(Dm); G = -0.5 * (np.eye(n) - 1 / n) @ (Dm ** 2) @ (np.eye(n) - 1 / n)
+    hat = lambda Z: Z @ np.linalg.pinv(Z)
+    Hf, Hr = hat(X), hat(Xr)
+    def stat_(perm):
+        Gp = G[np.ix_(perm, perm)]
+        ssm = np.trace(Hf @ Gp @ Hf) - np.trace(Hr @ Gp @ Hr)
+        sse = np.trace(Gp) - np.trace(Hf @ Gp @ Hf)
+        return (ssm / (np.linalg.matrix_rank(X) - np.linalg.matrix_rank(Xr))) / (sse / (n - np.linalg.matrix_rank(X)))
+    f0 = stat_(np.arange(n)); rng = np.random.default_rng(seed)
+    p = (1 + sum(stat_(rng.permutation(n)) >= f0 for _ in range(perms))) / (perms + 1)
+    tot = np.trace(G); r2 = (np.trace(Hf @ G @ Hf) - np.trace(Hr @ G @ Hr)) / tot
+    rk = np.linalg.matrix_rank(X)
+    return r2, 1 - (1 - (np.trace(Hf @ G @ Hf) / tot)) * (n - 1) / (n - rk), p
+
+
+meta = ph.loc[M.columns, ["Genus", "Phage_host"]].copy()
+meta["Genus"] = meta.Genus.astype(str); meta["Host"] = meta.Phage_host.astype(str)
+one = np.ones((len(meta), 1))
+Xg, Xh = design(["Genus"], meta), design(["Host"], meta)
+res = {"genus": permanova(Dm, Xg, one), "isolation strain": permanova(Dm, Xh, one), "genus x isolation strain": permanova(Dm, np.column_stack([Xg, Xh[:, 1:]]), one)}
+for k, (r2, adj, p) in res.items():
+    print(f"PERMANOVA {k}: R2 {r2:.3f} adj {adj:.3f} p {p:.4f}")
+stat("Fig 3a", "PERMANOVA adj. R2, genus", 0.13, round(res["genus"][1], 2), "Results p.2851")
+stat("Fig 3a", "PERMANOVA adj. R2, isolation strain", 0.53, round(res["isolation strain"][1], 2), "Results p.2851")
+stat("Fig 3a", "PERMANOVA adj. R2, genus + isolation strain", 0.65, round(res["genus x isolation strain"][1], 2), "Results p.2851")
+stat("Fig 3a", "PERMANOVA R2 (unadjusted), genus", "not stated", round(res["genus"][0], 3), "-")
+stat("Fig 3a", "PERMANOVA R2 (unadjusted), isolation strain", "not stated", round(res["isolation strain"][0], 3), "-")
+
+top = meta.Genus.value_counts().index[:8]
+cmap = plt.get_cmap("tab10")
+fig, axs = plt.subplots(1, 2, figsize=(11, 4.6))
+for g in meta.Genus.unique():
+    m = (meta.Genus == g).values
+    axs[0].scatter(emb[m, 0], emb[m, 1], s=22, color=cmap(list(top).index(g)) if g in top else "#b8b7b0", edgecolor=SURF, lw=0.5, label=g if g in top else None)
+axs[0].legend(frameon=False, fontsize=7, labelcolor=INK, title="Genus (top 8; others grey)", title_fontsize=7)
+tophost = meta.Host.value_counts().index[:8]
+for g in meta.Host.unique():
+    m = (meta.Host == g).values
+    axs[1].scatter(emb[m, 0], emb[m, 1], s=22, color=cmap(list(tophost).index(g)) if g in tophost else "#b8b7b0", edgecolor=SURF, lw=0.5, label=g if g in tophost else None)
+axs[1].legend(frameon=False, fontsize=7, labelcolor=INK, title="Isolation strain (top 8; others grey)", title_fontsize=7)
+for a, t in zip(axs, ["a  Phage host-range UMAP, by genus", "a  by isolation strain"]):
+    a.set_title(t, loc="left"); a.set_xlabel("UMAP 1"); a.set_ylabel("UMAP 2"); style(a, None)
+fig.tight_layout()
+save(fig, "fig3_a", pd.DataFrame({"phage": M.columns, "umap1": emb[:, 0], "umap2": emb[:, 1], "genus": meta.Genus.values, "isolation_strain": meta.Host.values}))
+
+# ---------------- Fig 5 a, c, d
+pp = pd.read_csv(f"{ROOT}/results/repro/per_phage.csv", index_col=0)
+pr = pd.read_csv(f"{ROOT}/results/repro/predictions.csv")
+pr["yhat"] = (pr.p >= 0.5).astype(int)
+fig, axs = plt.subplots(1, 3, figsize=(14, 4.2), gridspec_kw={"width_ratios": [1, 1, 1.5]})
+axs[0].hist(pp.auroc, bins=np.arange(0.3, 1.0001, 0.05), color=BLUE, edgecolor=SURF)
+axs[0].axvline(pp.auroc.mean(), color=INK, lw=1, ls=(0, (4, 3))); axs[0].text(pp.auroc.mean() + 0.01, axs[0].get_ylim()[1] * 0.93, f"mean {pp.auroc.mean():.3f}", fontsize=8, color=INK)
+axs[0].set_xlabel("AUROC per phage"); axs[0].set_ylabel("Phages"); axs[0].set_title("a  Per-phage AUROC", loc="left")
+axs[1].scatter(pp.n_pos, pp.auroc, s=20, color=BLUE, edgecolor=SURF, lw=0.5)
+axs[1].set_xlabel("Lytic interactions of the phage"); axs[1].set_ylabel("AUROC"); axs[1].set_title("c  AUROC vs lytic interactions", loc="left")
+for a in axs[:2]: style(a)
+# d: prediction matrix, strains in tree order x phages by host range; categories TP, FP, FN, TN/NA
+leaf = open(f"{D}/genomics/bacteria/panacota/tree/370+host_leaf_order_root=albertii.txt").read().strip().split(",")
+rows = [b for b in leaf if b in M.index]
+cols = M.columns[np.argsort(-(M > 0).sum().values)]
+cat = pd.DataFrame(0, index=rows, columns=cols)
+for r in pr.itertuples():
+    if r.bacteria in cat.index:
+        cat.loc[r.bacteria, r.phage] = 1 if (r.y and r.yhat) else 2 if (not r.y and r.yhat) else 3 if (r.y and not r.yhat) else 0
+axs[2].imshow(cat.values.T, aspect="auto", interpolation="nearest", cmap=ListedColormap(["#f6f5f1", BLUE, "#e9b8a3", ORANGE]), vmin=0, vmax=3)
+axs[2].set_xticks([]); axs[2].set_yticks([]); axs[2].set_title("d  Predictions (blue TP, light orange FP, orange FN)", loc="left", fontsize=9); axs[2].set_xlabel("Strains (tree order)"); axs[2].set_ylabel("Phages (by host range)")
+style(axs[2], None)
+fig.tight_layout()
+save(fig, "fig5_a_c_d", pp.reset_index())
+cat.reset_index().rename(columns={"index": "bacteria"}).to_csv(f"{OUT}/fig5_d_prediction_matrix.csv", index=False)
+tp, fp, fn = [(cat.values == k).sum() for k in (1, 2, 3)]
+prec, rec = tp / (tp + fp), tp / (tp + fn)
+stat("Fig 5", "mean per-phage AUROC, published article", 0.85, round(pp.auroc.mean(), 3), "Results p.2854 (published.txt l.623)")
+stat("Fig 5", "mean per-phage AUROC, preprint", 0.77, round(pp.auroc.mean(), 3), "Results (preprint.txt l.521)")
+stat("Fig 5a", "mean per-strain AUROC (the other aggregation the legend mentions)", 0.85, round(pr.groupby("bacteria").apply(lambda d: roc_auc_score(d.y, d.p) if d.y.nunique() > 1 else np.nan, include_groups=False).mean(), 3), "Fig 5a legend (published.txt l.1013)")
+stat("Fig 5", "pooled AUROC", 0.86, round(roc_auc_score(pr.y, pr.p), 3), "Fig 5b")
+stat("Fig 5", "average precision", 0.60, round(average_precision_score(pr.y, pr.p), 3), "Fig 5b")
+stat("Fig 5d", "F1 at p >= 0.5 (all pairs pooled)", 0.60, round(f1_score(pr.y, pr.yhat), 3), "Results")
+stat("Fig 5d", "TP / FP / FN (pairs)", "not stated", f"{tp} / {fp} / {fn}", "-")
+stat("Fig 5c", "Spearman(AUROC, n lytic)", "not stated", round(pp.auroc.corr(pp.n_pos, method="spearman"), 3), "-")
+
+# ---------------- Fig 6 c-e
+C = f"{ROOT}/dev/cocktails/data"
+cml = pd.read_csv(f"{C}/cml_cocktails.csv", sep=";")
+comp = pd.read_csv(f"{C}/cocktails_composition.csv", sep=";")
+GENERIC = ["55989_P2-DIJ07_P2-LF82_P8", "536_P7-LF82_P8-LF82_P9", "55989_P2-LF82_P9-DIJ07_P2", "536_P7-DIJ07_P2-LF82_P8"]
+cml = cml.merge(comp[["bacteria", "cocktails_str"]], on="bacteria")
+cml["kind"] = np.where(cml.cocktails_str.isin(GENERIC), "Generic", "Tailored")
+nc = cml.groupby(["cocktails_str", "kind"]).size().rename("strains").reset_index().sort_values("strains", ascending=False)
+fig, axs = plt.subplots(1, 3, figsize=(15, 4.4), gridspec_kw={"width_ratios": [1.5, 1, 1.2]})
+axs[0].bar(range(len(nc)), nc.strains, color=[ORANGE if k == "Generic" else BLUE for k in nc.kind], width=0.75)
+axs[0].set_xticks([]); axs[0].set_xlabel(f"{len(nc)} distinct cocktails"); axs[0].set_ylabel("Strains for which it was recommended"); axs[0].set_title("c  Recommendations per cocktail", loc="left")
+from matplotlib.patches import Patch
+axs[0].legend(handles=[Patch(color=ORANGE, label="Generic"), Patch(color=BLUE, label="Tailored")], frameon=False, labelcolor=INK)
+sets = {"Tailored": cml[cml.kind == "Tailored"]["p1+p2+p3"], "Generic": cml[cml.kind == "Generic"]["p1+p2+p3"], "Baseline": cml["b1+b2+b3"]}
+cols3 = {"Tailored": BLUE, "Generic": ORANGE, "Baseline": "#8a8983"}
+succ = {k: (v > 0).mean() * 100 for k, v in sets.items()}
+axs[1].bar(list(succ), list(succ.values()), color=[cols3[k] for k in succ], width=0.6)
+for i, (k, v) in enumerate(succ.items()): axs[1].text(i, v + 1, f"{v:.1f}%", ha="center", fontsize=9, color=INK)
+axs[1].set_ylim(0, 105); axs[1].set_ylabel("Strains lysed (%)"); axs[1].set_title("d  In vitro success rate", loc="left")
+bins = [-0.5, 0.5, 2.5, 4.5, 6.5]; names = ["0", "1-2", "3-4", "5-6"]
+w = 0.26
+for i, (k, v) in enumerate(sets.items()):
+    h = np.histogram(v, bins=bins)[0] / len(v) * 100
+    axs[2].bar(np.arange(4) + (i - 1) * w, h, width=w, color=cols3[k], label=k)
+axs[2].set_xticks(range(4)); axs[2].set_xticklabels(names); axs[2].set_xlabel("MLC of the 3-phage cocktail"); axs[2].set_ylabel("Strains (%)"); axs[2].legend(frameon=False, labelcolor=INK); axs[2].set_title("e  Binned MLC", loc="left")
+for a in axs: style(a)
+fig.tight_layout()
+save(fig, "fig6_c_e", cml)
+mw = lambda a, b: mannwhitneyu(a, b, alternative="two-sided")
+t = cml[cml.kind == "Tailored"]
+r1, r2 = mw(sets["Tailored"], t["b1+b2+b3"]), mw(sets["Tailored"], sets["Generic"])
+stat("Fig 6d", "success rate, tailored (%)", 91.67, round(succ["Tailored"], 2), "Results p.2855")
+stat("Fig 6d", "success rate, generic (%)", 78.95, round(succ["Generic"], 2), "Results p.2855")
+stat("Fig 6d", "success rate, baseline (%)", 81, round(succ["Baseline"], 1), "Results p.2855")
+stat("Fig 6e", "Mann-Whitney U, tailored vs baseline (tailored strains)", 399.5, r1.statistic, "Fig 6 legend")
+stat("Fig 6e", "P, tailored vs baseline", 0.019, round(r1.pvalue, 3), "Fig 6 legend")
+stat("Fig 6e", "Mann-Whitney U, tailored vs generic", 1171.5, r2.statistic, "Fig 6 legend")
+stat("Fig 6e", "P, tailored vs generic", 0.034, round(r2.pvalue, 3), "Fig 6 legend")
+flush_stats("fig3_6")

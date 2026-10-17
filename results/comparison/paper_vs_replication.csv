@@ -1,0 +1,49 @@
+figure,metric,paper,published_data_result,replication_shipped_inputs,replication_regenerated_inputs,status,note,paper_source
+Fig 4c,beta (defense systems),-0.22,-,-0.233,-0.235,consistent (inside paper CI -0.74 to 0.34),paper prints 2 decimals,Results; Fig 4 legend
+Fig 4c,pMCMC,0.41,-,0.3989,-,match (within 5%),,Results; Fig 4 legend
+Fig 4d,beta (defense systems),-0.04,-,-0.033,-0.037,consistent (inside paper CI -0.05 to -0.01),paper prints 2 decimals,Results; Fig 4 legend
+Fig 4d,pMCMC,0.004,-,0.0003,-,differs,both significant; ours smaller than the paper's 0.004,Results; Fig 4 legend
+ED1,phages infecting BE,45 (46.9%),-,45 (46.9%),-,not comparable (qualitative),,ED Fig. 1 legend
+ED1,phages infecting BL21,48 (50.0%),-,48 (50.0%),-,not comparable (qualitative),,ED Fig. 1 legend
+ED2,"nestedness (paper: BINMATNEST temperature T; ours: NODF, not comparable)","nested pattern, P not printed",-,"NODF 52.1, P = 0.001",-,not comparable (qualitative),,Results p.2850; ED Fig. 2
+ED2,modularity Q (BRIM) significance,"weakly modular, P not printed",-,"Q = 0.231 (5 modules), P = 0.001",-,not comparable (qualitative),,ED Fig. 2 legend
+ED4A,AL505_Sd2: infected strains that are ABC K1,all K1-associated (qualitative),-,36 of 77 infected; 36 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
+ED4A,412_P2: infected strains that are ABC K1,all K1-associated (qualitative),-,36 of 53 infected; 36 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
+ED4A,MT1B1_3A1: infected strains that are ABC K1,all K1-associated (qualitative),-,37 of 68 infected; 37 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
+ED5,strains infected by PDP110_P1,3,-,3,-,match (within 5%),,ED Fig. 5 legend
+ED5,infected strains that carry K55,3 of 3,-,3 of 3; K55 strains total 3,-,not comparable (qualitative),,ED Fig. 5 legend
+ED7,coverage of the most-covering triplet (%),63,-,87.6,-,differs,"'productive lysis' definition not given; MLC>0, >=2 and >=3 give 87.6, 76.9 and 54.7, none gives 63",ED Fig. 7 legend; Methods p.2855
+ED7,baseline triplet,not named,-,LF82_P8 + NIC06_P2 + 536_P7,-,not comparable (qualitative),,-
+ED9A,"Mann-Whitney P (step, generic vs tailored)",3.5e-12,-,4.1e-09,-,differs,"same direction, much weaker; unit of analysis (phage vs cocktail) not stated",ED Fig. 9 legend
+ED9,cocktails,18,-,18,-,match (within 5%),,Fig. 6 legend
+ED6A,genome size vs lytic interactions (pMCMC),reported significant (title; value not printed),-,"beta -5.89/Mb, pMCMC 0.122",-,not comparable (qualitative),"paper title says genome size correlates with virulence (average MLC), consistent with panel C only",ED Fig. 6 title
+ED6C,genome size vs average MLC (pMCMC),reported significant (title; value not printed),-,"beta -0.35/Mb, pMCMC 0.0042",-,not comparable (qualitative),,ED Fig. 6 title
+ED6B/D,AMR gene number,not significant,-,not run (no AMR annotation shipped),-,not comparable (qualitative),,ED Fig. 6 title
+Fig 1,strains in the Picard collection,403,-,403,-,match (within 5%),,"Fig. 1 / Results, collection description"
+Fig 1j,defense subtypes detected (columns),not stated numerically,-,137,-,not comparable (qualitative),,Fig. 1j
+Fig 2,mean % of strains infected per phage,not stated,-,20.7,-,not comparable (qualitative),,-
+Fig 2f,ANOVA F (host range ~ morphotype),114.7,-,113.9,-,match (within 5%),"public matrix has 402 strains, paper 403",Results p.2850; Fig 2f legend
+Fig 2f,ANOVA P,1.44e-26,-,9.79e-26,-,match,,Fig 2f legend
+Fig 2f,"mean % lytic interactions, Myoviridae",41.3,-,41.3,-,match (within 5%),,Results p.2850
+Fig 2f,"mean % lytic interactions, Podoviridae",11.1,-,11.2,-,match (within 5%),,Results p.2850
+Fig 2f,"mean % lytic interactions, Siphoviridae",9.1,-,9.1,-,match (within 5%),,Results p.2850
+Fig 3a,"PERMANOVA adj. R2, genus",0.13,-,0.27,-,differs,cause not found; isolation-strain R2 is close,Results p.2851
+Fig 3a,"PERMANOVA adj. R2, isolation strain",0.53,-,0.55,-,match (within 5%),,Results p.2851
+Fig 3a,"PERMANOVA adj. R2, genus + isolation strain",0.65,-,0.69,-,differs,,Results p.2851
+Fig 3a,"PERMANOVA R2 (unadjusted), genus",not stated,-,0.404,-,not comparable (qualitative),,-
+Fig 3a,"PERMANOVA R2 (unadjusted), isolation strain",not stated,-,0.709,-,not comparable (qualitative),,-
+Fig 5,"mean per-phage AUROC, published article",0.85,0.781,0.787,0.765 (+ our matrix 0.769),differs,"not reproduced by any aggregation tried (per phage 0.787, per strain 0.878; the authors' own shipped predictions give 0.781 and 0.881); the preprint gave 77 % and that matches",Results p.2854 (published.txt l.623)
+Fig 5,"mean per-phage AUROC, preprint",0.77,0.781,0.787,0.765 (+ our matrix 0.769),match (within 5%),,Results (preprint.txt l.521)
+Fig 5a,mean per-strain AUROC (the other aggregation the legend mentions),0.85,-,0.878,-,differs,"0.028 higher; the authors' shipped predictions give 0.881, so the gap is not caused by our run",Fig 5a legend (published.txt l.1013)
+Fig 5,pooled AUROC,0.86,0.857,0.856,0.855 (+ our matrix 0.853),match (within 5%),,Fig 5b
+Fig 5,average precision,0.6,0.601,0.598,0.596,match (within 5%),,Fig 5b
+Fig 5d,F1 at p >= 0.5 (all pairs pooled),0.6,-,0.599,-,match (within 5%),,Results
+Fig 5d,TP / FP / FN (pairs),not stated,-,4669 / 2940 / 3307,-,not comparable (qualitative),,-
+Fig 5c,"Spearman(AUROC, n lytic)",not stated,-,-0.352,-,not comparable (qualitative),,-
+Fig 6d,"success rate, tailored (%)",91.67,-,91.67,-,match (within 5%),,Results p.2855
+Fig 6d,"success rate, generic (%)",78.95,-,78.95,-,match (within 5%),,Results p.2855
+Fig 6d,"success rate, baseline (%)",81,-,81,-,match (within 5%),,Results p.2855
+Fig 6e,"Mann-Whitney U, tailored vs baseline (tailored strains)",399.5,-,399.5,-,match (within 5%),,Fig 6 legend
+Fig 6e,"P, tailored vs baseline",0.019,-,0.019,-,match (within 5%),,Fig 6 legend
+Fig 6e,"Mann-Whitney U, tailored vs generic",1171.5,-,1171.5,-,match (within 5%),,Fig 6 legend
+Fig 6e,"P, tailored vs generic",0.034,-,0.034,-,match (within 5%),,Fig 6 legend

@@ -1,0 +1,6 @@
+column,n_strains,n_agree,agreement_pct,mismatches
+Clermont_Phylo,33,33,100.0,
+ST_Warwick,33,33,100.0,
+O-type,33,32,97.0,PDP351: shipped - / ours <NA>
+H-type,33,32,97.0,BL21: shipped - / ours <NA>
+LPS_type,33,33,100.0,

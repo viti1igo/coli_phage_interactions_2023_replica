@@ -1,0 +1,34 @@
+task,feature,metric,value,note
+T14,core-genome tree,normalised Robinson-Foulds (0 = identical),0.023,"390/399 splits shared, 402 strains"
+T14,core-genome tree,patristic distance Pearson,1.0,
+T14,CV groups (<1e-4),adjusted Rand index,0.9839,300 vs 301 groups
+T15,UMAP 8-D,10-NN overlap with shipped coordinates,0.748,UMAP run-to-run overlap is 0.77-0.80
+T16-T21,O-type (raw ECTyper output),agreement % (strains),100.0,402/402
+T16-T21,H-type (raw ECTyper output),agreement % (strains),100.0,402/402
+T16-T21,ABC capsule present (shipped has a serotype vs we found a system),agreement % (strains),98.26,396/403
+T16-T21,"ABC serotype, strains with a K-type in both",agreement % (strains),89.47,85/95
+T16-T21,O-type,agreement % (strains),74.69,301/403
+T16-T21,H-type,agreement % (strains),91.81,370/403
+T16-T21,ST_Warwick,agreement % (strains),95.29,384/403
+T16-T21,Clermont_Phylo,agreement % (strains),99.01,399/403
+T16-T21,Klebs_capsule_type,agreement % (strains),97.27,392/403
+T19,"LPS_type (pangenome marker families, 5-fold CV)",accuracy %,97.0,supervised by shipped labels; K-12 waaL BLAST alone finds only K12/R1/R4
+T23,OMP btuB clusters (99%),adjusted Rand index,0.665,26 vs 30 clusters
+T23,OMP fadL clusters (99%),adjusted Rand index,0.342,29 vs 12 clusters
+T23,OMP fhuA clusters (99%),adjusted Rand index,0.591,33 vs 21 clusters
+T23,OMP lamB clusters (99%),adjusted Rand index,0.863,18 vs 12 clusters
+T23,OMP lptD clusters (99%),adjusted Rand index,0.895,16 vs 11 clusters
+T23,OMP nfrA clusters (99%),adjusted Rand index,0.396,28 vs 63 clusters
+T23,OMP ompA clusters (99%),adjusted Rand index,0.743,20 vs 11 clusters
+T23,OMP ompC clusters (99%),adjusted Rand index,0.964,63 vs 53 clusters
+T23,OMP ompF clusters (99%),adjusted Rand index,0.88,21 vs 15 clusters
+T23,OMP tolC clusters (99%),adjusted Rand index,0.06,23 vs 11 clusters
+T23,OMP tsx clusters (99%),adjusted Rand index,0.809,11 vs 5 clusters
+T23,OMP yncD clusters (99%),adjusted Rand index,0.916,43 vs 56 clusters
+T22,defense subtypes (presence),F1,0.976,"precision 0.981, recall 0.97"
+T22,n_defense_systems per strain,Pearson vs shipped column,0.972,mean 9.04 ours vs 9.17 shipped; exact 63.9%
+T24,host strains: Clermont_Phylo,agreement % (strains),100.0,33/33
+T24,host strains: ST_Warwick,agreement % (strains),100.0,33/33
+T24,host strains: O-type,agreement % (strains),97.0,32/33
+T24,host strains: H-type,agreement % (strains),97.0,32/33
+T24,host strains: LPS_type,agreement % (strains),100.0,33/33

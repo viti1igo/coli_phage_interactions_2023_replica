@@ -1,0 +1,403 @@
+001-023.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	001-023.fasta_mash_screen.tab
+001-031-c1.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	001-031-c1.fasta_mash_screen.tab
+003-026.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	003-026.fasta_mash_screen.tab
+013-008.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	013-008.fasta_mash_screen.tab
+025-010.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	025-010.fasta_mash_screen.tab
+034-008.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	034-008.fasta_mash_screen.tab
+034-026-c1.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	034-026-c1.fasta_mash_screen.tab
+035-004.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	035-004.fasta_mash_screen.tab
+370D.fasta	['trpA', 'trpBA', 'yjaA', 'aesI']	['-', '-', '+', '-']	['aesI']	cladeI	370D.fasta_mash_screen.tab
+381A.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	381A.fasta_mash_screen.tab
+536.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	536.fasta_mash_screen.tab
+55989.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA']	['+', '-', '-', '+']	[]	B1	55989.fasta_mash_screen.tab
+916A.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	G	916A.fasta_mash_screen.tab
+921A.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	G	921A.fasta_mash_screen.tab
+AL505.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	AL505.fasta_mash_screen.tab
+AN03.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	AN03.fasta_mash_screen.tab
+AN17.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	AN17.fasta_mash_screen.tab
+AN24.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	AN24.fasta_mash_screen.tab
+ATCC35469T.fasta	['trpA', 'trpBA', 'citPferg', 'aesI']	['-', '-', '-', '-']	['citPferg', 'aesI']	fergusonii	ATCC35469T.fasta_mash_screen.tab
+Asp51g.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	Asp51g.fasta_mash_screen.tab
+B090.fasta	['trpBA', 'chuAalbertii', 'TspE4.C2']	['-', '-', '-', '+']	['chuAalbertii']	albertii	B090.fasta_mash_screen.tab
+B1147.fasta	['aesII']	['-', '-', '-', '-']	['aesII']	cladeII	B1147.fasta_mash_screen.tab
+B12I13.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	B12I13.fasta_mash_screen.tab
+B156.fasta	['chuAalbertii']	['-', '-', '-', '-']	['chuAalbertii']	albertii	B156.fasta_mash_screen.tab
+B1747.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	B1747.fasta_mash_screen.tab
+B1932.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	B1932.fasta_mash_screen.tab
+B253.fasta	['trpA', 'trpBA', 'citPferg', 'aesI']	['-', '-', '-', '-']	['citPferg', 'aesI']	fergusonii	B253.fasta_mash_screen.tab
+B49.fasta	['trpBA', 'chuIV']	['-', '-', '-', '-']	['chuIV']	cladeIV	B49.fasta_mash_screen.tab
+B691.fasta	['trpA', 'trpBA', 'citPferg', 'yjaA', 'aesI']	['-', '-', '+', '-']	['citPferg', 'aesI']	fergusonii	B691.fasta_mash_screen.tab
+B6A1.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	B6A1.fasta_mash_screen.tab
+B992.fasta	['ybgD', 'trpBA', 'chuAalbertii']	['-', '-', '-', '-']	['chuAalbertii']	albertii	B992.fasta_mash_screen.tab
+BCH953.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	BCH953.fasta_mash_screen.tab
+BDX03.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	BDX03.fasta_mash_screen.tab
+BDX09.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	BDX09.fasta_mash_screen.tab
+BE.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	BE.fasta_mash_screen.tab
+BL21.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	BL21.fasta_mash_screen.tab
+Ben4d.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	Ben4d.fasta_mash_screen.tab
+C2-119.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	C2-119.fasta_mash_screen.tab
+DEC1a.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	DEC1a.fasta_mash_screen.tab
+DEC2a.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	DEC2a.fasta_mash_screen.tab
+DIJ06.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	DIJ06.fasta_mash_screen.tab
+DIJ07.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	DIJ07.fasta_mash_screen.tab
+E1426.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	E1426.fasta_mash_screen.tab
+E1492.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'aesI']	['+', '+', '+', '-']	['aesI']	cladeI	E1492.fasta_mash_screen.tab
+E2052.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	E2052.fasta_mash_screen.tab
+E2348_69.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	E2348_69.fasta_mash_screen.tab
+E4962.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	E4962.fasta_mash_screen.tab
+E7519.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	E7519.fasta_mash_screen.tab
+EC6230.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	EC6230.fasta_mash_screen.tab
+ECOR-01.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-01.fasta_mash_screen.tab
+ECOR-02.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-02.fasta_mash_screen.tab
+ECOR-03.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-03.fasta_mash_screen.tab
+ECOR-04.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-04.fasta_mash_screen.tab
+ECOR-05.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-05.fasta_mash_screen.tab
+ECOR-06.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-06.fasta_mash_screen.tab
+ECOR-07.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-07.fasta_mash_screen.tab
+ECOR-08.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-08.fasta_mash_screen.tab
+ECOR-09.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-09.fasta_mash_screen.tab
+ECOR-10.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-10.fasta_mash_screen.tab
+ECOR-11.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-11.fasta_mash_screen.tab
+ECOR-12.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-12.fasta_mash_screen.tab
+ECOR-13.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-13.fasta_mash_screen.tab
+ECOR-14.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-14.fasta_mash_screen.tab
+ECOR-15.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-15.fasta_mash_screen.tab
+ECOR-16.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-16.fasta_mash_screen.tab
+ECOR-17.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-17.fasta_mash_screen.tab
+ECOR-18.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-18.fasta_mash_screen.tab
+ECOR-19.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-19.fasta_mash_screen.tab
+ECOR-20.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-20.fasta_mash_screen.tab
+ECOR-21.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-21.fasta_mash_screen.tab
+ECOR-22.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-22.fasta_mash_screen.tab
+ECOR-23.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-23.fasta_mash_screen.tab
+ECOR-24.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	ECOR-24.fasta_mash_screen.tab
+ECOR-25.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-25.fasta_mash_screen.tab
+ECOR-26.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-26.fasta_mash_screen.tab
+ECOR-27.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-27.fasta_mash_screen.tab
+ECOR-28.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA']	['+', '-', '-', '+']	[]	B1	ECOR-28.fasta_mash_screen.tab
+ECOR-29.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-29.fasta_mash_screen.tab
+ECOR-30.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-30.fasta_mash_screen.tab
+ECOR-31.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'ArpAgpE']	['+', '+', '-', '+']	['ArpAgpE']	E	ECOR-31.fasta_mash_screen.tab
+ECOR-32.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-32.fasta_mash_screen.tab
+ECOR-33.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-33.fasta_mash_screen.tab
+ECOR-34.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-34.fasta_mash_screen.tab
+ECOR-35.fasta	['trpA', 'trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-35.fasta_mash_screen.tab
+ECOR-36.fasta	['trpA', 'trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-36.fasta_mash_screen.tab
+ECOR-37.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	ECOR-37.fasta_mash_screen.tab
+ECOR-38.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-38.fasta_mash_screen.tab
+ECOR-39.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-39.fasta_mash_screen.tab
+ECOR-40.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-40.fasta_mash_screen.tab
+ECOR-41.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	ECOR-41.fasta_mash_screen.tab
+ECOR-42.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '+']	['ArpAgpE', 'trpAgpC']	E	ECOR-42.fasta_mash_screen.tab
+ECOR-43_A.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	ECOR-43_A.fasta_mash_screen.tab
+ECOR-44.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	ECOR-44.fasta_mash_screen.tab
+ECOR-45.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-45.fasta_mash_screen.tab
+ECOR-46.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	ECOR-46.fasta_mash_screen.tab
+ECOR-47.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	ECOR-47.fasta_mash_screen.tab
+ECOR-48.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	ECOR-48.fasta_mash_screen.tab
+ECOR-49.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	ECOR-49.fasta_mash_screen.tab
+ECOR-50.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	ECOR-50.fasta_mash_screen.tab
+ECOR-51.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-51.fasta_mash_screen.tab
+ECOR-52.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-52.fasta_mash_screen.tab
+ECOR-53.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	ECOR-53.fasta_mash_screen.tab
+ECOR-54.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-54.fasta_mash_screen.tab
+ECOR-55.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-55.fasta_mash_screen.tab
+ECOR-56.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-56.fasta_mash_screen.tab
+ECOR-57.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-57.fasta_mash_screen.tab
+ECOR-58.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA']	['+', '-', '-', '+']	[]	B1	ECOR-58.fasta_mash_screen.tab
+ECOR-59.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	ECOR-59.fasta_mash_screen.tab
+ECOR-60.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	ECOR-60.fasta_mash_screen.tab
+ECOR-61.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-61.fasta_mash_screen.tab
+ECOR-62.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-62.fasta_mash_screen.tab
+ECOR-63.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-63.fasta_mash_screen.tab
+ECOR-64.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-64.fasta_mash_screen.tab
+ECOR-65.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-65.fasta_mash_screen.tab
+ECOR-66.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ECOR-66.fasta_mash_screen.tab
+ECOR-67.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-67.fasta_mash_screen.tab
+ECOR-69.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-69.fasta_mash_screen.tab
+ECOR-70.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	ECOR-70.fasta_mash_screen.tab
+ECOR-71.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	ECOR-71.fasta_mash_screen.tab
+ECOR-72.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ECOR-72.fasta_mash_screen.tab
+ED1a.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	ED1a.fasta_mash_screen.tab
+EDL933.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	EDL933.fasta_mash_screen.tab
+E_albertiiCIP107988T.fasta	['trpBA', 'chuAalbertii', 'TspE4.C2']	['-', '-', '-', '+']	['chuAalbertii']	albertii	E_albertiiCIP107988T.fasta_mash_screen.tab
+E_fergusonii-IVAN.fasta	['trpA', 'trpBA', 'citPferg', 'aesI']	['-', '-', '-', '-']	['citPferg', 'aesI']	fergusonii	E_fergusonii-IVAN.fasta_mash_screen.tab
+FN-B4.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	FN-B4.fasta_mash_screen.tab
+FN-B7.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	FN-B7.fasta_mash_screen.tab
+FN-B9.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	FN-B9.fasta_mash_screen.tab
+FN116.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	FN116.fasta_mash_screen.tab
+FN126.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	FN126.fasta_mash_screen.tab
+FN89.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	FN89.fasta_mash_screen.tab
+H009.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	H009.fasta_mash_screen.tab
+H1-001-0003-S-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-001-0003-S-J.fasta_mash_screen.tab
+H1-001-0013-L-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-001-0013-L-J.fasta_mash_screen.tab
+H1-001-0020-M-O.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-001-0020-M-O.fasta_mash_screen.tab
+H1-001-0027-S-G.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-001-0027-S-G.fasta_mash_screen.tab
+H1-001-0034-S-M.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H1-001-0034-S-M.fasta_mash_screen.tab
+H1-001-0053-K-C.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H1-001-0053-K-C.fasta_mash_screen.tab
+H1-001-0093-R-A.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-001-0093-R-A.fasta_mash_screen.tab
+H1-001-0121-Q-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-001-0121-Q-J.fasta_mash_screen.tab
+H1-001-0125-B-M.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-001-0125-B-M.fasta_mash_screen.tab
+H1-001-0131-C-A.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-001-0131-C-A.fasta_mash_screen.tab
+H1-001-0154-T-K.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-001-0154-T-K.fasta_mash_screen.tab
+H1-001-0155-M-I.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H1-001-0155-M-I.fasta_mash_screen.tab
+H1-002-0007-M-M.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-002-0007-M-M.fasta_mash_screen.tab
+H1-002-0011-M-G.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-002-0011-M-G.fasta_mash_screen.tab
+H1-002-0060-C-T.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-002-0060-C-T.fasta_mash_screen.tab
+H1-002-0064-E-M.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-002-0064-E-M.fasta_mash_screen.tab
+H1-002-0069-V-G.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H1-002-0069-V-G.fasta_mash_screen.tab
+H1-003-0010-G-J.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-003-0010-G-J.fasta_mash_screen.tab
+H1-003-0019-B-M.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	H1-003-0019-B-M.fasta_mash_screen.tab
+H1-003-0035-D-E.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	H1-003-0035-D-E.fasta_mash_screen.tab
+H1-003-0054-P-P.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H1-003-0054-P-P.fasta_mash_screen.tab
+H1-003-0071-C-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-003-0071-C-J.fasta_mash_screen.tab
+H1-003-0079-G-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-003-0079-G-R.fasta_mash_screen.tab
+H1-003-0088-B-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-003-0088-B-J.fasta_mash_screen.tab
+H1-003-0090-V-J.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-003-0090-V-J.fasta_mash_screen.tab
+H1-003-0105-C-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-003-0105-C-R.fasta_mash_screen.tab
+H1-003-0115-L-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-003-0115-L-R.fasta_mash_screen.tab
+H1-003-0116-V-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-003-0116-V-R.fasta_mash_screen.tab
+H1-003-0120-P-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-003-0120-P-R.fasta_mash_screen.tab
+H1-004-0007-O-M.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	H1-004-0007-O-M.fasta_mash_screen.tab
+H1-004-0017-B-M.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-004-0017-B-M.fasta_mash_screen.tab
+H1-004-0021-W-I.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-004-0021-W-I.fasta_mash_screen.tab
+H1-005-0012-L-M.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-005-0012-L-M.fasta_mash_screen.tab
+H1-005-0058-M-A.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H1-005-0058-M-A.fasta_mash_screen.tab
+H1-006-0003-S-L.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-006-0003-S-L.fasta_mash_screen.tab
+H1-006-0022-L-R.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-006-0022-L-R.fasta_mash_screen.tab
+H1-007-0015-D-G.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	H1-007-0015-D-G.fasta_mash_screen.tab
+H1-007-0037-H-D.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	H1-007-0037-H-D.fasta_mash_screen.tab
+H14.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H14.fasta_mash_screen.tab
+H27.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	H27.fasta_mash_screen.tab
+H384.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	H384.fasta_mash_screen.tab
+H4.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H4.fasta_mash_screen.tab
+H442.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	H442.fasta_mash_screen.tab
+H47.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H47.fasta_mash_screen.tab
+H48.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H48.fasta_mash_screen.tab
+H70.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	H70.fasta_mash_screen.tab
+H95.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	H95.fasta_mash_screen.tab
+IAI01.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	IAI01.fasta_mash_screen.tab
+IAI02.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'ArpAgpE']	['+', '-', '-', '+']	['ArpAgpE']	B1	IAI02.fasta_mash_screen.tab
+IAI03.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	IAI03.fasta_mash_screen.tab
+IAI04.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI04.fasta_mash_screen.tab
+IAI05.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	IAI05.fasta_mash_screen.tab
+IAI06.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI06.fasta_mash_screen.tab
+IAI07.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI07.fasta_mash_screen.tab
+IAI08.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	IAI08.fasta_mash_screen.tab
+IAI09.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI09.fasta_mash_screen.tab
+IAI10.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI10.fasta_mash_screen.tab
+IAI11.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI11.fasta_mash_screen.tab
+IAI12.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI12.fasta_mash_screen.tab
+IAI13.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI13.fasta_mash_screen.tab
+IAI14.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI14.fasta_mash_screen.tab
+IAI15.fasta	['trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	IAI15.fasta_mash_screen.tab
+IAI16.fasta	['trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	IAI16.fasta_mash_screen.tab
+IAI17.fasta	['trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	IAI17.fasta_mash_screen.tab
+IAI18.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	IAI18.fasta_mash_screen.tab
+IAI19.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI19.fasta_mash_screen.tab
+IAI20.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI20.fasta_mash_screen.tab
+IAI21.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA']	['+', '-', '-', '+']	[]	B1	IAI21.fasta_mash_screen.tab
+IAI22.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI22.fasta_mash_screen.tab
+IAI23.fasta	['trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	IAI23.fasta_mash_screen.tab
+IAI24.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	IAI24.fasta_mash_screen.tab
+IAI25.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI25.fasta_mash_screen.tab
+IAI26.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI26.fasta_mash_screen.tab
+IAI27.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	IAI27.fasta_mash_screen.tab
+IAI28.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI28.fasta_mash_screen.tab
+IAI29.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI29.fasta_mash_screen.tab
+IAI30.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	IAI30.fasta_mash_screen.tab
+IAI31.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI31.fasta_mash_screen.tab
+IAI32.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	IAI32.fasta_mash_screen.tab
+IAI33.fasta	['trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	F	IAI33.fasta_mash_screen.tab
+IAI34.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI34.fasta_mash_screen.tab
+IAI35.fasta	['trpA', 'trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	IAI35.fasta_mash_screen.tab
+IAI36.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	IAI36.fasta_mash_screen.tab
+IAI37.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI37.fasta_mash_screen.tab
+IAI38.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI38.fasta_mash_screen.tab
+IAI39.fasta	['trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	IAI39.fasta_mash_screen.tab
+IAI40.fasta	['yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI40.fasta_mash_screen.tab
+IAI41.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	IAI41.fasta_mash_screen.tab
+IAI42.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'trpAgpC']	['-', '-', '+', '-']	['trpAgpC']	Unknown	IAI42.fasta_mash_screen.tab
+IAI43.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	IAI43.fasta_mash_screen.tab
+IAI44.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	IAI44.fasta_mash_screen.tab
+IAI45.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	IAI45.fasta_mash_screen.tab
+IAI46.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI46.fasta_mash_screen.tab
+IAI47.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI47.fasta_mash_screen.tab
+IAI48.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI48.fasta_mash_screen.tab
+IAI49.fasta	['trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	B2	IAI49.fasta_mash_screen.tab
+IAI50.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	IAI50.fasta_mash_screen.tab
+IAI51.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI51.fasta_mash_screen.tab
+IAI53.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	B2	IAI53.fasta_mash_screen.tab
+IAI54.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI54.fasta_mash_screen.tab
+IAI55.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI55.fasta_mash_screen.tab
+IAI56.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI56.fasta_mash_screen.tab
+IAI57.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI57.fasta_mash_screen.tab
+IAI58.fasta	['trpA', 'trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	IAI58.fasta_mash_screen.tab
+IAI59.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI59.fasta_mash_screen.tab
+IAI60.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI60.fasta_mash_screen.tab
+IAI61.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI61.fasta_mash_screen.tab
+IAI62.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI62.fasta_mash_screen.tab
+IAI63.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI63.fasta_mash_screen.tab
+IAI64.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI64.fasta_mash_screen.tab
+IAI65.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI65.fasta_mash_screen.tab
+IAI66.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI66.fasta_mash_screen.tab
+IAI67.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI67.fasta_mash_screen.tab
+IAI68.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI68.fasta_mash_screen.tab
+IAI69.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI69.fasta_mash_screen.tab
+IAI70.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI70.fasta_mash_screen.tab
+IAI71.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	IAI71.fasta_mash_screen.tab
+IAI72.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI72.fasta_mash_screen.tab
+IAI73.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI73.fasta_mash_screen.tab
+IAI74.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI74.fasta_mash_screen.tab
+IAI75.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI75.fasta_mash_screen.tab
+IAI76.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI76.fasta_mash_screen.tab
+IAI77.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	IAI77.fasta_mash_screen.tab
+IAI78.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI78.fasta_mash_screen.tab
+IAI79.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI79.fasta_mash_screen.tab
+IAI80.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI80.fasta_mash_screen.tab
+IAI81.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI81.fasta_mash_screen.tab
+IAI82.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	IAI82.fasta_mash_screen.tab
+LF31.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LF31.fasta_mash_screen.tab
+LF50.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	LF50.fasta_mash_screen.tab
+LF7074.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LF7074.fasta_mash_screen.tab
+LF73.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LF73.fasta_mash_screen.tab
+LF82.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LF82.fasta_mash_screen.tab
+LI10.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LI10.fasta_mash_screen.tab
+LM02.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	LM02.fasta_mash_screen.tab
+LM07.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	LM07.fasta_mash_screen.tab
+LM08.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	LM08.fasta_mash_screen.tab
+LM33.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	LM33.fasta_mash_screen.tab
+LM40.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	LM40.fasta_mash_screen.tab
+LMR-3158.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'ArpAgpE']	['+', '+', '-', '+']	['ArpAgpE']	E	LMR-3158.fasta_mash_screen.tab
+M863.fasta	['trpA', 'trpBA', 'yjaA', 'aesI']	['-', '-', '+', '-']	['aesI']	cladeI	M863.fasta_mash_screen.tab
+MT1B1.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	MT1B1.fasta_mash_screen.tab
+NAN33.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NAN33.fasta_mash_screen.tab
+NIC06.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NIC06.fasta_mash_screen.tab
+NILS01.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS01.fasta_mash_screen.tab
+NILS02.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	NILS02.fasta_mash_screen.tab
+NILS03.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	NILS03.fasta_mash_screen.tab
+NILS04.fasta	['trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	NILS04.fasta_mash_screen.tab
+NILS05.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '+', '-', '-']	['ArpAgpE', 'trpAgpC']	E	NILS05.fasta_mash_screen.tab
+NILS06.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS06.fasta_mash_screen.tab
+NILS07.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS07.fasta_mash_screen.tab
+NILS08.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS08.fasta_mash_screen.tab
+NILS09.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS09.fasta_mash_screen.tab
+NILS10.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS10.fasta_mash_screen.tab
+NILS11.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS11.fasta_mash_screen.tab
+NILS12.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS12.fasta_mash_screen.tab
+NILS13.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS13.fasta_mash_screen.tab
+NILS14.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS14.fasta_mash_screen.tab
+NILS15.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	NILS15.fasta_mash_screen.tab
+NILS16.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS16.fasta_mash_screen.tab
+NILS17.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS17.fasta_mash_screen.tab
+NILS18.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS18.fasta_mash_screen.tab
+NILS19.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS19.fasta_mash_screen.tab
+NILS20.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS20.fasta_mash_screen.tab
+NILS21.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS21.fasta_mash_screen.tab
+NILS22.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS22.fasta_mash_screen.tab
+NILS23.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS23.fasta_mash_screen.tab
+NILS24.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	NILS24.fasta_mash_screen.tab
+NILS25.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS25.fasta_mash_screen.tab
+NILS26.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	B2	NILS26.fasta_mash_screen.tab
+NILS27.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS27.fasta_mash_screen.tab
+NILS28.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS28.fasta_mash_screen.tab
+NILS29.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS29.fasta_mash_screen.tab
+NILS30.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS30.fasta_mash_screen.tab
+NILS31.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	NILS31.fasta_mash_screen.tab
+NILS32.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS32.fasta_mash_screen.tab
+NILS33.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA']	['+', '-', '-', '+']	[]	B1	NILS33.fasta_mash_screen.tab
+NILS34.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	NILS34.fasta_mash_screen.tab
+NILS35.fasta	['trpA', 'trpBA', 'yjaA', 'arpA']	['+', '-', '+', '-']	[]	A	NILS35.fasta_mash_screen.tab
+NILS36.fasta	['trpA', 'trpBA', 'chuA']	['-', '+', '-', '-']	[]	F	NILS36.fasta_mash_screen.tab
+NILS37.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	NILS37.fasta_mash_screen.tab
+NILS38.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS38.fasta_mash_screen.tab
+NILS39.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS39.fasta_mash_screen.tab
+NILS40.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	NILS40.fasta_mash_screen.tab
+NILS41.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	NILS41.fasta_mash_screen.tab
+NILS42.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	NILS42.fasta_mash_screen.tab
+NILS43.fasta	['ybgD', 'trpA', 'trpBA', 'arpA']	['+', '-', '-', '-']	[]	A	NILS43.fasta_mash_screen.tab
+NILS44.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS44.fasta_mash_screen.tab
+NILS45.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	NILS45.fasta_mash_screen.tab
+NILS46.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS46.fasta_mash_screen.tab
+NILS47.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'trpAgpC']	['+', '-', '+', '-']	['ArpAgpE', 'trpAgpC']	C	NILS47.fasta_mash_screen.tab
+NILS48.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	NILS48.fasta_mash_screen.tab
+NILS49.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	NILS49.fasta_mash_screen.tab
+NILS50.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	NILS50.fasta_mash_screen.tab
+NILS51.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	NILS51.fasta_mash_screen.tab
+NILS52.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	NILS52.fasta_mash_screen.tab
+NILS53.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS53.fasta_mash_screen.tab
+NILS54.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS54.fasta_mash_screen.tab
+NILS55.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS55.fasta_mash_screen.tab
+NILS56.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '+', '-', '+']	['trpAgpC']	D	NILS56.fasta_mash_screen.tab
+NILS57.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS57.fasta_mash_screen.tab
+NILS58.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS58.fasta_mash_screen.tab
+NILS59.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS59.fasta_mash_screen.tab
+NILS60.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	NILS60.fasta_mash_screen.tab
+NILS61.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS61.fasta_mash_screen.tab
+NILS62.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS62.fasta_mash_screen.tab
+NILS63.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS63.fasta_mash_screen.tab
+NILS64.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS64.fasta_mash_screen.tab
+NILS65.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS65.fasta_mash_screen.tab
+NILS66.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS66.fasta_mash_screen.tab
+NILS67.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS67.fasta_mash_screen.tab
+NILS68.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS68.fasta_mash_screen.tab
+NILS69.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS69.fasta_mash_screen.tab
+NILS70.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	NILS70.fasta_mash_screen.tab
+NILS71.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS71.fasta_mash_screen.tab
+NILS72.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS72.fasta_mash_screen.tab
+NILS73.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS73.fasta_mash_screen.tab
+NILS74.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS74.fasta_mash_screen.tab
+NILS75.fasta	['trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	NILS75.fasta_mash_screen.tab
+NILS76.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS76.fasta_mash_screen.tab
+NILS77.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	NILS77.fasta_mash_screen.tab
+NILS78.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS78.fasta_mash_screen.tab
+NILS79.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS79.fasta_mash_screen.tab
+NILS80.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'trpAgpC']	['-', '+', '-', '+']	['trpAgpC']	B2	NILS80.fasta_mash_screen.tab
+NILS81.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS81.fasta_mash_screen.tab
+NILS82.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NILS82.fasta_mash_screen.tab
+NRG807C.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	NRG807C.fasta_mash_screen.tab
+PDP110.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	PDP110.fasta_mash_screen.tab
+PDP21.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'arpA', 'trpAgpC']	['+', '+', '-', '-']	['trpAgpC']	D	PDP21.fasta_mash_screen.tab
+PDP351.fasta	['ybgD', 'trpA', 'trpBA', 'yjaA', 'arpA', 'trpAgpC']	['+', '-', '+', '-']	['trpAgpC']	C	PDP351.fasta_mash_screen.tab
+ROAR012.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'arpA']	['+', '+', '+', '+']	[]	Unknown	ROAR012.fasta_mash_screen.tab
+ROAR019.fasta	['trpA', 'yjaA', 'aesII']	['-', '-', '+', '-']	['aesII']	cladeII	ROAR019.fasta_mash_screen.tab
+ROAR029.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE']	['+', '+', '+', '-']	['ArpAgpE']	E	ROAR029.fasta_mash_screen.tab
+ROAR036.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	ROAR036.fasta_mash_screen.tab
+ROAR043.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR043.fasta_mash_screen.tab
+ROAR047.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR047.fasta_mash_screen.tab
+ROAR059.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE']	['+', '+', '+', '-']	['ArpAgpE']	E	ROAR059.fasta_mash_screen.tab
+ROAR061.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR061.fasta_mash_screen.tab
+ROAR072.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR072.fasta_mash_screen.tab
+ROAR082.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR082.fasta_mash_screen.tab
+ROAR116.fasta	['trpA', 'trpBA', 'chuIII']	['-', '-', '-', '-']	['chuIII']	cladeIII	ROAR116.fasta_mash_screen.tab
+ROAR129.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR129.fasta_mash_screen.tab
+ROAR130.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR130.fasta_mash_screen.tab
+ROAR131.fasta	['trpA', 'trpBA', 'chuA', 'TspE4.C2', 'arpA', 'ArpAgpE']	['+', '+', '-', '+']	['ArpAgpE']	E	ROAR131.fasta_mash_screen.tab
+ROAR145.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR145.fasta_mash_screen.tab
+ROAR176.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR176.fasta_mash_screen.tab
+ROAR178.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR178.fasta_mash_screen.tab
+ROAR185.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '+', '+', '-']	['aesI', 'ArpAgpE']	cladeI	ROAR185.fasta_mash_screen.tab
+ROAR205.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR205.fasta_mash_screen.tab
+ROAR220.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR220.fasta_mash_screen.tab
+ROAR274.fasta	['trpA', 'trpBA', 'chuA', 'arpA', 'ArpAgpE']	['+', '+', '-', '-']	['ArpAgpE']	E	ROAR274.fasta_mash_screen.tab
+ROAR291.fasta	['trpA', 'trpBA', 'chuIII']	['-', '-', '-', '-']	['chuIII']	cladeIII	ROAR291.fasta_mash_screen.tab
+ROAR292.fasta	['chuV']	['-', '-', '-', '-']	['chuV']	cladeV	ROAR292.fasta_mash_screen.tab
+ROAR334.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR334.fasta_mash_screen.tab
+ROAR344.fasta	['trpA', 'trpBA', 'citPferg', 'aesI']	['-', '-', '-', '-']	['citPferg', 'aesI']	fergusonii	ROAR344.fasta_mash_screen.tab
+ROAR387.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'arpA', 'ArpAgpE']	['+', '+', '+', '-']	['ArpAgpE']	E	ROAR387.fasta_mash_screen.tab
+ROAR400.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR400.fasta_mash_screen.tab
+ROAR419.fasta	['ybgD', 'trpA', 'trpBA', 'TspE4.C2', 'arpA', 'trpAgpC']	['+', '-', '-', '+']	['trpAgpC']	B1	ROAR419.fasta_mash_screen.tab
+ROAR434.fasta	['ybgD', 'trpA', 'trpBA', 'chuA', 'trpAgpC']	['-', '+', '-', '-']	['trpAgpC']	G	ROAR434.fasta_mash_screen.tab
+ROAR438.fasta	['trpA', 'trpBA', 'chuIII']	['-', '-', '-', '-']	['chuIII']	cladeIII	ROAR438.fasta_mash_screen.tab
+S1-109.fasta	['trpBA', 'chuAalbertii']	['-', '-', '-', '-']	['chuAalbertii']	albertii	S1-109.fasta_mash_screen.tab
+S1-11.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	S1-11.fasta_mash_screen.tab
+S1-76.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'trpAgpC']	['-', '+', '+', '-']	['trpAgpC']	B2	S1-76.fasta_mash_screen.tab
+S1-84.fasta	['trpBA', 'chuAalbertii']	['-', '-', '-', '-']	['chuAalbertii']	albertii	S1-84.fasta_mash_screen.tab
+S1-91.fasta	['trpBA', 'chuAalbertii']	['-', '-', '-', '-']	['chuAalbertii']	albertii	S1-91.fasta_mash_screen.tab
+S2-1.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	S2-1.fasta_mash_screen.tab
+T145.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	T145.fasta_mash_screen.tab
+T147.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	T147.fasta_mash_screen.tab
+T205.fasta	['trpA', 'trpBA', 'chuA', 'yjaA', 'TspE4.C2']	['-', '+', '+', '+']	[]	B2	T205.fasta_mash_screen.tab
+TW10509.fasta	['trpA', 'trpBA', 'yjaA', 'arpA', 'ArpAgpE', 'aesI']	['+', '-', '+', '-']	['aesI', 'ArpAgpE']	cladeI	TW10509.fasta_mash_screen.tab
+VDG427.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	VDG427.fasta_mash_screen.tab
+colF12g.fasta	['trpBA', 'chuA', 'yjaA', 'TspE4.C2', 'trpAgpC']	['-', '+', '+', '+']	['trpAgpC']	B2	colF12g.fasta_mash_screen.tab

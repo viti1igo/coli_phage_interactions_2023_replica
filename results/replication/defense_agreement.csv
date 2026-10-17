@@ -1,0 +1,2 @@
+n_strains,subtypes_shipped,subtypes_ours,presence_F1,presence_precision,presence_recall,systems_per_strain_pearson,mean_systems_shipped,mean_systems_ours,exact_vector_match_pct
+403,137,137,0.976,0.981,0.97,0.972,9.17,9.03,58.6

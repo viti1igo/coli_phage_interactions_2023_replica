@@ -1,0 +1,6 @@
+step,text
+1,Interaction matrix 403 strains x 96 phages
+2,Recommender trained on the original matrix
+3,100 unseen E. coli (genomic traits only)
+4,3-phage cocktail per strain
+5,Tested at 6 concentrations (5x10^3 to 5x10^8 pfu/ml) vs baseline triplet

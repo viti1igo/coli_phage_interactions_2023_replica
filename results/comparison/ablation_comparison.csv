@@ -1,0 +1,13 @@
+feature_group_removed,d_auroc_shipped_inputs,p_shipped_inputs,d_auroc_regenerated_inputs,p_regenerated_inputs,verdict_shipped_inputs,verdict_regenerated_inputs,same_verdict,paper_statement
+UMAP_phylogeny,0.000673394585261,0.929014655695126,0.0060151476039442,0.4783461058227052,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+O_type,0.0007614869956643,0.6776091348398025,0.001102053985203,0.964853927502031,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+ST,0.0020620978355889,0.5576199694951509,-0.0005511099685532,0.9472215941124352,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+LPS_outer_core,-0.0158197646869578,0.0002145946262249,-0.0157233772262851,1.3937810578787828e-06,keep,keep,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+Klebsiella_capsule,-0.0045013258608841,0.1472161971518096,-0.0042662709417585,0.003309055289983,removable,weak,False,defense systems not required (Fig 4c-d); no feature ablation in the paper
+ABC_capsule,-0.0210151474010061,5.21165284110937e-05,-0.0192153319858915,5.048927598417008e-05,keep,keep,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+host_sharing,-0.0037442426449683,0.0455211835558104,-0.0024562426883045,0.058888015245064,weak,removable,False,defense systems not required (Fig 4c-d); no feature ablation in the paper
+UMAP+O_type,0.0001302826570079,0.4269987382893259,0.0063103389863687,0.8556760285729336,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+UMAP+ST,-0.0028453875470888,0.2735172828165375,-6.440855031409944e-05,0.4737512683755974,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+O_type+ST,0.0007065442105859,0.9204000860850344,0.0009778128134917,0.9204000860850344,removable,removable,True,defense systems not required (Fig 4c-d); no feature ablation in the paper
+UMAP+O_type+ST,-0.0116580642157657,0.0345486945375182,-0.0026338387869097,0.429162238819253,keep,removable,False,defense systems not required (Fig 4c-d); no feature ablation in the paper
+Klebsiella+host_sharing,-0.0087256697139891,0.0026519911765877,-0.0055267646249942,0.0073787508239285,weak,weak,True,defense systems not required (Fig 4c-d); no feature ablation in the paper

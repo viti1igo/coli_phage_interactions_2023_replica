@@ -1,0 +1,36 @@
+# Tool versions and parameters as stated in Gaborieau et al., Nat Microbiol 9, 2847-2861 (2024).
+# `src` = line in docs/paper/published.txt. `status: unspecified` = the paper does not say.
+data:
+  bacterial_genomes: {n: 403, source: "figshare 25941691 (assemblies)", src: 1058-1059}
+  phage_sequencing: {assembler: "SPAdes 3.15.4", annotation: "Prokka 1.14.5 --kingdom Viruses", ena: PRJEB69283, src: 1338-1344}
+  interactions: {phages: 96, strains: 403, replicates: 3, concentrations_pfu_per_ml: [5e8, 5e7, 5e6], mlc_scale: "0 none; 1 at 5e8; 2 at 5e7; 3 plaques at 5e6; 4 full clearing at 5e6", src: "1283-1297, legend 432-455"}
+bacterial_features:
+  phylogeny:
+    tool: PanACoTA
+    version: 1.3.1
+    steps: [annotate, pangenome, coregenome, align, tree]
+    tree_method: "--fasttree"
+    other_options: unspecified
+    src: 1349-1352
+  tree_to_distance_and_umap: {umap_dims: 8, umap_hyperparameters: unspecified, tree_to_distance_method: unspecified, src: "1556 and README of upstream repo"}
+  sequence_type: {tool: SRST2, version: unspecified, scheme: "MLST Warwick", input: "paper does not say; SRST2 normally needs reads", src: 1346-1348}
+  phylogroup: {tool: ClermonTyping, version: unspecified, src: 1348}
+  serotype_O_H: {tool: ECTyper, version: 1.0.0, src: 1371}
+  lps_outer_core: {tool: "blastp of waaL + phylogenetic clustering (manual)", parameters: unspecified, src: "upstream README 1.4"}
+  abc_capsule:
+    tool: "CapsuleFinder v1 (default ABC model) on MacSyFinder"
+    inter_gene_max_space: 20
+    custom_models: {source: "upstream repo data/genomics/bacteria/capsules/ABC_capsules_types", clustering: "mmseqs2 13.45111, 80% identity, 80% coverage, 1,843 RefSeq E. coli genomes"}
+    src: 1373-1386
+  klebsiella_capsule: {tool: Kaptive, version: 2.0.6, parameters: default, database: "Kaptive Klebsiella K-locus reference", src: 1387-1389}
+  defense_systems: {tool: DefenseFinder, version: 1.2.0, models_version: 1.2.3, parameters: default, src: 1372-1373}
+  outer_membrane_proteins: {clusters: "variants with >99% identity", method: unspecified, src: "legend of Fig 1h"}
+phage_features:
+  taxonomy: {tool: VIRIDIC, version: "1r3.6", reference: "ICTV VMR_MSL38_v2 (Sept 2023)", genus_threshold: ">=70% nucleotide identity", species_threshold: ">=95%", src: 1353-1358}
+  network: {tool: vConTACT2, version: "0.11.3", visualisation: "Cytoscape 3.9.1", src: 1361-1368}
+  rbp: {tool: "PhageRBPdetect 2.1.3 + manual curation", domain_annotation: "HMMER 3.3.2, Pfam-A 34.0, --cut_ga", structure: ESMFold, src: "1390, 1429-1433"}
+modelling:
+  prediction: {library: "scikit-learn 1.1.2", models: [LogReg-L2, LogReg-L1, "RF depth 3 x 250", "RF depth 6 x 250"], class_weight: "positive weight by prevalence (0.8/1/1.5/2/3)", cv: "group 10-fold, groups = core distance < 1e-4", selection: "best model per phage by mean AUROC", features: 119, src: "1520-1590"}
+  glmm_per_phage: {library: "MCMCglmm 2.35", iterations: 500000, burnin: 50000, thin: 250, prior: "inverse Gamma V=1 nu=2e-3", min_trait_observations: ">8", significance: "pMCMC < 1e-3", src: 1460-1475}
+  lmm_defense_count: {iterations: 1000000, burnin: 50000, thin: 250, src: 1515-1523}
+  statistics: {python: "scipy.stats 1.11.2, statsmodels 0.14.1", r: "vegan 2.6-4, MCMCglmm 2.35", src: 1649-1651}

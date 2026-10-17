@@ -1,0 +1,10 @@
+feature,n_strains,n_agree,agreement_pct,shipped_missing,ours_missing
+O-type (raw ECTyper output),402,402,100.0,51,51
+H-type (raw ECTyper output),402,402,100.0,22,22
+ABC capsule present (shipped has a serotype vs we found a system),403,396,98.26,252,251
+"ABC serotype, strains with a K-type in both",95,85,89.47,0,0
+O-type,403,301,74.69,1,52
+H-type,403,370,91.81,2,23
+ST_Warwick,403,384,95.29,7,7
+Clermont_Phylo,403,399,99.01,1,1
+Klebs_capsule_type,403,392,97.27,381,374

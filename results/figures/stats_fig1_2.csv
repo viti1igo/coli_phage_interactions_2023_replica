@@ -1,0 +1,9 @@
+figure,metric,paper,ours,paper_source
+Fig 1,strains in the Picard collection,403,403,"Fig. 1 / Results, collection description"
+Fig 1j,defense subtypes detected (columns),not stated numerically,137,Fig. 1j
+Fig 2,mean % of strains infected per phage,not stated,20.7,-
+Fig 2f,ANOVA F (host range ~ morphotype),114.7,113.9,Results p.2850; Fig 2f legend
+Fig 2f,ANOVA P,1.44e-26,9.79e-26,Fig 2f legend
+Fig 2f,"mean % lytic interactions, Myoviridae",41.3,41.3,Results p.2850
+Fig 2f,"mean % lytic interactions, Podoviridae",11.1,11.2,Results p.2850
+Fig 2f,"mean % lytic interactions, Siphoviridae",9.1,9.1,Results p.2850

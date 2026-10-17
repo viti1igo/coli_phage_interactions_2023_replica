@@ -1,0 +1,6 @@
+rule,cells,exact_0_1_2_and_3or4_merged_pct,lytic_vs_not_agreement_pct,exact_if_lysis_at_5e6_called_3_pct,cells_missing_in_ours
+max of replicate scores,35268,89.26,92.76,86.0,3167
+mean of replicate scores (rounded up),35268,92.34,92.76,89.14,3167
+majority vote per dilution,35268,96.38,98.7,93.13,3167
+mean of replicate scores (rounded),35268,94.89,98.79,91.78,3167
+median of replicate scores,35268,96.64,99.8,93.39,3167

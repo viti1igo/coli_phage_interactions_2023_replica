@@ -1,0 +1,12 @@
+origin,file,status,note
+paper,docs/paper/preprint (PDF + txt),provided,bioRxiv version of the article
+paper,docs/paper/published (PDF + txt),provided,"Nature Microbiology main text, Methods, ED legends, reporting summary"
+paper,Supplementary Tables 1-6,NOT provided,needed for exact per-strain features and per-phage values
+paper,Supplementary Text 4-5 and Supplementary Figures 1-9,NOT provided,"needed for ED figure numbers (ED7 63% definition, ED2 P values)"
+paper,"Source Data (Fig 1-6, ED 1-9)",NOT provided,needed to compare every plotted point
+authors' repo,data/interactions/interaction_matrix.csv (402 strains x 96 phages),downloaded,"paper states 403 strains / 38,688 interactions"
+authors' repo,"dev/predictions (results, logs, importances), dev/cocktails/data, dev/inference_bacteria",downloaded,shipped model outputs and cocktail results
+authors' repo,CV groups file 370+host_cross_validation_groups_1e-4.csv,NOT public,rebuilt from the tree
+authors' repo,recommender code (cocktail algorithm),NOT in repo,"Fig 6 statistics re-run, algorithm not re-run"
+figshare,bacterial assemblies (403),downloaded,data/genomics/bacteria/assemblies
+not obtained,"1,026 GenBank phage genomes, AMR annotation, test-strain genomes",NOT obtained,"Fig 1k, 3b, 6b, ED3, ED6 B/D"

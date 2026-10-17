@@ -1,0 +1,12 @@
+.venv/
+.Rlib/
+upstream/
+dev/
+tools/
+data/genomics/
+data/interactions/
+__pycache__/
+logs/
+*.log
+._*
+.DS_Store

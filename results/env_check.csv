@@ -1,0 +1,10 @@
+env,platform,status,version_output
+pan,osx-64,OK,PanACoTA - v. 1.3.1
+ectyper,arm64,OK,ectyper 1.0.0 running database version 1.0
+kaptive,osx-64,OK,Kaptive v2.0.6
+defense,arm64,OK,  update  Fetches the latest defense finder models.
+macsy,arm64,OK,msf_data cite <model>
+clermont,arm64,OK,	--summary				: file with path of *_phylogroups.txt. One file by line (optional)
+srst2,osx-64,OK,srst2 0.2.0
+blast,arm64,OK, Package: blast 2.17.0; build Aug 22 2026 11:50:41
+mlst,arm64,OK,mlst 2.33.1

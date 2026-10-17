@@ -1,0 +1,4 @@
+# Reference sequences downloaded for T19 (LPS outer core) and T23 (YncD). Both are E. coli K-12 (UniProt organism 83333), reviewed entries.
+# Saved on the external drive in replication/T19_lps/refs/. Downloaded 2026-10-17 from https://rest.uniprot.org (search by gene name).
+waaL: {accession: P27243, entry: WAAL_ECOLI, protein: "O-antigen ligase", file: replication/T19_lps/refs/waaL.fasta}
+yncD: {accession: P76115, entry: PQQU_ECOLI, protein: "Pyrroloquinoline quinone transporter (gene pqqU; matched via the former name yncD)", file: replication/T19_lps/refs/yncD.fasta, note: "assumed to be the paper's YncD; UniProt now names the gene pqqU"}
