@@ -7,10 +7,13 @@ from scipy.stats import mannwhitneyu
 from scipy.spatial.distance import pdist, squareform
 from sklearn.metrics import f1_score, average_precision_score, roc_auc_score
 from figlib import *
+from matrix import load_matrix
+import supp
+from supp import sheet
 
 D = f"{ROOT}/data"
 ph = pd.read_csv(f"{D}/genomics/phages/guelin_collection.csv", sep=";", index_col=0)
-M = pd.read_csv(f"{D}/interactions/interaction_matrix.csv", sep=";", index_col=0)
+M = load_matrix()  # 403 strains when the supplement is present (the public matrix lacks LF110)
 
 # ---------------- Fig 3a: Jaccard distance on binary lytic vectors (NaN = no lysis), UMAP, PERMANOVA
 B = (M.fillna(0) > 0).values.T.astype(bool)           # phages x strains
@@ -50,9 +53,11 @@ Xg, Xh = design(["Genus"], meta), design(["Host"], meta)
 res = {"genus": permanova(Dm, Xg, one), "isolation strain": permanova(Dm, Xh, one), "genus x isolation strain": permanova(Dm, np.column_stack([Xg, Xh[:, 1:]]), one)}
 for k, (r2, adj, p) in res.items():
     print(f"PERMANOVA {k}: R2 {r2:.3f} adj {adj:.3f} p {p:.4f}")
-stat("Fig 3a", "PERMANOVA adj. R2, genus", 0.13, round(res["genus"][1], 2), "Results p.2851")
+inc = res["genus x isolation strain"][1] - res["isolation strain"][1]  # genus added after isolation strain (sequential terms, as adonis2 reports them)
+stat("Fig 3a", "PERMANOVA adj. R2, genus added after isolation strain", 0.13, round(inc, 2), "Results p.2851 (inferred: the 0.13 equals the sequential increment of genus after isolation strain)")
 stat("Fig 3a", "PERMANOVA adj. R2, isolation strain", 0.53, round(res["isolation strain"][1], 2), "Results p.2851")
 stat("Fig 3a", "PERMANOVA adj. R2, genus + isolation strain", 0.65, round(res["genus x isolation strain"][1], 2), "Results p.2851")
+stat("Fig 3a", "PERMANOVA adj. R2, genus alone", "not stated", round(res["genus"][1], 2), "-")
 stat("Fig 3a", "PERMANOVA R2 (unadjusted), genus", "not stated", round(res["genus"][0], 3), "-")
 stat("Fig 3a", "PERMANOVA R2 (unadjusted), isolation strain", "not stated", round(res["isolation strain"][0], 3), "-")
 
@@ -77,13 +82,21 @@ save(fig, "fig3_a", pd.DataFrame({"phage": M.columns, "umap1": emb[:, 0], "umap2
 pp = pd.read_csv(f"{ROOT}/results/repro/per_phage.csv", index_col=0)
 pr = pd.read_csv(f"{ROOT}/results/repro/predictions.csv")
 pr["yhat"] = (pr.p >= 0.5).astype(int)
-fig, axs = plt.subplots(1, 3, figsize=(14, 4.2), gridspec_kw={"width_ratios": [1, 1, 1.5]})
-axs[0].hist(pp.auroc, bins=np.arange(0.3, 1.0001, 0.05), color=BLUE, edgecolor=SURF)
-axs[0].axvline(pp.auroc.mean(), color=INK, lw=1, ls=(0, (4, 3))); axs[0].text(pp.auroc.mean() + 0.01, axs[0].get_ylim()[1] * 0.93, f"mean {pp.auroc.mean():.3f}", fontsize=8, color=INK)
-axs[0].set_xlabel("AUROC per phage"); axs[0].set_ylabel("Phages"); axs[0].set_title("a  Per-phage AUROC", loc="left")
-axs[1].scatter(pp.n_pos, pp.auroc, s=20, color=BLUE, edgecolor=SURF, lw=0.5)
-axs[1].set_xlabel("Lytic interactions of the phage"); axs[1].set_ylabel("AUROC"); axs[1].set_title("c  AUROC vs lytic interactions", loc="left")
-for a in axs[:2]: style(a)
+strain_auc = pr.groupby("bacteria").apply(lambda d: roc_auc_score(d.y, d.p) if d.y.nunique() > 1 else np.nan, include_groups=False).dropna()
+n_lytic = pr.groupby("bacteria").y.sum().reindex(strain_auc.index)
+paper5 = sheet(9, "Figure_5c", text_first=False) if supp.available() else None   # Source Data: per-strain AUROC against lytic interactions
+fig, axs = plt.subplots(1, 4, figsize=(18, 4.2), gridspec_kw={"width_ratios": [1, 1, 1, 1.5]})
+axs[0].hist(strain_auc, bins=np.arange(0.3, 1.0001, 0.05), color=BLUE, edgecolor=SURF)
+axs[0].axvline(strain_auc.mean(), color=INK, lw=1, ls=(0, (4, 3))); axs[0].text(strain_auc.mean() - 0.01, axs[0].get_ylim()[1] * 0.93, f"mean {strain_auc.mean():.3f}", fontsize=8, color=INK, ha="right")
+axs[0].set_xlabel("AUROC per strain"); axs[0].set_ylabel("Strains"); axs[0].set_title("a  AUROC per strain", loc="left")
+axs[1].hist(pp.auroc, bins=np.arange(0.3, 1.0001, 0.05), color=BLUE, edgecolor=SURF)
+axs[1].axvline(pp.auroc.mean(), color=INK, lw=1, ls=(0, (4, 3))); axs[1].text(pp.auroc.mean() + 0.01, axs[1].get_ylim()[1] * 0.93, f"mean {pp.auroc.mean():.3f}", fontsize=8, color=INK)
+axs[1].set_xlabel("AUROC per phage"); axs[1].set_ylabel("Phages"); axs[1].set_title("(preprint's panel) AUROC per phage", loc="left", fontsize=9)
+if paper5 is not None:
+    axs[2].scatter(paper5.n_infections, paper5.auc, s=22, facecolor="none", edgecolor=ORANGE, lw=0.9, label="Paper (Source Data)")
+axs[2].scatter(n_lytic, strain_auc, s=16, color=BLUE, edgecolor=SURF, lw=0.4, alpha=0.8, label="This run")
+axs[2].set_xlabel("Lytic interactions of the strain"); axs[2].set_ylabel("AUROC of the strain"); axs[2].set_title("c  AUROC vs lytic interactions", loc="left"); axs[2].legend(frameon=False, labelcolor=INK, fontsize=8, loc="lower right")
+for a in axs[:3]: style(a)
 # d: prediction matrix, strains in tree order x phages by host range; categories TP, FP, FN, TN/NA
 leaf = open(f"{D}/genomics/bacteria/panacota/tree/370+host_leaf_order_root=albertii.txt").read().strip().split(",")
 rows = [b for b in leaf if b in M.index]
@@ -92,22 +105,22 @@ cat = pd.DataFrame(0, index=rows, columns=cols)
 for r in pr.itertuples():
     if r.bacteria in cat.index:
         cat.loc[r.bacteria, r.phage] = 1 if (r.y and r.yhat) else 2 if (not r.y and r.yhat) else 3 if (r.y and not r.yhat) else 0
-axs[2].imshow(cat.values.T, aspect="auto", interpolation="nearest", cmap=ListedColormap(["#f6f5f1", BLUE, "#e9b8a3", ORANGE]), vmin=0, vmax=3)
-axs[2].set_xticks([]); axs[2].set_yticks([]); axs[2].set_title("d  Predictions (blue TP, light orange FP, orange FN)", loc="left", fontsize=9); axs[2].set_xlabel("Strains (tree order)"); axs[2].set_ylabel("Phages (by host range)")
-style(axs[2], None)
+axs[3].imshow(cat.values.T, aspect="auto", interpolation="nearest", cmap=ListedColormap(["#f6f5f1", BLUE, "#e9b8a3", ORANGE]), vmin=0, vmax=3)
+axs[3].set_xticks([]); axs[3].set_yticks([]); axs[3].set_title("d  Predictions (blue TP, light orange FP, orange FN)", loc="left", fontsize=9); axs[3].set_xlabel("Strains (tree order)"); axs[3].set_ylabel("Phages (by host range)")
+style(axs[3], None)
 fig.tight_layout()
-save(fig, "fig5_a_c_d", pp.reset_index())
+save(fig, "fig5_a_c_d", pd.DataFrame({"n_lytic": n_lytic, "auroc_strain": strain_auc}).rename_axis("bacteria").reset_index())
+pp.reset_index().to_csv(f"{OUT}/fig5_per_phage_auroc.csv", index=False)
 cat.reset_index().rename(columns={"index": "bacteria"}).to_csv(f"{OUT}/fig5_d_prediction_matrix.csv", index=False)
 tp, fp, fn = [(cat.values == k).sum() for k in (1, 2, 3)]
 prec, rec = tp / (tp + fp), tp / (tp + fn)
-stat("Fig 5", "mean per-phage AUROC, published article", 0.85, round(pp.auroc.mean(), 3), "Results p.2854 (published.txt l.623)")
-stat("Fig 5", "mean per-phage AUROC, preprint", 0.77, round(pp.auroc.mean(), 3), "Results (preprint.txt l.521)")
-stat("Fig 5a", "mean per-strain AUROC (the other aggregation the legend mentions)", 0.85, round(pr.groupby("bacteria").apply(lambda d: roc_auc_score(d.y, d.p) if d.y.nunique() > 1 else np.nan, include_groups=False).mean(), 3), "Fig 5a legend (published.txt l.1013)")
+stat("Fig 5a", "mean AUROC per strain (published text; Fig 5a plots one AUROC per strain)", 0.85, round(strain_auc.mean(), 3), "Results p.2854 (published.txt l.623); Fig 5a legend")
+stat("Fig 5a", "mean AUROC per phage (preprint)", 0.77, round(pp.auroc.mean(), 3), "Results (preprint.txt l.521)")
 stat("Fig 5", "pooled AUROC", 0.86, round(roc_auc_score(pr.y, pr.p), 3), "Fig 5b")
 stat("Fig 5", "average precision", 0.60, round(average_precision_score(pr.y, pr.p), 3), "Fig 5b")
 stat("Fig 5d", "F1 at p >= 0.5 (all pairs pooled)", 0.60, round(f1_score(pr.y, pr.yhat), 3), "Results")
 stat("Fig 5d", "TP / FP / FN (pairs)", "not stated", f"{tp} / {fp} / {fn}", "-")
-stat("Fig 5c", "Spearman(AUROC, n lytic)", "not stated", round(pp.auroc.corr(pp.n_pos, method="spearman"), 3), "-")
+stat("Fig 5c", "Spearman(AUROC, n lytic) per strain", "not stated", round(strain_auc.corr(n_lytic, method="spearman"), 3), "-")
 
 # ---------------- Fig 6 c-e
 C = f"{ROOT}/dev/cocktails/data"

@@ -27,6 +27,10 @@ The scripts were audited for over-engineering (the `ponytail-audit` pass) and si
 
 There is no test suite, so behaviour was checked by output. The Fig 1–2 and tree scripts were re-run and their CSVs are byte-identical to the earlier outputs. The model runs were repeated with fixed seeds (see below) and the figure and comparison tables regenerated from them.
 
+## Code added after the audit
+
+`supp.py`, `matrix.py`, `compare_source_data.py`, `recommender.py`, `download_supplement.sh` and the extensions of `fig_ed6.R`, `fig_comparison.py` and `build_comparison.py` were written after the audit and were not audited.
+
 ## Not published on purpose
 
 The paper's PDFs and text (copyright), the authors' data, the genome assemblies, and the multi-gigabyte intermediate files, all of which the scripts regenerate.

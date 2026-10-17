@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from scipy.stats import f_oneway
 from figlib import *
+from matrix import load_matrix
 
 D = f"{ROOT}/data"
 pic = pd.read_csv(f"{D}/genomics/bacteria/picard_collection.csv", sep=";", index_col=0)
 ph = pd.read_csv(f"{D}/genomics/phages/guelin_collection.csv", sep=";", index_col=0)
-M = pd.read_csv(f"{D}/interactions/interaction_matrix.csv", sep=";", index_col=0)
+M = load_matrix()  # 403 strains when the supplement is present (the public matrix lacks LF110)
 omp = pd.read_csv(f"{D}/genomics/bacteria/outer_membrane_proteins/blast_results_cured_clusters=99_wide.tsv", sep="\t", index_col=0)
 dsub = pd.read_csv(f"{D}/genomics/bacteria/defense_finder/370+host_defense_systems_subtypes.csv", sep=";", index_col=0)
 

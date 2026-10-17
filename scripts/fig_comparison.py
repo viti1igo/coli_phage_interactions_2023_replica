@@ -62,7 +62,7 @@ ax.legend(frameon=False, labelcolor=INK, fontsize=8, loc="lower left"); style(ax
 save(fig, "cmp_ablation", a)
 
 # 5. pooled ROC and precision-recall curves: authors' shipped predictions vs this run on shipped and on regenerated inputs
-from sklearn.metrics import average_precision_score, precision_recall_curve, roc_auc_score, roc_curve
+from sklearn.metrics import auc, average_precision_score, precision_recall_curve, roc_auc_score, roc_curve
 import predict as P
 
 AQUA = "#1baf7a"  # palette slot 3 (slots 1-3 validate all-pairs)
@@ -76,9 +76,34 @@ for name, d, c in runs:
     axs[0].plot(fpr, tpr, color=c, lw=2, label=f"{name} (AUROC {roc_auc_score(d.y, d.p):.3f})")
     axs[1].plot(rc, pr, color=c, lw=2, label=f"{name} (AP {average_precision_score(d.y, d.p):.3f})")
     curves += [pd.DataFrame({"run": name, "curve": "ROC", "x": fpr, "y": tpr}), pd.DataFrame({"run": name, "curve": "PR", "x": rc, "y": pr})]
+import supp
+if supp.available():  # the paper's own ROC points (Source Data Fig 5b, first two columns are FPR and TPR); not written to the CSV (publisher data)
+    pb = supp.sheet(9, "Figure_5b", text_first=False).iloc[:, :2].apply(pd.to_numeric, errors="coerce").dropna()
+    axs[0].plot(pb.iloc[:, 0], pb.iloc[:, 1], color=INK, lw=1.2, ls=(0, (5, 2)), label=f"Paper, Source Data (AUROC from points {auc(pb.iloc[:, 0], pb.iloc[:, 1]):.3f})")
 axs[0].plot([0, 1], [0, 1], color=MUTED, lw=1, ls=(0, (4, 3)), label="Chance")
 prev = runs[1][1].y.mean(); axs[1].axhline(prev, color=MUTED, lw=1, ls=(0, (4, 3)), label=f"Chance (prevalence {prev:.2f})")
 for a, t, xl, yl, loc in [(axs[0], "Pooled ROC, 96 phages", "False positive rate", "True positive rate", "lower right"), (axs[1], "Pooled precision-recall", "Recall", "Precision", "upper right")]:
     a.set_title(t, loc="left"); a.set_xlabel(xl); a.set_ylabel(yl); a.set_xlim(0, 1); a.set_ylim(0, 1.02); style(a, "both"); a.legend(frameon=False, labelcolor=INK, fontsize=8, loc=loc)
 fig.tight_layout()
 save(fig, "cmp_roc_pr", pd.concat(curves))
+
+# 6. recommender re-implementation vs the authors' cocktails (scripts/recommender.py)
+rc = pd.read_csv(f"{ROOT}/results/recommender/comparison_with_authors.csv")
+ours_c = pd.read_csv(f"{ROOT}/results/recommender/our_cocktails.csv")
+sh = pd.read_csv(f"{ROOT}/dev/cocktails/data/cocktails_step.csv", sep=";")
+names = {"0_same_as_host": "1 similar to isolation strain", "1_neighbours": "2 same-haplotype neighbours", "3_misc": "3 trait matching", "4_rescue": "4 most generalist phages"}
+sa = sh.chosen_at_step.value_counts(normalize=True).mul(100).rename("authors")
+so = pd.concat([ours_c.step1, ours_c.step2, ours_c.step3]).value_counts(normalize=True).mul(100).rename("this re-implementation")
+st = pd.concat([sa, so], axis=1).reindex(list(names)).fillna(0)
+fig, axs = plt.subplots(1, 2, figsize=(11, 4.2))
+ov = rc.overlap.value_counts().reindex(range(4)).fillna(0)
+axs[0].bar(ov.index, ov.values, color=BLUE, width=0.6)
+for i, v in ov.items(): axs[0].text(i, v + 1, int(v), ha="center", color=INK, fontsize=9)
+axs[0].set_xticks(range(4)); axs[0].set_xlabel("Phages in common with the authors' cocktail (of 3)"); axs[0].set_ylabel("Test strains"); axs[0].set_title("Cocktails against the authors'", loc="left"); style(axs[0])
+w = 0.38
+for i, (c, col) in enumerate([("authors", ORANGE), ("this re-implementation", BLUE)]):
+    axs[1].bar(np.arange(4) + (i - 0.5) * w, st[c].values, width=w, color=col, label=c)
+axs[1].set_xticks(range(4)); axs[1].set_xticklabels([names[k] for k in names], fontsize=7, rotation=12, ha="right"); axs[1].set_ylabel("Recommended phages (%)"); axs[1].set_title("Step at which phages are chosen", loc="left")
+axs[1].legend(frameon=False, labelcolor=INK, fontsize=8); style(axs[1])
+fig.tight_layout()
+save(fig, "cmp_recommender", pd.concat([st.rename_axis("step").reset_index(), ov.rename("strains_by_phages_in_common").reset_index(drop=True)], axis=1))

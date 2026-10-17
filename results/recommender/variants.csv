@@ -1,0 +1,5 @@
+phage_identity,features_per_split,identical_cocktails,mean_phages_in_common_of_3,share_step1_pct,share_step2_pct,share_step3_pct,share_step4_pct,default
+onehot,sqrt,0,0.95,1.0,31.7,0.0,67.3,False
+onehot,all,2,0.97,32.0,23.3,8.0,36.7,True
+ordinal,sqrt,0,0.83,71.7,4.3,0.0,24.0,False
+ordinal,all,0,0.89,100.0,0.0,0.0,0.0,False

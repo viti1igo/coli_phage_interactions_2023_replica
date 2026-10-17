@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 from scipy.stats import mannwhitneyu
 from figlib import *
+from matrix import load_matrix
 
 D = f"{ROOT}/data"
 pic = pd.read_csv(f"{D}/genomics/bacteria/picard_collection.csv", sep=";", index_col=0)
 ph = pd.read_csv(f"{D}/genomics/phages/guelin_collection.csv", sep=";", index_col=0)
-M = pd.read_csv(f"{D}/interactions/interaction_matrix.csv", sep=";", index_col=0)
+M = load_matrix()  # 403 strains when the supplement is present (the public matrix lacks LF110)
 L = (M.fillna(0) > 0)
 leaf = open(f"{D}/genomics/bacteria/panacota/tree/370+host_leaf_order_root=albertii.txt").read().strip().split(",")
 tree_rows = [b for b in leaf if b in M.index]
@@ -193,17 +194,18 @@ if not os.path.exists(out):
         rows.append((f[:-6], sum(len(l.strip()) for l in open(f"{A_}/{f}") if not l.startswith(">"))))
     pd.DataFrame(rows, columns=["bacteria", "genome_size"]).to_csv(out, index=False)
 
-# ---------------- ED6 A, C (fits from fig_ed6.R; AMR panels B, D not run)
+# ---------------- ED6 A-D (fits from fig_ed6.R: genome size from our assemblies, AMR gene counts from the paper's Source Data)
 e6 = f"{ROOT}/results/fig4_summary/ed6.csv"
 if os.path.exists(e6):
     fit = pd.read_csv(e6).set_index("panel"); dd = pd.read_csv(f"{ROOT}/results/fig4_summary/ed6_data.csv")
-    fig, axs = plt.subplots(1, 2, figsize=(10, 4))
-    for ax, pn, col, lab in [(axs[0], "A", "n_lytic", "Lytic interactions of the strain"), (axs[1], "C", "avg_mlc", "Average MLC upon infection")]:
-        z = dd.dropna(subset=[col]); ax.scatter(z.mb, z[col], s=14, color=BLUE, alpha=0.55, edgecolor=SURF, lw=0.4)
-        f = fit.loc[pn]; ax.set_xlabel("Genome size (Mb)"); ax.set_ylabel(lab); style(ax)
-        ax.set_title(f"{pn}  beta = {f.beta_per_Mb:.2f} per Mb, pMCMC = {f.pMCMC:.4f}", loc="left", fontsize=9)
-    fig.tight_layout(); save(fig, "ed6_a_c", dd)
-    stat("ED6A", "genome size vs lytic interactions (pMCMC)", "reported significant (title; value not printed)", f"beta {fit.loc['A'].beta_per_Mb:.2f}/Mb, pMCMC {fit.loc['A'].pMCMC:.3f}", "ED Fig. 6 title")
-    stat("ED6C", "genome size vs average MLC (pMCMC)", "reported significant (title; value not printed)", f"beta {fit.loc['C'].beta_per_Mb:.2f}/Mb, pMCMC {fit.loc['C'].pMCMC:.4f}", "ED Fig. 6 title")
-    stat("ED6B/D", "AMR gene number", "not significant", "not run (no AMR annotation shipped)", "ED Fig. 6 title")
+    fig, axs = plt.subplots(2, 2, figsize=(10, 7.5))
+    for ax, pn, col, x, lab, xl, unit in [(axs[0, 0], "A", "n_lytic", "mb", "Lytic interactions of the strain", "Genome size (Mb)", "Mb"), (axs[0, 1], "B", "n_lytic", "amr", "Lytic interactions of the strain", "AMR genes (paper's counts)", "gene"),
+                                          (axs[1, 0], "C", "avg_mlc", "mb", "Average MLC upon infection", "Genome size (Mb)", "Mb"), (axs[1, 1], "D", "avg_mlc", "amr", "Average MLC upon infection", "AMR genes (paper's counts)", "gene")]:
+        z = dd.dropna(subset=[col, x]); ax.scatter(z[x], z[col], s=14, color=BLUE, alpha=0.55, edgecolor=SURF, lw=0.4)
+        f = fit.loc[pn]; ax.set_xlabel(xl); ax.set_ylabel(lab); style(ax)
+        ax.set_title(f"{pn}  beta = {f.beta:.3g} per {unit}, pMCMC = {f.pMCMC:.3f}", loc="left", fontsize=9)
+    fig.tight_layout(); save(fig, "ed6_a_d", dd)
+    for pn, what in [("A", "genome size vs lytic interactions"), ("C", "genome size vs average MLC"), ("B", "AMR genes vs lytic interactions"), ("D", "AMR genes vs average MLC")]:
+        f = fit.loc[pn]
+        stat(f"ED6{pn}", f"{what} (pMCMC)", "significant" if what.startswith("genome size vs average") else ("not significant" if what.startswith("AMR") else "not stated"), f"beta {f.beta:.3g}, pMCMC {f.pMCMC:.4f}", "ED Fig. 6 title")
 flush_stats("extended")

@@ -17,9 +17,13 @@ pp = {k: pd.read_csv(f"{R}/{d}/per_phage.csv", index_col=0) for k, d in [("shipp
 from sklearn.metrics import roc_auc_score, average_precision_score
 pool = lambda d: roc_auc_score(d.y, d.p)
 pr = {k: pd.read_csv(f"{R}/{d}/predictions.csv") for k, d in [("shipped_inputs", "repro"), ("regen", "repro_regenerated"), ("regen_matrix", "repro_regenerated_matrix")]}
+def strain_auc(d):
+    return d.groupby("bacteria").apply(lambda x: roc_auc_score(x.y, x.p) if x.y.nunique() > 1 else np.nan, include_groups=False).mean()
+
+
 extra = {  # (figure, metric) -> (shipped data result, regenerated inputs result)
-    ("Fig 5", "mean per-phage AUROC, published article"): (round(ship_pp.auroc.mean(), 3), f"{pp['regen'].auroc.mean():.3f} (+ our matrix {pp['regen_matrix'].auroc.mean():.3f})"),
-    ("Fig 5", "mean per-phage AUROC, preprint"): (round(ship_pp.auroc.mean(), 3), f"{pp['regen'].auroc.mean():.3f} (+ our matrix {pp['regen_matrix'].auroc.mean():.3f})"),
+    ("Fig 5a", "mean AUROC per strain (published text; Fig 5a plots one AUROC per strain)"): (round(strain_auc(ship_pred), 3), f"{strain_auc(pr['regen']):.3f} (+ our matrix {strain_auc(pr['regen_matrix']):.3f})"),
+    ("Fig 5a", "mean AUROC per phage (preprint)"): (round(ship_pp.auroc.mean(), 3), f"{pp['regen'].auroc.mean():.3f} (+ our matrix {pp['regen_matrix'].auroc.mean():.3f})"),
     ("Fig 5", "pooled AUROC"): (round(pool(ship_pred), 3), f"{pool(pr['regen']):.3f} (+ our matrix {pool(pr['regen_matrix']):.3f})"),
     ("Fig 5", "average precision"): (round(average_precision_score(ship_pred.y, ship_pred.p), 3), f"{average_precision_score(pr['regen'].y, pr['regen'].p):.3f}"),
 }
@@ -53,23 +57,38 @@ stats["ours"] = stats.ours.map(fmt)
 stats["status"] = [status(p, o) for p, o in zip(stats.paper, stats.ours)]
 stats["note"] = ""
 NOTES = {  # (figure prefix, metric) -> (status override or None, note)
-    ("Fig 5", "mean per-phage AUROC, published article"): (None, "not reproduced by any aggregation tried (per phage 0.787, per strain 0.878; the authors' own shipped predictions give 0.781 and 0.881); the preprint gave 77 % and that matches"),
-    ("Fig 5a", "mean per-strain AUROC (the other aggregation the legend mentions)"): ("differs", "0.028 higher; the authors' shipped predictions give 0.881, so the gap is not caused by our run"),
+    ("Fig 5a", "mean AUROC per strain (published text; Fig 5a plots one AUROC per strain)"): (None, "the paper's own Source Data for Fig 5a averages 0.872, above the 0.85 in the text; the authors' shipped predictions give 0.881"),
     ("Fig 4c", "beta (defense systems)"): ("consistent (inside paper CI -0.74 to 0.34)", "paper prints 2 decimals"),
     ("Fig 4d", "beta (defense systems)"): ("consistent (inside paper CI -0.05 to -0.01)", "paper prints 2 decimals"),
     ("Fig 4d", "pMCMC"): (None, "both significant; ours smaller than the paper's 0.004"),
-    ("Fig 3a", "PERMANOVA adj. R2, genus"): (None, "cause not found; isolation-strain R2 is close"),
-    ("Fig 2f", "ANOVA F (host range ~ morphotype)"): (None, "public matrix has 402 strains, paper 403"),
-    ("ED7", "coverage of the most-covering triplet (%)"): (None, "'productive lysis' definition not given; MLC>0, >=2 and >=3 give 87.6, 76.9 and 54.7, none gives 63"),
-    ("ED9A", "Mann-Whitney P (step, generic vs tailored)"): (None, "same direction, much weaker; unit of analysis (phage vs cocktail) not stated"),
-    ("ED6A", "genome size vs lytic interactions (pMCMC)"): (None, "paper title says genome size correlates with virulence (average MLC), consistent with panel C only"),
+    ("Fig 3a", "PERMANOVA adj. R2, isolation strain"): (None, "our own PERMANOVA; the adjusted-R2 formula may differ from the paper's"),
+        ("ED9A", "Mann-Whitney P (step, generic vs tailored)"): (None, "same direction, much weaker; unit of analysis (phage vs cocktail) not stated"),
+    ("ED6C", "genome size vs average MLC (pMCMC)"): ("match", "significant at 0.01, the threshold of the Fig 4 Source Data; genome size from our assemblies (with the paper's sizes: pMCMC 0.001)"),
+    ("ED6D", "AMR genes vs average MLC (pMCMC)"): ("match", "not significant at 0.01 (0.0105, borderline); AMR counts are the paper's Source Data"),
+    ("ED6B", "AMR genes vs lytic interactions (pMCMC)"): ("match", "not significant at 0.01 (0.047); AMR counts are the paper's Source Data"),
+    ("ED6A", "genome size vs lytic interactions (pMCMC)"): (None, "the paper's title only says genome size correlates with virulence (average MLC)"),
 }
 for i, r in stats.iterrows():
     for (fig, m), (st, nt) in NOTES.items():
         if r.figure.startswith(fig) and r.metric == m:
             stats.loc[i, "note"] = nt
             if st: stats.loc[i, "status"] = st
-stats = stats.rename(columns={"ours": "replication_shipped_inputs"})
+rc = pd.read_csv(f"{ROOT}/results/recommender/comparison_with_authors.csv")
+sd_extra = pd.DataFrame([
+    dict(figure="Fig 6 recommender", metric="identical cocktails out of 100", paper="100 (the authors' recommendations)", ours=int(rc.exact.sum()), paper_source="Fig 6; Methods p.2859; dev/cocktails/data/cocktails_step.csv", note="re-implementation from the Methods; the test strains' ABC and Klebsiella types and UMAP are unavailable (see reports/05)", status="differs"),
+    dict(figure="Fig 6 recommender", metric="phages in common per cocktail (of 3)", paper=3, ours=round(rc.overlap.mean(), 2), paper_source="same", note="75 of 100 cocktails share exactly one phage with the authors'", status="differs"),
+    dict(figure="Fig 6 recommender", metric="phages recommended by the authors' step 2 that our step 2 also recommends", paper=11, ours=10, paper_source="same", note="the haplotype-neighbour rule is reproduced; the two random-forest steps are not", status="consistent (10 of 11)"),
+])
+DROP = [("Fig 2f", "ANOVA F (host range ~ morphotype)"), ("ED7", "coverage of the most-covering triplet (%)"), ("ED2", "modularity Q (BRIM) significance")]
+stats = stats[[(f, m) not in DROP for f, m in zip(stats.figure, stats.metric)]].rename(columns={"ours": "replication_shipped_inputs"})
+sd = pd.read_csv(f"{OUT}/source_data_checks.csv")  # from scripts/compare_source_data.py (needs the downloaded supplement)
+sd["ours"] = sd.ours.map(fmt)
+sd = pd.concat([sd, sd_extra], ignore_index=True)
+sd["ours"] = sd.ours.map(fmt)
+sd["status"] = [st if isinstance(st, str) else status(p, o) for st, p, o in zip(sd.status, sd.paper, sd.ours)]
+sd["published_data_result"] = "-"
+sd["replication_regenerated_inputs"] = "-"
+stats = pd.concat([stats, sd.rename(columns={"ours": "replication_shipped_inputs"})], ignore_index=True)
 stats = stats[["figure", "metric", "paper", "published_data_result", "replication_shipped_inputs", "replication_regenerated_inputs", "status", "note", "paper_source"]]
 stats.to_csv(f"{OUT}/paper_vs_replication.csv", index=False)
 
@@ -146,6 +165,10 @@ C = [  # component, parameter, paper, used, reason, expected_effect, paper_sourc
     ("modelling", "ANOVA / Tukey", "scipy 1.11.2, statsmodels 0.14.1", "scipy 1.18.1 f_oneway; Tukey not run", "-", "F 113.9 vs 114.7", "Methods l.1403-1405"),
     ("modelling", "nestedness / modularity (ED2)", "BINMATNEST temperature T; BRIM Q; 1,000 null matrices", "NODF instead of temperature; BRIM implemented here; 1,000 null matrices (Bernoulli, same connectance)", "no BINMATNEST implementation available", "nestedness number not comparable", "Methods l.1391-1398"),
     ("data", "strains in the interaction matrix", "403 (38,688 interactions)", "402 rows in the public matrix (38,592 cells)", "one strain absent from the public file", "small shifts (e.g. ANOVA F)", "Fig 2 legend"),
+    ("data", "interaction matrix used by the figure scripts", "403 strains (Supplementary Table 3)", "the 403-strain matrix when the supplement is downloaded, otherwise the public 402-strain matrix", "the public file lacks strain LF110", "Fig 2f ANOVA F 114.7 with 403 strains, 113.9 with 402; model runs use the public matrix", "Fig 2 legend"),
+    ("modelling", "significance threshold of the per-phage models", "pMCMC < 1e-3 (Methods)", "reported at 1e-3 and at 0.01", "the paper's Source Data for Fig 4a-b counts terms up to pMCMC 0.009, i.e. a threshold of 0.01", "28 adsorption-factor terms at 1e-3, 51 at 0.01 (paper: 52)", "Methods; Source Data Fig 4b"),
+    ("modelling", "recommender (Fig 6)", "four-step algorithm, code not published", "re-implemented from the Methods (scripts/recommender.py); all features per split; step 2 needs a complete ST/O/H haplotype", "test-strain genomes are not shipped: ABC and Klebsiella types unknown, UMAP recomputed from the shipped distances", "2 of 100 cocktails identical, 0.97 of 3 phages in common", "Methods p.2859; ED Fig. 8"),
+    ("data", "AMR gene counts (ED6 B, D)", "annotation tool not stated", "the paper's counts from its Source Data", "no AMR annotation is shipped", "ED6 B and D drawn from the paper's counts", "ED Fig. 6; Source Data ED6"),
     ("data", "genome set for tree", "403 strains + references", "402 strains in common with the shipped tree", "ESCO.All.prt is a proteome file, not a genome", "-", "Methods l.1349"),
 ]
 pd.DataFrame(C, columns=["component", "parameter", "paper", "used", "reason", "expected_effect", "paper_source"]).to_csv(f"{ROOT}/config/config_diff.csv", index=False)

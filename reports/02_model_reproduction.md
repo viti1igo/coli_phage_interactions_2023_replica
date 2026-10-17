@@ -16,7 +16,7 @@ Script: `scripts/predict.py`, with `FEATURE_SET=shipped` (default), `regenerated
 
 | | Mean AUROC per phage | Mean AUPR per phage | Pooled AUROC | Pooled AP | F1 (threshold 0.5) | Mean AUROC per strain |
 |---|---|---|---|---|---|---|
-| Published article | 0.85 | – | 0.86 | 0.60 | 0.60 | – |
+| Published article | – | – | 0.86 | 0.60 | 0.60 | 0.85 in the text; 0.872 in its Source Data |
 | Preprint | 0.77 | – | 0.86 | – | – | – |
 | Authors' shipped predictions, recomputed here | 0.781 | 0.586 | 0.857 | 0.601 | 0.596 | 0.881 |
 | **This run, shipped inputs** | **0.787** | 0.591 | **0.856** | 0.598 | 0.599 | 0.878 |
@@ -24,7 +24,7 @@ Script: `scripts/predict.py`, with `FEATURE_SET=shipped` (default), `regenerated
 | This run, regenerated inputs and our matrix | 0.769 | 0.565 | 0.853 | 0.588 | 0.589 | – |
 
 - The pooled numbers (AUROC, average precision, F1) agree with the paper within 0.004 on the shipped inputs and stay within 0.004 on regenerated inputs.
-- The published article states 85 % as the average AUROC of Fig 5a. No aggregation tried reproduces it: 0.787 per phage and 0.878 per strain here, 0.781 and 0.881 from the authors' own shipped predictions. The preprint stated 77 % for the same panel, which matches the per-phage mean. The published text and legend do not say which aggregation gives 85 %.
+- Fig 5a of the published article plots one AUROC per **strain**, and its text gives 85 % as the average. The paper's own Source Data for that panel averages 0.872 (median 0.892), and this run gives 0.881 (median 0.895) on the same 315 strains (0.878 over the 390 strains with both classes here); the authors' shipped predictions give 0.881. The per-strain AUROC agrees with the Source Data (correlation 0.84); the text's 85 % is slightly below the mean of its own data. The preprint's 77 % is the per-phage mean, which matches (0.787 here).
 - The per-phage mean loses about two points when the inputs are regenerated (0.787 to 0.765), and the correlation of per-phage AUROC with the authors' results falls from 0.92 to 0.79 (0.81 with our matrix). The model chosen per phage belongs to the same family (forest or logistic regression) as the authors' for 76 % of phages on shipped inputs.
 - Fixed in the code: a phage whose lytic strains all fall in one test fold now gets a constant prediction instead of an error, and `penalty="l1"` was replaced by `l1_ratio=1` (the sparse solution was checked to be identical).
 
@@ -46,14 +46,14 @@ Everything matches. For the last test the paper contradicts itself (text 0.02, l
 
 ## Fig 4: per-phage mixed models and defense count
 
-**Per-phage models** (`scripts/fig4_mcmc.R`, `scripts/fig4_summarize.py`). `MCMCglmm` with a threshold family; adsorption factors and defense systems as covariates; the phylogeny as a random effect through the inverse relatedness matrix; 500,000 iterations, burn-in 50,000, thin 250; prior V = 1, ν = 0.002; significance at pMCMC < 1e-3. 91 of 96 phages fitted. Five (409_P3, 411_P1, 411_P2, 412_P1, 423_P10) failed with "mixed model equations singular". They were refitted with an N(0, 10²) prior on the fixed effects, a labelled deviation (`results/fig4/STRONG_PRIOR_PHAGES.txt`); all five have very few lytic strains (3 to 43).
+**Per-phage models** (`scripts/fig4_mcmc.R`, `scripts/fig4_summarize.py`). `MCMCglmm` with a threshold family; adsorption factors and defense systems as covariates; the phylogeny as a random effect through the inverse relatedness matrix; 500,000 iterations, burn-in 50,000, thin 250; prior V = 1, ν = 0.002; significance at pMCMC < 1e-3 (the paper's Source Data uses 0.01, see below). 91 of 96 phages fitted. Five (409_P3, 411_P1, 411_P2, 412_P1, 423_P10) failed with "mixed model equations singular". They were refitted with an N(0, 10²) prior on the fixed effects, a labelled deviation (`results/fig4/STRONG_PRIOR_PHAGES.txt`); all five have very few lytic strains (3 to 43).
 
 | Result over 96 phages | Count (pMCMC < 1e-3) |
 |---|---|
 | Adsorption-factor terms | 28 (LPS 14, ABC capsule 12, O-type 1, OMPA 1) |
 | Defense-system terms | 0 |
 
-The direction matches the paper: adsorption factors matter, defense systems do not. The paper's counts for Fig 4a–b exist only in the figure, so the counts were not compared. Against the authors' shipped results (adsorption factors only, 96 phages), over 7,776 shared (phage, term) pairs both are significant for 16, only the shipped result for 10 and only this re-run for 12 (Spearman correlation of pMCMC 0.625). The agreement is moderate; the two models differ (with and without defense systems, different covariate sets).
+The direction matches the paper: adsorption factors matter, defense systems do not. The paper's Source Data for Fig 4a–b counts 52 adsorption-factor terms and 1 defense term, with pMCMC up to 0.0089: its threshold is 0.01, not the 1e-3 of the Methods. At 0.01 this re-run gives 51 and 3 (the paper's one defense term is the outer-membrane variant YNCDOther, which its Source Data lists under defense systems). By family at 0.01 (paper / here): ABC capsule 25 / 21, LPS 17 / 22, O-type 7 / 6, Klebsiella capsule 2 / 0, OMPA 1 / 1. The signs of the shared terms agree (31 of 31), but only 19 of the paper's 53 (phage, term) pairs are significant in both, because terms near the threshold change between runs. Against the authors' shipped results (adsorption factors only, 96 phages), over 7,776 shared (phage, term) pairs both are significant for 16, only the shipped result for 10 and only this re-run for 12 (Spearman correlation of pMCMC 0.625).
 
 Two things found in the authors' code or text:
 - Their Rmd keeps the outer-membrane protein table under the original strain names while the other tables went through `make.names()`, so `merge` silently drops 136 of 403 strains. This was fixed in the R script.

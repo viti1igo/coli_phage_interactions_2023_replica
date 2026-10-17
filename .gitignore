@@ -10,3 +10,6 @@ logs/
 *.log
 ._*
 .DS_Store
+docs/paper/
+data/derived/paper_amr_counts.csv
+data/derived/interaction_matrix_403.csv

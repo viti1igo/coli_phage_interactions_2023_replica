@@ -1,17 +1,17 @@
 figure,metric,paper,ours,paper_source
-Fig 3a,"PERMANOVA adj. R2, genus",0.13,0.27,Results p.2851
+Fig 3a,"PERMANOVA adj. R2, genus added after isolation strain",0.13,0.13,Results p.2851 (inferred: the 0.13 equals the sequential increment of genus after isolation strain)
 Fig 3a,"PERMANOVA adj. R2, isolation strain",0.53,0.55,Results p.2851
 Fig 3a,"PERMANOVA adj. R2, genus + isolation strain",0.65,0.69,Results p.2851
-Fig 3a,"PERMANOVA R2 (unadjusted), genus",not stated,0.404,-
+Fig 3a,"PERMANOVA adj. R2, genus alone",not stated,0.27,-
+Fig 3a,"PERMANOVA R2 (unadjusted), genus",not stated,0.405,-
 Fig 3a,"PERMANOVA R2 (unadjusted), isolation strain",not stated,0.709,-
-Fig 5,"mean per-phage AUROC, published article",0.85,0.787,Results p.2854 (published.txt l.623)
-Fig 5,"mean per-phage AUROC, preprint",0.77,0.787,Results (preprint.txt l.521)
-Fig 5a,mean per-strain AUROC (the other aggregation the legend mentions),0.85,0.878,Fig 5a legend (published.txt l.1013)
+Fig 5a,mean AUROC per strain (published text; Fig 5a plots one AUROC per strain),0.85,0.878,Results p.2854 (published.txt l.623); Fig 5a legend
+Fig 5a,mean AUROC per phage (preprint),0.77,0.787,Results (preprint.txt l.521)
 Fig 5,pooled AUROC,0.86,0.856,Fig 5b
 Fig 5,average precision,0.6,0.598,Fig 5b
 Fig 5d,F1 at p >= 0.5 (all pairs pooled),0.6,0.599,Results
 Fig 5d,TP / FP / FN (pairs),not stated,4669 / 2940 / 3307,-
-Fig 5c,"Spearman(AUROC, n lytic)",not stated,-0.352,-
+Fig 5c,"Spearman(AUROC, n lytic) per strain",not stated,-0.191,-
 Fig 6d,"success rate, tailored (%)",91.67,91.67,Results p.2855
 Fig 6d,"success rate, generic (%)",78.95,78.95,Results p.2855
 Fig 6d,"success rate, baseline (%)",81,81.0,Results p.2855

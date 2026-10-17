@@ -8,16 +8,17 @@ Fig 4d (regenerated defense counts),beta (defense systems),-0.04,-0.037,Results;
 ED1,phages infecting BE,45 (46.9%),45 (46.9%),ED Fig. 1 legend
 ED1,phages infecting BL21,48 (50.0%),48 (50.0%),ED Fig. 1 legend
 ED2,"nestedness (paper: BINMATNEST temperature T; ours: NODF, not comparable)","nested pattern, P not printed","NODF 52.1, P = 0.001",Results p.2850; ED Fig. 2
-ED2,modularity Q (BRIM) significance,"weakly modular, P not printed","Q = 0.231 (5 modules), P = 0.001",ED Fig. 2 legend
+ED2,modularity Q (BRIM) significance,"weakly modular, P not printed","Q = 0.233 (4 modules), P = 0.001",ED Fig. 2 legend
 ED4A,AL505_Sd2: infected strains that are ABC K1,all K1-associated (qualitative),36 of 77 infected; 36 of 42 K1 strains infected,ED Fig. 4A legend
 ED4A,412_P2: infected strains that are ABC K1,all K1-associated (qualitative),36 of 53 infected; 36 of 42 K1 strains infected,ED Fig. 4A legend
 ED4A,MT1B1_3A1: infected strains that are ABC K1,all K1-associated (qualitative),37 of 68 infected; 37 of 42 K1 strains infected,ED Fig. 4A legend
 ED5,strains infected by PDP110_P1,3,3,ED Fig. 5 legend
 ED5,infected strains that carry K55,3 of 3,3 of 3; K55 strains total 3,ED Fig. 5 legend
 ED7,coverage of the most-covering triplet (%),63,87.6,ED Fig. 7 legend; Methods p.2855
-ED7,baseline triplet,not named,LF82_P8 + NIC06_P2 + 536_P7,-
+ED7,baseline triplet,not named,536_P7 + LF82_P8 + NIC06_P2,-
 ED9A,"Mann-Whitney P (step, generic vs tailored)",3.5e-12,4.1e-09,ED Fig. 9 legend
 ED9,cocktails,18,18,Fig. 6 legend
-ED6A,genome size vs lytic interactions (pMCMC),reported significant (title; value not printed),"beta -5.89/Mb, pMCMC 0.122",ED Fig. 6 title
-ED6C,genome size vs average MLC (pMCMC),reported significant (title; value not printed),"beta -0.35/Mb, pMCMC 0.0042",ED Fig. 6 title
-ED6B/D,AMR gene number,not significant,not run (no AMR annotation shipped),ED Fig. 6 title
+ED6A,genome size vs lytic interactions (pMCMC),not stated,"beta -5.85, pMCMC 0.1200",ED Fig. 6 title
+ED6C,genome size vs average MLC (pMCMC),significant,"beta -0.349, pMCMC 0.0032",ED Fig. 6 title
+ED6B,AMR genes vs lytic interactions (pMCMC),not significant,"beta -0.474, pMCMC 0.0474",ED Fig. 6 title
+ED6D,AMR genes vs average MLC (pMCMC),not significant,"beta -0.0213, pMCMC 0.0105",ED Fig. 6 title

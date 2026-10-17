@@ -1,6 +1,6 @@
 # 7. Configuration: what the paper specifies and what was run
 
-`config/paper_config.yaml` records every tool version and parameter stated in the paper, each with its line in the published text; settings the paper does not state are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what was run (24 rows, reproduced below). `config/references.yaml` holds the two reference sequences downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported environment specifications of the eight tool environments.
+`config/paper_config.yaml` records every tool version and parameter stated in the paper, each with its line in the published text; settings the paper does not state are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what was run (28 rows, reproduced below). `config/references.yaml` holds the two reference sequences downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported environment specifications of the eight tool environments.
 
 ## Differences
 
@@ -29,6 +29,10 @@
 | modelling | ANOVA / Tukey | scipy 1.11.2, statsmodels 0.14.1 | scipy 1.18.1 f_oneway; Tukey not run | - | F 113.9 vs 114.7 |
 | modelling | nestedness / modularity (ED2) | BINMATNEST temperature T; BRIM Q; 1,000 null matrices | NODF instead of temperature; BRIM implemented here; 1,000 null matrices (Bernoulli, same connectance) | no BINMATNEST implementation available | nestedness number not comparable |
 | data | strains in the interaction matrix | 403 (38,688 interactions) | 402 rows in the public matrix (38,592 cells) | one strain absent from the public file | small shifts (e.g. ANOVA F) |
+| data | interaction matrix used by the figure scripts | 403 strains (Supplementary Table 3) | the 403-strain matrix when the supplement is downloaded, otherwise the public 402-strain matrix | the public file lacks strain LF110 | Fig 2f ANOVA F 114.7 with 403 strains, 113.9 with 402; model runs use the public matrix |
+| modelling | significance threshold of the per-phage models | pMCMC < 1e-3 (Methods) | reported at 1e-3 and at 0.01 | the paper's Source Data for Fig 4a-b counts terms up to pMCMC 0.009, i.e. a threshold of 0.01 | 28 adsorption-factor terms at 1e-3, 51 at 0.01 (paper: 52) |
+| modelling | recommender (Fig 6) | four-step algorithm, code not published | re-implemented from the Methods (scripts/recommender.py); all features per split; step 2 needs a complete ST/O/H haplotype | test-strain genomes are not shipped: ABC and Klebsiella types unknown, UMAP recomputed from the shipped distances | 2 of 100 cocktails identical, 0.97 of 3 phages in common |
+| data | AMR gene counts (ED6 B, D) | annotation tool not stated | the paper's counts from its Source Data | no AMR annotation is shipped | ED6 B and D drawn from the paper's counts |
 | data | genome set for tree | 403 strains + references | 402 strains in common with the shipped tree | ESCO.All.prt is a proteome file, not a genome | - |
 
 ## Settings the paper does not state
