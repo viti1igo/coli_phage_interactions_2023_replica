@@ -1,6 +1,6 @@
 # 7. Configuration: what the paper specifies and what was run
 
-`config/paper_config.yaml` records every tool version and parameter stated in the paper, each with its line in the published text; settings the paper does not state are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what was run (32 rows, reproduced below). `config/references.yaml` holds the two reference sequences downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported environment specifications of the eight tool environments.
+`config/paper_config.yaml` records every tool version and parameter the paper states, each with its line in the published text. Settings the paper leaves out are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what I ran (32 rows, reproduced below). `config/references.yaml` holds the two reference sequences I downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported specifications of the eight tool environments.
 
 ## Differences
 
@@ -41,7 +41,7 @@
 
 ## Settings the paper does not state
 
-UMAP hyperparameters; how the tree is turned into a distance matrix; SRST2 version; ClermonTyping version; PanACoTA options other than `--fasttree`; the method for outer-membrane-protein clustering; the LPS clustering parameters; random seeds. These were calibrated or fixed here and are marked as such above.
+The paper leaves these out: UMAP hyperparameters, how the tree becomes a distance matrix, the SRST2 and ClermonTyping versions, PanACoTA options other than `--fasttree`, the method for outer-membrane-protein clustering, the LPS clustering parameters and the random seeds. I calibrated or fixed each of them, and the table above marks them.
 
 ## Software
 
@@ -59,8 +59,8 @@ UMAP hyperparameters; how the tree is turned into a distance matrix; SRST2 versi
 | Models and figures | `.venv` | Python 3.14, scikit-learn 1.9.1, scipy 1.18.1, pandas 3.0.6, numpy 2.5.4, umap-learn 0.5.12, matplotlib 3.11.2, biopython 1.88, pyrodigal, statsmodels 0.15, bokeh 3.10, nbclient |
 | Mixed models | R 4.3.0 | MCMCglmm 2.36, ape 5.8.1 |
 
-Environments are created with micromamba (`scripts/setup_envs.sh <env>`). On an Apple-silicon Mac the osx-64 environments need Rosetta. The original `conda` installation on the test machine was broken, hence micromamba.
+`scripts/setup_envs.sh <env>` creates the environments with micromamba. On an Apple-silicon Mac the osx-64 environments need Rosetta. The `conda` installation on my machine was broken, which is why I used micromamba.
 
 ## Platform notes
 
-The work ran on macOS arm64 with 16 GB of memory, with all data on an exFAT external drive. exFAT creates a `._*` twin for every file. These twins broke DefenseFinder and MacSyFinder (they scan their model folders) and a Python package installed on the drive (matplotlib). The scripts therefore run DefenseFinder in a temporary directory on the internal disk, give MacSyFinder a clean models folder, and `scripts/cleanup_intermediates.sh` removes the twins.
+I ran everything on macOS arm64 with 16 GB of memory and kept all data on an exFAT external drive. exFAT creates a `._*` twin for every file. The twins broke DefenseFinder and MacSyFinder, which scan their model folders, and a Python package installed on the drive (matplotlib). The scripts therefore run DefenseFinder in a temporary directory on the internal disk and give MacSyFinder a clean models folder, and `scripts/cleanup_intermediates.sh` removes the twins.
