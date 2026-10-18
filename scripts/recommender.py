@@ -1,8 +1,8 @@
 """Re-implementation of the paper's four-step cocktail recommender from its Methods (the authors' code is not public) and comparison with the
 cocktails they recommended (dev/cocktails/data/cocktails_step.csv).  python scripts/recommender.py   -> results/recommender/
 
-Steps (Methods p.2859): (1) random forest (depth 4, 80 trees, positive class weight 1.5) on phage identity + booleans 'query has the same
-ST / O / H / LPS / ABC as the isolation strain of the phage'; (2) strains of the Picard collection with the same haplotype (ST, O, H): phages that
+Steps (README sections 2.3-2.6 of the authors' repository; the Methods p.2859 differ slightly, see SPEC below): (1) random forest (depth 4, 80 trees,
+positive class weight 1.5) on phage identity + booleans 'query has the same O / ST / ABC / Klebsiella / LPS as the isolation strain of the phage'; (2) strains of the Picard collection with the same haplotype (ST, O, H): phages that
 infect the majority; (3) the same random forest on phage identity + all bacterial features; (4) the most generalist phages.  Phages with p > 0.5
 are recommended in order of probability, steps in sequence, until three phages; two phages of the same genus and isolation host never co-occur.
 
@@ -19,6 +19,10 @@ ROOT = P.ROOT
 OUT = f"{ROOT}/results/recommender" + os.environ.get("VARIANT", "")
 os.makedirs(OUT, exist_ok=True)
 C = f"{ROOT}/dev/cocktails/data"
+# SPEC: "readme" = the authors' README (step 1 compares O, ST, ABC, Klebsiella, LPS; step 2 keeps phages infecting at least half of the group);
+#       "paper" = the Methods text (step 1 compares ST, O, H, LPS, ABC; step 2 keeps more than half)
+SPEC = os.environ.get("SPEC", "readme")
+STEP1_KEYS = ("ST_Warwick", "O-type", "Klebs_capsule_type", "LPS_type", "ABC_serotype") if SPEC == "readme" else ("ST_Warwick", "O-type", "H-type", "LPS_type", "ABC_serotype")
 ENC = os.environ.get("PHAGE_ENCODING", "onehot")            # onehot | ordinal (phage identity as one integer column)
 MAXF = "sqrt" if os.environ.get("MAX_FEATURES", "all") == "sqrt" else None   # all features at each split (default); "sqrt" never gives p > 0.5
 rf = lambda: RandomForestClassifier(max_depth=4, n_estimators=80, class_weight={0: 1, 1: 1.5}, max_features=MAXF, random_state=0, n_jobs=-1)
@@ -67,13 +71,13 @@ def phage_cols(n):
     return pd.get_dummies(ids.astype(pd.CategoricalDtype(range(len(phages)))), prefix="ph").astype(float)
 
 
-FD = F[["ST_Warwick", "O-type", "H-type", "LPS_type", "ABC_serotype"]].to_dict("index")
-HD = {p: (h[["ST_Warwick", "O-type", "H-type", "LPS_type", "ABC_serotype"]].to_dict() if h is not None else None) for p, h in HF.items()}
+FD = F[list(STEP1_KEYS)].to_dict("index")
+HD = {p: (h[list(STEP1_KEYS)].to_dict() if h is not None else None) for p, h in HF.items()}
 
 
 def pairs_step1(strains):
-    rows = [[same(FD[s][k], HD[p][k]) if HD[p] is not None else 0. for k in ("ST_Warwick", "O-type", "H-type", "LPS_type", "ABC_serotype")] for s in strains for p in phages]
-    X = pd.DataFrame(rows, columns=["same_ST", "same_O", "same_H", "same_LPS", "same_ABC"])
+    rows = [[same(FD[s][k], HD[p][k]) if HD[p] is not None else 0. for k in STEP1_KEYS] for s in strains for p in phages]
+    X = pd.DataFrame(rows, columns=[f"same_{k}" for k in STEP1_KEYS])
     return pd.concat([X, phage_cols(len(strains))], axis=1)
 
 
@@ -126,7 +130,7 @@ def step2(s):
     if len(g) == 0:
         return pd.Series(dtype=float), 0
     fr = Y.loc[g].mean()
-    return fr[fr > 0.5].sort_values(ascending=False, kind="stable"), len(g)
+    return fr[(fr >= 0.5) if SPEC == "readme" else (fr > 0.5)].sort_values(ascending=False, kind="stable"), len(g)
 
 
 def allowed(p, chosen):
