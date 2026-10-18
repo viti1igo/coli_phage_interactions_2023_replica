@@ -54,6 +54,9 @@ for _, r in cd[cd.defence_count == "ds_shipped"].iterrows():
     k = "c" if r.model.startswith("C") else "d"
     stat(f"Fig 4{k}", "beta (defense systems)", r.paper_beta, round(r.beta, 3), "Results; Fig 4 legend")
     stat(f"Fig 4{k}", "pMCMC", r.paper_pMCMC, round(r.pMCMC, 4), "Results; Fig 4 legend")
+for _, r in cd[cd.defence_count == "ds_paper4d"].iterrows():  # the defense count of the paper's Source Data for panel d
+    stat("Fig 4d (paper's panel-d defense counts)", "beta (defense systems)", r.paper_beta, round(r.beta, 3), "Source Data Fig 4d")
+    stat("Fig 4d (paper's panel-d defense counts)", "pMCMC", r.paper_pMCMC, round(r.pMCMC, 4), "Source Data Fig 4d")
 for _, r in cd[cd.defence_count == "ds_ours"].iterrows():
     k = "c" if r.model.startswith("C") else "d"
     stat(f"Fig 4{k} (regenerated defense counts)", "beta (defense systems)", r.paper_beta, round(r.beta, 3), "Results; Fig 4 legend")
@@ -169,7 +172,11 @@ hap = st.drop_duplicates("bacteria").set_index("bacteria")
 hap = (hap.ST_Warwick.astype(str) + "|" + hap["O-type"].astype(str) + "|" + hap["H-type"].astype(str))
 comp["kind"] = comp.bacteria.map(kind); comp["haplotype"] = comp.bacteria.map(hap)
 nh = comp.groupby(["cocktails_str", "kind"]).haplotype.nunique().rename("n_haplotypes").reset_index()
-u = mannwhitneyu(st[st.kind == "Generic"].step, st[st.kind == "Tailored"].step, alternative="two-sided")
+# the authors' notebook tests the per-strain mean of the step number (1 same host, 2 neighbours, 3 trait matching, 4 rescue), tailored vs generic strains
+smean = st.assign(n=st.chosen_at_step.map({"0_same_as_host": 1, "1_neighbours": 2, "3_misc": 3, "4_rescue": 4})).groupby("bacteria").agg(n=("n", "mean"), kind=("kind", "first"))
+u = mannwhitneyu(smean[smean.kind == "Tailored"].n, smean[smean.kind == "Generic"].n, alternative="two-sided")
+# the notebook then merges the per-strain means back onto the three-rows-per-strain table, so each strain enters the test three times
+u3 = mannwhitneyu(np.repeat(smean[smean.kind == "Tailored"].n.values, 3), np.repeat(smean[smean.kind == "Generic"].n.values, 3), alternative="two-sided")
 fig, axs = plt.subplots(1, 2, figsize=(10, 4))
 ct = pd.crosstab(st.kind, st.step, normalize="index") * 100
 w = 0.35
@@ -182,7 +189,8 @@ axs[1].legend(handles=[Patch(color=ORANGE, label="Generic"), Patch(color=BLUE, l
 for a in axs: style(a)
 fig.tight_layout()
 save(fig, "ed9", nh)
-stat("ED9A", "Mann-Whitney P (step, generic vs tailored)", "3.5e-12", f"{u.pvalue:.1e}", "ED Fig. 9 legend")
+stat("ED9A", "Mann-Whitney P (per-strain mean step, each strain counted three times as in the notebook)", "3.5e-12", f"{u3.pvalue:.1e}", "ED Fig. 9 legend")
+stat("ED9A", "Mann-Whitney P (per-strain mean step, each strain once)", "not given", f"{u.pvalue:.1e}", "-")
 stat("ED9", "cocktails", 18, len(nh), "Fig. 6 legend")
 
 # ---------------- genome sizes for ED6

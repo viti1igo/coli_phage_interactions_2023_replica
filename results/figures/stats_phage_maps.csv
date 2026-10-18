@@ -1,0 +1,3 @@
+figure,metric,paper,ours,paper_source
+Fig 3b,mean entropy in RBP genes vs other genes (bits),RBP genes are hotspots (qualitative),0.62 vs 0.24,Fig 3b legend; ED Fig. 3
+Fig 3b,mean entropy of the alignment (bits),not printed,0.246,Fig 3b

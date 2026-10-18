@@ -31,9 +31,10 @@ Details, caveats and the manual steps that cannot be reproduced exactly (LPS clu
 ## Comparison with the paper
 
 - The publisher's Supplementary Information, Supplementary Tables 1–7 and Source Data workbooks (13 files, 8.7 MB, fetched by `scripts/download_supplement.sh`, not redistributed here) are compared with this replication by `scripts/compare_source_data.py`. They settled several open differences: the 403rd strain (LF110) missing from the public matrix, the exact mapping of the paper's new phage names, the aggregation behind one headline AUROC, the significance threshold actually used in the Source Data, and the AMR counts needed for two extended-data panels.
-- 73 numbers are compared one by one in [`results/comparison/paper_vs_replication.csv`](results/comparison/paper_vs_replication.csv), each with its place in the article: 29 match within 5 %, 9 match, 1 matches once explained, 3 are consistent with the paper's confidence interval or item list, 12 differ, and 19 are qualitative. The ones that differ, and what is known about each, are in [reports/05_paper_comparison.md](reports/05_paper_comparison.md).
+- 97 numbers are compared one by one in [`results/comparison/paper_vs_replication.csv`](results/comparison/paper_vs_replication.csv), each with its place in the article: 33 match within 5 %, 12 match, 1 matches once explained, 4 are consistent with the paper's confidence interval or item list, 23 differ, and 24 are qualitative. The ones that differ, and what is known about each, are in [reports/05_paper_comparison.md](reports/05_paper_comparison.md).
+- The authors' repository itself was run: its four notebooks (as shipped, which fail for 15 + 10 + 2 cells, and with path and compatibility patches), the supplementary analyses whose data it contains, and the genome maps. Every difference found between the repository and the paper is listed in [reports/11_repository_vs_paper.md](reports/11_repository_vs_paper.md); the runs are in [reports/10_repository_analyses.md](reports/10_repository_analyses.md).
 - 28 differences between the paper's settings and the settings used are listed with reason and expected effect in [`config/config_diff.csv`](config/config_diff.csv); the paper's own settings, with line numbers and the ones it leaves unspecified, are in [`config/paper_config.yaml`](config/paper_config.yaml).
-- 16 figures and extended-data figures of the paper are redrawn from the data (and three schematics redrawn from the legends), each as PNG, SVG and CSV: [reports/06_figures.md](reports/06_figures.md). Figures that need data not available here (the 1,026-genome phage network, phage genome maps, the test-strain tree) are listed with the reason.
+- 18 figures and extended-data figures of the paper are redrawn from the data (and three schematics redrawn from the legends), each as PNG, SVG and CSV: [reports/06_figures.md](reports/06_figures.md). Figures that need data not available here (the 1,026-genome phage network, the test-strain tree) are listed with the reason.
 - The paper's cocktail recommender has no published code. A re-implementation from the Methods is in `scripts/recommender.py`; it does not reproduce the authors' cocktails (reports/05).
 - What is still missing and would have to come from the authors (cross-validation group file, recommender code, test-strain genomes, the phage-network genomes): [reports/05_paper_comparison.md](reports/05_paper_comparison.md).
 
@@ -50,6 +51,8 @@ Details, caveats and the manual steps that cannot be reproduced exactly (LPS clu
 | [07_configuration.md](reports/07_configuration.md) | Paper settings, what was run, software versions |
 | [08_code_audit.md](reports/08_code_audit.md) | Code audit and the simplifications applied |
 | [09_task_log.md](reports/09_task_log.md) | Task list with the outcome of each step |
+| [10_repository_analyses.md](reports/10_repository_analyses.md) | The authors' notebooks, the supplementary analyses and the genome maps, run from their repository |
+| [11_repository_vs_paper.md](reports/11_repository_vs_paper.md) | Every difference found between the authors' repository and the paper |
 
 ## Layout
 
@@ -57,9 +60,10 @@ Details, caveats and the manual steps that cannot be reproduced exactly (LPS clu
 config/       paper_config.yaml, config_diff.csv, references.yaml, envs/*.yml (tool environments)
 scripts/      all code (Python, R, shell)
 replication/  regenerated tables: features, interaction matrix, tree, UMAP, typing outputs
+notebooks/    the authors' notebooks executed (as shipped and patched), their errors and outputs
 results/      replication/ (agreement tables), comparison/, figures/, model outputs
 data/derived/ cross-validation groups, genome sizes
-reports/      the nine reports above
+reports/      the eleven reports above
 ```
 
 The authors' data, the genome assemblies and the paper's PDFs are not redistributed. The authors' repository has no licence file; check its terms before reuse.
@@ -102,7 +106,14 @@ Rscript scripts/fig4_mcmc.R results/fig4 500000 250 50000 6   # about 4.5 hours 
 Rscript scripts/fig4_cd.R
 Rscript scripts/fig_ed6.R                 # needs data/derived/paper_amr_counts.csv, written by compare_source_data.py
 
-# 5. Figures and comparison (the supplement comparison and the recommender come first)
+# 5. The authors' notebooks, supplementary analyses and genome maps
+.venv/bin/python scripts/run_notebooks.py shipped
+.venv/bin/python scripts/run_notebooks.py patched
+.venv/bin/python scripts/si_analyses.py
+Rscript scripts/si_rbp_lmm.R
+MAFFT=/path/to/mafft .venv/bin/python scripts/fig_phage_maps.py
+
+# 6. Figures and comparison (the supplement comparison and the recommender come first)
 .venv/bin/python scripts/compare_source_data.py
 .venv/bin/python scripts/recommender.py
 for s in fig_main_1_2 fig1a_tree fig_main_3_6 fig_extended fig_schematics fig5_curves; do .venv/bin/python scripts/$s.py; done

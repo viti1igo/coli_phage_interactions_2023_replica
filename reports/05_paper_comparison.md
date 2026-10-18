@@ -36,7 +36,7 @@ The publisher's files (13 files, 8.7 MB) are downloaded by `scripts/download_sup
 | BRIM modularity Q (ED2) | 0.23 | – | 0.233 | – |
 | PDP110_P1 infected strains, all K55 (ED5) | 3, all K55 | – | 3, all K55 | – |
 
-The table has 73 rows in all: 29 match within 5 %, 9 match exactly in order of magnitude or value, 1 matches once explained (the 403rd strain), 3 lie inside the paper's confidence interval, 1 reproduces 10 of 11 items, 12 differ, and 19 cannot be compared numerically (the paper gives no number, or the panel is qualitative). The chart shows each comparable number as our value divided by the paper's.
+The table has 97 rows in all: 33 match within 5 %, 12 match, 1 matches once explained (the 403rd strain), 4 are consistent with the paper's confidence interval or item list, 23 differ, and 24 cannot be compared numerically (the paper gives no number, or the panel is qualitative). Rows 74 to 97 come from the supplementary analyses and the genome maps of [10](10_repository_analyses.md). The chart shows each comparable number as our value divided by the paper's.
 
 ![Headline numbers against the paper](../results/comparison/cmp_headline.png)
 
@@ -93,7 +93,11 @@ How well each input was regenerated is in [03](03_feature_regeneration.md); the 
 
 ## Not drawn, and why
 
-Fig 1k (1,026 GenBank genomes and vConTACT2), Fig 3b and ED3 (phage annotation and alignments), Fig 6b (test-strain genomes are not shipped), ED1 MG1655 (not in the public matrix). Supplementary Tables 1–7 contain no accession list for the phage network and no genome identifiers for the test strains beyond Supplementary Table 6.
+Fig 1k (1,026 GenBank genomes and vConTACT2), Fig 6b (test-strain genomes are not shipped), ED1 MG1655 (not in the public matrix). Supplementary Tables 1–7 contain no accession list for the phage network and no genome identifiers for the test strains beyond Supplementary Table 6.
+
+## Repository analyses and differences
+
+The notebooks of the authors' repository, the supplementary analyses and the genome maps (Fig 3b, ED3) are in [10](10_repository_analyses.md); every difference between the repository and the paper that turned up is in [11](11_repository_vs_paper.md). Most of the 23 rows that still differ are differences inside the paper or between the repository and the paper (ED7, ED9b, the cocktail labels, the K1 counts, the RBP list), not failures of this replication.
 
 ## Configuration differences
 

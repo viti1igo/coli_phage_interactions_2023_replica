@@ -1,0 +1,16 @@
+item,metric,paper,ours,note,status
+SI Text 4,"genome-size coefficient (lytic interactions per bp), morphotype in the model",0.00023,0.000232,p = 0.17 (paper 0.17); ordinary least squares on 96 phages,
+SI Text 4,genome-size coefficient without morphotype,not given,"1.19e-03, p = 3.2e-19",the morphotype confounds genome size,not comparable (qualitative)
+SI Text 6,K1 strains in the Picard collection,45,42,ABC_serotype == K1 in picard_collection.csv; the paper may count K1-like calls,
+SI Text 6,"K1 rule, the three phages: precision (%)",73,87,pooled over the three phages and all strains with a K1 call,
+SI Text 6,"K1 rule, the three phages: recall (%)",72,55,,
+SI Text 6,"K1 rule, the other 28 Vectreviruses and Kayfunaviruses: precision (%)",7,18,,
+SI Text 6,"K1 rule, the other 28 Vectreviruses and Kayfunaviruses: recall (%)",14,18,,
+SI Text 7,phages with 0 / 1 / 2 RBP in RBP_list.csv,all phages have 1 or 2,7 / 48 / 41,"7 phages are listed with NA: 536_P1, 536_P6, 536_P7, 536_P9, DIJ07_P1, DIJ07_P2, LF31_P1",differs
+SI Text 8,PERMANOVA adsorption factors: adjusted R2,0.27,0.26,"total adjusted R2; 0.21 after the phylogeny axes; n = 402 strains, 111 covariates",
+SI Text 8,PERMANOVA adsorption factors: AIC,-435,-458,AIC = n ln(SS_res / n) + 2 rank,
+SI Text 8,PERMANOVA defense subfamilies: adjusted R2,0.05,0.17,"total adjusted R2; 0.12 after the phylogeny axes; n = 402 strains, 91 covariates",
+SI Text 8,PERMANOVA defense subfamilies: AIC,-372,-427,AIC = n ln(SS_res / n) + 2 rank,
+SI Text 8,PERMANOVA full: adjusted R2,0.28,0.27,"total adjusted R2; 0.22 after the phylogeny axes; n = 402 strains, 202 covariates",
+SI Text 8,PERMANOVA full: AIC,-418,-437,AIC = n ln(SS_res / n) + 2 rank,
+SI Text 6 (generalised),"mean host-range (Jaccard) distance, phage pairs sharing an RBP (>= 50 % identity) vs not",RBP sharing explains similar host range (qualitative),0.56 vs 0.85 (Mann-Whitney p = 2.1e-67),217 of 3916 pairs share an RBP; 127 of 130 RBP genes mapped to a called gene,match

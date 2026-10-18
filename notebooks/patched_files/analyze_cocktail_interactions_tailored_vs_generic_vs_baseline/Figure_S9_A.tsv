@@ -1,0 +1,9 @@
+is_tailored	chosen_at_step	count
+False	0_same_as_host	38.666666666666664
+True	0_same_as_host	76.38888888888889
+False	1_neighbours	2.666666666666667
+True	1_neighbours	6.944444444444445
+False	3_misc	30.666666666666664
+True	3_misc	11.11111111111111
+False	4_rescue	28.000000000000004
+True	4_rescue	5.555555555555555

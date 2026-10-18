@@ -1,6 +1,6 @@
 # 7. Configuration: what the paper specifies and what was run
 
-`config/paper_config.yaml` records every tool version and parameter stated in the paper, each with its line in the published text; settings the paper does not state are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what was run (28 rows, reproduced below). `config/references.yaml` holds the two reference sequences downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported environment specifications of the eight tool environments.
+`config/paper_config.yaml` records every tool version and parameter stated in the paper, each with its line in the published text; settings the paper does not state are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what was run (32 rows, reproduced below). `config/references.yaml` holds the two reference sequences downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported environment specifications of the eight tool environments.
 
 ## Differences
 
@@ -33,6 +33,10 @@
 | modelling | significance threshold of the per-phage models | pMCMC < 1e-3 (Methods) | reported at 1e-3 and at 0.01 | the paper's Source Data for Fig 4a-b counts terms up to pMCMC 0.009, i.e. a threshold of 0.01 | 28 adsorption-factor terms at 1e-3, 51 at 0.01 (paper: 52) |
 | modelling | recommender (Fig 6) | four-step algorithm, code not published | re-implemented from the Methods (scripts/recommender.py); all features per split; step 2 needs a complete ST/O/H haplotype | test-strain genomes are not shipped: ABC and Klebsiella types unknown, UMAP recomputed from the shipped distances | 2 of 100 cocktails identical, 0.97 of 3 phages in common |
 | data | AMR gene counts (ED6 B, D) | annotation tool not stated | the paper's counts from its Source Data | no AMR annotation is shipped | ED6 B and D drawn from the paper's counts |
+| figures | phage annotation (Fig 3b, ED3) | Prokka 1.14.5 --kingdom Viruses; RBP genes by PhageRBPdetect + curation | pyrodigal (single mode, metagenomic mode when an RBP identifier exceeds the gene count); RBP genes located by the number in their identifier in RBP_list.csv | the authors' annotation is not shipped | gene boundaries and numbering may differ for a few genes (127 of 130 RBP identifiers mapped) |
+| figures | genome maps and alignment (Fig 3b, ED3) | Clinker for the maps; a multiple whole-genome alignment (tool not stated) | own matplotlib maps (reciprocal best BLOSUM62 identity >= 30 %); MAFFT 7.526 --auto; entropy over nucleotides, 200-nt mean | Clinker and the alignment tool are not available or not named | layout differs; entropy peaks at the RBP region as in the paper |
+| notebooks | the authors' four notebooks | - | run on a scratch copy, as shipped and with path/compatibility patches (scripts/notebook_patches.py) | Windows and private paths, a moved file, a missing package, newer pandas and matplotlib | no analysis changed; one cell of the authors' still fails |
+| modelling | PERMANOVA covariates (SI Text 8) | adsorption factors and defense subfamilies as presence/absence, traits with fewer than 8 observations lumped, 8 PCoA phylogeny axes first | indicators of the levels with at least 8 strains (O, H, LPS, Klebsiella, ABC, 12 outer-membrane variants; defense subfamilies at 80/80), Jaccard distance of the lytic profiles, AIC = n ln(SS_res/n) + 2 rank | covariate lists and the distance are not given | AF and full adjusted R2 agree (0.26, 0.27 vs 0.27, 0.28); defense 0.17 vs 0.05 |
 | data | genome set for tree | 403 strains + references | 402 strains in common with the shipped tree | ESCO.All.prt is a proteome file, not a genome | - |
 
 ## Settings the paper does not state
@@ -51,7 +55,8 @@ UMAP hyperparameters; how the tree is turned into a distance matrix; SRST2 versi
 | Defense systems | `defense` | DefenseFinder 1.2.0, MacSyFinder 2.1.4, models 1.2.3, CasFinder 3.1.0 |
 | ABC capsule | `macsy` | MacSyFinder 2.1.6 with the authors' custom models |
 | Protein and nucleotide search | `blast` | BLAST 2.17.0, mmseqs |
-| Models and figures | `.venv` | Python 3.14, scikit-learn 1.9.1, scipy 1.18.1, pandas 3.0.6, numpy 2.5.4, umap-learn 0.5.12, matplotlib 3.11.2, biopython 1.88 |
+| Alignment (Fig 3b) | `aln` | MAFFT 7.526 |
+| Models and figures | `.venv` | Python 3.14, scikit-learn 1.9.1, scipy 1.18.1, pandas 3.0.6, numpy 2.5.4, umap-learn 0.5.12, matplotlib 3.11.2, biopython 1.88, pyrodigal, statsmodels 0.15, bokeh 3.10, nbclient |
 | Mixed models | R 4.3.0 | MCMCglmm 2.36, ape 5.8.1 |
 
 Environments are created with micromamba (`scripts/setup_envs.sh <env>`). On an Apple-silicon Mac the osx-64 environments need Rosetta. The original `conda` installation on the test machine was broken, hence micromamba.

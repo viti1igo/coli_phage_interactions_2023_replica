@@ -4,6 +4,8 @@ Data,phage names,"new names (Supp. Tables 2, 3, 7)",96 of 96 mapped to the publi
 Data,public matrix equals Supplementary Table 3 (402 shared strains),-,True,Supplementary Table 3,,match
 Fig 2f,ANOVA F from the Source Data frequencies,114.7,114.7,Source Data Fig 2f,F from the Source Data itself 114.66; both with 403 strains,
 Fig 2f,P value,1.44e-26,7.92e-26,Fig 2f legend,"the Source Data frequencies give 7.93e-26, so the printed P is not the one-way ANOVA P of these data",
+Fig 4c,defense count in the Source Data equals Supplementary Table 1,yes,99.8 % of strains,Source Data Fig 4c,,match
+Fig 4d,defense count in the Source Data equals Supplementary Table 1,not stated,47 of 400 strains equal; the others differ by -8 to +2 (median -2),Source Data Fig 4d,panel d uses a smaller defense count than panel c; the legend does not say which systems are left out,not comparable (qualitative)
 Fig 5a,mean AUROC per strain (the panel plots one AUROC per strain; text: 0.85),0.872,0.881,Source Data Fig 5a,315 strains in the Source Data; correlation of per-strain AUROC 0.84; the text's 85 % is not the mean of its own Source Data,
 Fig 5a,median AUROC per strain,0.892,0.895,Source Data Fig 5a,,
 Fig 5b,pooled AUROC from the Source Data curve points (text: 0.86),0.849,0.856,Source Data Fig 5b,"the exported points give 0.849, the text 0.86; the precision-recall block holds only the tail (recall 0.945-1)",
@@ -12,7 +14,7 @@ Fig 4a,adsorption-factor / defense terms with pMCMC < 0.01,52 / 1,51 / 3,Source 
 Fig 4a,adsorption-factor / defense terms with pMCMC < 0.001,-,28 / 0,Source Data Fig 4a,our re-run of the per-phage models on all strains; our counts at the Methods threshold,not comparable (qualitative)
 Fig 4b,"(phage, term) pairs significant in both",53 in the paper,19 of ours (54),Source Data Fig 4b,threshold 0.01 for both; terms near the threshold change between MCMC runs and with the strains used,differs
 Fig 4b,sign of the posterior mean for shared terms,-,31 of 31 agree,Source Data Fig 4b,,match
-Fig 6c,"strains per cocktail (paper / ours), all 18 cocktails",99 strains,17 of 18 cocktails equal; total 100,Source Data Fig 6c,"536_P7..: 21 vs 22; the Source Data lists 99 strains, the cocktail file 100",match (within 5%)
+Fig 6c,"strains per cocktail (paper / ours), all 18 cocktails",99 strains,17 of 18 cocktails equal; total 100,Source Data Fig 6c,"536_P7..: 21 vs 22; the Source Data lists 99 strains because the authors' notebook merges on strain names and loses BCH857, which is called BCH857-72 in cocktails_step.csv (its cocktail is 536_P7-LF82_P8-LF82_P9: 22 here, 21 there)",match (within 5%)
 Fig 6,strains with tailored / generic cocktails,28 / 72 (Supplementary Table 7 labels),24 / 76,Supplementary Table 7,"ST7 labels the 4-strain cocktail 536_P7-DIJ07_P2-LF82_P8 as tailored, but 91.67 % = 22/24 and 78.95 % = 60/76 in Fig 6d need the 24/76 split of the authors' notebook",differs
 ED9b,haplotypes covered by the four generic cocktails,"31, 21, 19, 4 (Source Data)","20, 18, 18, 4",Source Data ED9b,"the Source Data values equal the Fig 6c strain counts, so they are strain counts, not haplotype counts as the legend says (or every strain is its own haplotype)",differs
 ED9a,step-1 share of tailored / generic recommendations (%),76.4 / 38.7,76.4 / 38.7,Source Data ED9a,identical,match

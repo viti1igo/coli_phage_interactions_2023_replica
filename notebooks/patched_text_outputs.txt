@@ -1,0 +1,88 @@
+## analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb
+[cell 1] <scratch>/repo/dev/cocktails
+[cell 6] Recommendation  Percentage
+2       Baseline   81.000000
+0        Generic   78.947368
+1       Tailored   91.666667
+[cell 8] Recommendation
+Baseline    100
+Generic      76
+Tailored     24
+dtype: int64
+[cell 8 value] Text(0.5, 1.0, 'Distribution of the binned MLC for each cocktail given cocktail type')
+[cell 9] Recommendation
+Baseline    100
+Generic      76
+Tailored     24
+dtype: int64
+[cell 10] Recommendation
+Baseline    100
+Generic      76
+Tailored     24
+dtype: int64
+[cell 11] (H_0) : \mu(tailored) == \mu(baseline on tailored bacteria) (Paired t-test)
+TtestResult(statistic=np.float64(2.3183072457486023), pvalue=np.float64(0.02967602177384374), df=np.int64(23))
+(H_0) : \mu(tailored) == \mu(baseline on tailored bacteria) (Mann-Whitney)
+MannwhitneyuResult(statistic=np.float64(399.5), pvalue=np.float64(0.018971875313119994))
+----------------------------------------------------------------------
+(H_0) : \mu(tailored) == \mu(baseline on all bacteria) (Mann-Whitney)
+MannwhitneyuResult(statistic=np.float64(1543.5), pvalue=np.float64(0.027702085277870186))
+----------------------------------------------------------------------
+(H_0) : \mu(tailored) == \mu(generic) (Mann-Whi
+[cell 13] (H_0) : \mu(tailored) == \mu(baseline on tailored bacteria)
+MannwhitneyuResult(statistic=np.float64(276.5), pvalue=np.float64(0.8117918741207951))
+(H_0) : \mu(generic) == \mu(baseline on generic bacteria)
+MannwhitneyuResult(statistic=np.float64(3017.0), pvalue=np.float64(0.6227857438985192))
+(H_0) : \mu(tailored) == \mu(generic)
+MannwhitneyuResult(statistic=np.float64(1047.0), pvalue=np.float64(0.2591102292945463))
+[cell 21] (H_0) : \mu(bacteria tailored cocktail) == \mu(bacteria generic cocktail)
+[cell 21 value] MannwhitneyuResult(statistic=np.float64(862.5), pvalue=np.float64(0.688595426892725))
+[cell 23] MLC(reco | tailored) ~ MLC(baseline | tailored)
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:               p1_p2_p3   R-squared:                       0.021
+Model:                            OLS   Adj. R-squared:                 -0.023
+Method:                 Least Squares   F-statistic:                    0.4739
+Date:                Sun, 18 Oct 2026   Prob (F-statistic):              0.498
+Time:                        19:18:33   Log-Likelihood:                -49.627
+No. Observations:                  24   AIC:                             103.3
+Df Residuals:                      22   BIC:    
+[cell 24] MannwhitneyuResult(statistic=np.float64(3856.5), pvalue=np.float64(3.5135805122715305e-12))
+[cell 27] Optimization terminated successfully.
+         Current function value: 0.487273
+         Iterations 5
+[cell 27] Logit Regression Results
+==============================================================================
+Dep. Variable:                success   No. Observations:                   91
+Model:                          Logit   Df Residuals:                       90
+Method:                           MLE   Df Model:                            0
+Date:                Sun, 18 Oct 2026   Pseudo R-squ.:                 0.02024
+Time:                        19:18:34   Log-Likelihood:                -44.342
+converged:                       True   LL-Null:                       -45.258
+Covariance Type:            nonrobust   LLR p-value:                       nan
+===========================================
+## bokeh_draw_interaction_matrix.ipynb
+[cell 2] Visualizing... QUANTITATIVE interaction matrix!
+(402, 96) (96, 11)
+## build_bacteria_arsenale_pairwise_distance_table.ipynb
+[cell 4] {RM_Type_I_6118, RM_Type_II_9183, Retron_I_C_8901, MazEF_6169, Mok_Hok_Sok_6360, PsyrTA_4951, RM_Type_IV_7868, SanaTA_6333}
+{MazEF_3067, RM_Type_I_6118, RM_Type_I_3625, Retron_I_C_8901, Mok_Hok_Sok_6360, RM_Type_IV_7868, Lamassu-Mrr_1446, AbiE_7704, RM_Type_I_4236, RM_Type_II_9183, MazEF_6169, PsyrTA_4951, Avs_IV_1308, PD-T4-3_9135, SanaTA_6333}
+{MazEF_3067, RM_Type_I_3625, Avs_IV_1308, Lamassu-Mrr_1446, AbiE_7704, PD-T4-3_9135, RM_Type_I_4236}
+[cell 5] 404
+## visualize_predictions.ipynb
+[cell 1] <scratch>/repo/dev/predictions
+[cell 2] Visualizing... QUANTI interaction matrix!
+(404, 96) (96, 10)
+[cell 3] TP: 4648 , FP: 2980 , TN: 27432 , FN: 3318
+Precision: 0.6093340325117986 , Recall: 0.5834797891036907 , F1: 0.5961267154033603
+Average Precision: 0.6012381355535489
+AUROC: 0.85689769900018
+[cell 4] 4648 2980 27432 3318
+0.6093340325117986 0.5834797891036907 0.5961267154033603
+0.6012381355535489
+0.85689769900018
+[cell 9] #phages with significant association: 27
+[cell 10] 16.329110831908967
+[cell 13 value] Text(0.5, 1.0, 'AUC')
+[cell 16] 0.85689769900018
+[cell 17 value] Text(0.5, 1.0, 'AUC')

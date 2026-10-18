@@ -100,6 +100,12 @@ _This file is updated after every step (user request). Latest update: see the St
 - [x] T50 Recommender re-implemented from the Methods (`scripts/recommender.py`): 2 of 100 cocktails identical, 0.97 of 3 phages in common; the haplotype step is reproduced (10 of 11), the two random-forest steps are not. Test-strain ABC/Klebsiella types and genomes are unavailable.
 - [x] T51 Reports 02, 05, 06, 07, 08 and the README updated; pushed to the existing repository (author Axel). Publisher data is not in the repository.
 
+## Phase 13 - Everything that can be run from the authors' repository (2026-10-18, requested by the user)
+- [x] T52 Execute the four notebooks of the repo (bokeh interaction matrix, visualize_predictions, cocktail analysis, defense-arsenal distance table) as shipped (27 of 61 code cells fail: Windows/private paths, moved file, missing package, newer pandas) and with patches (1 authors' cell still fails). Outputs in `notebooks/`; report 10.
+- [x] T53 Supplementary analyses computable from the repo data: `scripts/si_analyses.py`, `si_rbp_lmm.R`: SI Text 4 matches (2.32e-4, P 0.17); SI 6 K1 rule 87/55 % vs 73/72 %; SI 7 RBP LMM not significant (beta -13 vs paper +28); SI 8 PERMANOVA ordering reproduced (AF -458, full -437, defense -427); RBP sharing vs host range (genus-confounded).
+- [x] T54 Fig 3b and ED3: pyrodigal + MAFFT (internal micromamba env `aln`, removed afterwards); entropy 0.62 bits in RBP genes vs 0.24 elsewhere.
+- [x] T55 28 differences in `reports/11_repository_vs_paper.md`; also found: ED9a P 3.5e-12 comes from counting each strain three times (6.4e-5 once); Fig 4d defense counts differ from Fig 4c; BCH857/BCH857-72 name mismatch explains 99 vs 100 strains. Comparison table now 97 rows.
+
 ## Status log (newest last; updated after every step)
 - 2026-10-17 T11 timing; PanACoTA annotate Prodigal vs Prokka compared on 5 genomes (Prodigal 2-7% more CDS, 90-97% of its proteins identical to Prokka's).
 - 2026-10-17 T18 done (ECTyper 403 genomes, 12 min). T16/T17 done.
@@ -132,3 +138,4 @@ _This file is updated after every step (user request). Latest update: see the St
 - 2026-10-18 T35 finalised. Time Machine local snapshots deleted on the user's instruction (24 snapshots; internal disk free 28 GiB -> 65 GiB).
 - 2026-10-18 GitHub repo history rewritten at the user's request: one commit `ab85ee0` on `main` (old commits removed from the branch); README rewritten around the from-scratch replication. Local `git gc` fails on exFAT `._*` files in `.git` (cosmetic).
 - 2026-10-18 Phase 12 COMPLETE (T47-T51).
+- 2026-10-18 Phase 13 COMPLETE (T52-T55); reports 10 and 11 written.

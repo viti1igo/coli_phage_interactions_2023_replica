@@ -1,6 +1,6 @@
 # 6. Figures
 
-Every figure has a PNG, an SVG and a CSV with the numbers behind it, in `results/figures/` (panels of the paper) and `results/comparison/` (comparison with the paper). Scripts: `fig_main_1_2.py`, `fig1a_tree.py`, `fig_main_3_6.py`, `fig_extended.py`, `fig_schematics.py`, `fig_comparison.py` (R fits: `fig4_cd.R`, `fig_ed6.R`). The class of each panel was decided from the legends of the published article:
+Every figure has a PNG, an SVG and a CSV with the numbers behind it, in `results/figures/` (panels of the paper) and `results/comparison/` (comparison with the paper). Scripts: `fig_main_1_2.py`, `fig1a_tree.py`, `fig_main_3_6.py`, `fig_extended.py`, `fig_phage_maps.py`, `fig_schematics.py`, `fig_comparison.py` (R fits: `fig4_cd.R`, `fig_ed6.R`). The class of each panel was decided from the legends of the published article:
 
 - **A** replicable from the shipped tables, **B** after the preprocessing steps are re-run, **C** needs inputs not shipped, **D** schematic (redrawn as a diagram).
 
@@ -16,7 +16,7 @@ Every figure has a PNG, an SVG and a CSV with the numbers behind it, in `results
 | Fig 2d–e | Host-range histograms | A | drawn | `fig2_d_e` |
 | Fig 2f | Host range by morphotype, ANOVA | A | drawn, F = 113.9 (paper 114.7) | `fig2_f` |
 | Fig 3a | Host-range UMAP, PERMANOVA | A | drawn | `fig3_a` |
-| Fig 3b | Genome map of six Vectrevirus phages | C | not drawn: needs annotation and alignments | – |
+| Fig 3b | Genome map and entropy of six Vectrevirus phages | C | drawn from re-annotated genomes (pyrodigal) and a MAFFT alignment | `fig3b_vectrevirus` |
 | Fig 4a–b | Significant terms and hits per adsorption factor | A | drawn from our MCMC re-run | `fig4_a_d` |
 | Fig 4c–d | Defense count vs infections and vs mean MLC | A | drawn with our fits | `fig4_a_d` |
 | Fig 5a, c, d | AUROC per strain, AUROC vs lytic interactions of the strain, prediction matrix | A | drawn, with the paper's Source Data points overlaid on (c) | `fig5_a_c_d` |
@@ -27,7 +27,7 @@ Every figure has a PNG, an SVG and a CSV with the numbers behind it, in `results
 | Fig 6c–e | Cocktails, success rate, binned MLC | A | drawn | `fig6_c_e` |
 | ED1 | Lab-adapted strains | A | BE and BL21 drawn; MG1655 is not in the public matrix | `ed1` |
 | ED2 | Nestedness and modularity | A | drawn with NODF and our BRIM (see below) | `ed2` |
-| ED3 | RBP genes as variability hotspots | C | not drawn | – |
+| ED3 | RBP genes as variability hotspots | C | drawn for five genera from re-annotated genomes | `ed3_genus_maps` |
 | ED4 | RBPs and host range | B | panel A drawn from the shipped matrix | `ed4a` |
 | ED5 | PDP110_P1 and Klebsiella K55 | A | drawn | `ed5` |
 | ED6 | Genome size and AMR genes vs MLC | A | all four panels drawn; the AMR counts are the paper's (Source Data) | `ed6_a_d` |
@@ -65,6 +65,10 @@ The matrix of MLC scores 0–4 with strains in core-genome tree order and phages
 
 UMAP of the Jaccard distance between the binary lytic vectors of the 96 phages, coloured by genus (left) and by isolation strain (right). PERMANOVA adjusted R²: isolation strain 0.55 (paper 0.53), genus and isolation strain together 0.69 (0.65), and genus added after isolation strain 0.13 (paper 0.13; genus alone gives 0.27).
 
+![Fig 3b](../results/figures/fig3b_vectrevirus.png)
+
+(b) Six Vectrevirus phages isolated on four hosts: genes (RBP genes in blue, located by the number in their identifier), protein links of at least 30 % identity between neighbouring genomes, position-wise entropy of the MAFFT alignment and host range. Mean entropy is 0.62 bits in the RBP genes against 0.24 bits elsewhere. The authors' annotation is not shipped, so the genes are called again ([10](10_repository_analyses.md)).
+
 ### Fig 4: what drives infection
 
 ![Fig 4](../results/figures/fig4_a_d.png)
@@ -101,6 +105,12 @@ MLC of the 96 phages on BE and BL21: 45 phages infect BE (46.9 %) and 48 infect 
 ![ED2](../results/figures/ed2.png)
 
 Left: the matrix sorted by degree. Middle: NODF 52.1 against 21.5 ± 0.24 for 1,000 random matrices of the same size and connectance (P = 0.001). Right: BRIM modularity Q = 0.233 with 4 modules against 0.122 ± 0.003 (P = 0.001); the paper's Supplementary Text 5 gives Q = 0.23 (P < 1e-3). The paper's nestedness is a BINMATNEST temperature (T = 11.63, P < 1e-5), which has no counterpart here.
+
+### ED3: RBP genes as hotspots of variability
+
+![ED3](../results/figures/ed3_genus_maps.png)
+
+Genome maps of up to four phages of different isolation hosts for Vectrevirus, Dhillonvirus, Gamaleyavirus, Felixounavirus and Tequatrovirus; links join protein matches of at least 30 % identity, RBP genes are light blue. The RBP genes have few or no links in every genus.
 
 ### ED4: receptor-binding proteins and host range
 

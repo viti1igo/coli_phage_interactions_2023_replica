@@ -1,0 +1,28 @@
+notebook,code_cell,of,error,message,first_line
+visualize_predictions.ipynb,3,18,FileNotFoundError,[Errno 2] No such file or directory: '<scratch>/repo/dev/predictions\\results\\performances\\performance_55989_P2_Group10Fold_CV.csv',"perf_dir = f""{base_dir}\\results\\performances"""
+visualize_predictions.ipynb,4,18,NameError,name 'all_predictions' is not defined,"predictions = all_predictions.loc[all_predictions[""dataset""] == ""test""]"
+visualize_predictions.ipynb,5,18,RuntimeError,The separate bokeh_sampledata is needed in order to use the sampledata module. Install with 'pip install bokeh_sampledata'.,"from bokeh.models import BasicTicker, PrintfTickFormatter, HoverTool"
+visualize_predictions.ipynb,6,18,FileNotFoundError,[Errno 2] No such file or directory: '<scratch>/repo/dev/predictions\\results\\feature_importances\\T7_Portugal_feature_importance.csv',# Feature importance for each phage-specific model
+visualize_predictions.ipynb,7,18,NameError,name 'df' is not defined,perf = []
+visualize_predictions.ipynb,8,18,NameError,name 'all_predictions' is not defined,"train_test_perf, train_test_diff = [], []"
+visualize_predictions.ipynb,9,18,AttributeError,'list' object has no attribute 'sort_values',# Statistical test for overfitting
+visualize_predictions.ipynb,10,18,AttributeError,'list' object has no attribute 'groupby',"averaged_per_phage = train_test_diff.groupby(""phage"").mean()"
+visualize_predictions.ipynb,11,18,NameError,name 'predictions' is not defined,# Test AUC a.a.f.o (Train-Test AUC) 
+visualize_predictions.ipynb,12,18,NameError,name 'averaged_per_phage' is not defined,"fig, ax = plt.subplots(1, 1, figsize=(6, 6))"
+visualize_predictions.ipynb,13,18,TypeError,"list indices must be integers or slices, not str","fig, ax = plt.subplots(1, 3, figsize=(18, 6))"
+visualize_predictions.ipynb,14,18,TypeError,"list indices must be integers or slices, not str","fig, ax = plt.subplots(1, 1, figsize=(6, 6))"
+visualize_predictions.ipynb,15,18,TypeError,"Data source must be a DataFrame or Mapping, not <class 'list'>.","fig, ax = plt.subplots(1, 1, figsize=(6, 6))"
+visualize_predictions.ipynb,16,18,NameError,name 'predictions' is not defined,"fpr, tpr, thresh = roc_curve(predictions[""y""], predictions[""y_pred_proba""])"
+visualize_predictions.ipynb,17,18,TypeError,"list indices must be integers or slices, not str","fig, ax = plt.subplots(1, 3, figsize=(18, 6))"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,4,29,ValueError,"Format 'tsv' is not supported (supported formats: avif, eps, gif, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff, webp)","cml_long[""cocktail""] = cml_long.groupby(""bacteria"")[""phage""].transform(lambda x: '-'.join("
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,5,29,OSError,Cannot save file into a non-existent directory: 'C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data',"s.to_csv(""C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data/Figure_S9_"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,17,29,FileNotFoundError,[Errno 2] No such file or directory: 'C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data/Figure_S9_B.svg',"fig, ax = plt.subplots(1, 1, figsize=(10, 6))"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,18,29,OSError,Cannot save file into a non-existent directory: 'C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data',"s.rename({""phage_aggregated"": ""Cocktail"", ""count"": ""#Recommendations""}, axis=1).to_csv(""C:"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,19,29,TypeError,"sequence item 0: expected str instance, int found",# Number of ST to which each cocktail is predicted
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,24,29,TypeError,"ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''","m = pd.merge(cocktails_step, cml, on=""bacteria"")"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,25,29,OSError,Cannot save file into a non-existent directory: 'C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data',"d.to_csv(""C:/Users/hvays/These/projects/coli/manuscript/supp_fig/Figure_S9/data/Figure_S9_"
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,26,29,KeyError,0,def get_nearest_neighbour_in_train_set(bact):
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,27,29,NameError,name 'nearest_neighbours' is not defined,from matplotlib.offsetbox import AnchoredText
+analyze_cocktail_interactions_tailored_vs_generic_vs_baseline.ipynb,28,29,NameError,name 'nearest_neighbours' is not defined,from scipy.stats import linregress
+build_bacteria_arsenale_pairwise_distance_table.ipynb,9,11,FileNotFoundError,../panacota/370+host_leaf_order_root=albertii.txt not found.,"bact_features = pd.read_csv(""../picard_collection.csv"", sep="";"").set_index(""bacteria"")"
+build_bacteria_arsenale_pairwise_distance_table.ipynb,11,11,RuntimeError,The separate bokeh_sampledata is needed in order to use the sampledata module. Install with 'pip install bokeh_sampledata'.,"from bokeh.models import BasicTicker, PrintfTickFormatter, HoverTool, TextInput, Autocompl"

@@ -29,7 +29,7 @@ There is no test suite, so behaviour was checked by output. The Fig 1–2 and tr
 
 ## Code added after the audit
 
-`supp.py`, `matrix.py`, `compare_source_data.py`, `recommender.py`, `download_supplement.sh` and the extensions of `fig_ed6.R`, `fig_comparison.py` and `build_comparison.py` were written after the audit and were not audited.
+`supp.py`, `matrix.py`, `compare_source_data.py`, `recommender.py`, `download_supplement.sh`, `run_notebooks.py`, `notebook_patches.py`, `phage_genomes.py`, `fig_phage_maps.py`, `si_analyses.py`, `si_rbp_lmm.R` and the extensions of `fig_ed6.R`, `fig_comparison.py` and `build_comparison.py` were written after the audit and were not audited.
 
 ## Not published on purpose
 

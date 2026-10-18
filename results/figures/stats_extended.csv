@@ -1,9 +1,11 @@
 figure,metric,paper,ours,paper_source
-Fig 4c,beta (defense systems),-0.22,-0.233,Results; Fig 4 legend
-Fig 4c,pMCMC,0.41,0.3989,Results; Fig 4 legend
+Fig 4c,beta (defense systems),-0.22,-0.223,Results; Fig 4 legend
+Fig 4c,pMCMC,0.41,0.4047,Results; Fig 4 legend
 Fig 4d,beta (defense systems),-0.04,-0.033,Results; Fig 4 legend
-Fig 4d,pMCMC,0.004,0.0003,Results; Fig 4 legend
-Fig 4c (regenerated defense counts),beta (defense systems),-0.22,-0.235,Results; Fig 4 legend
+Fig 4d,pMCMC,0.004,0.0005,Results; Fig 4 legend
+Fig 4d (paper's panel-d defense counts),beta (defense systems),-0.04,-0.032,Source Data Fig 4d
+Fig 4d (paper's panel-d defense counts),pMCMC,0.004,0.0005,Source Data Fig 4d
+Fig 4c (regenerated defense counts),beta (defense systems),-0.22,-0.231,Results; Fig 4 legend
 Fig 4d (regenerated defense counts),beta (defense systems),-0.04,-0.037,Results; Fig 4 legend
 ED1,phages infecting BE,45 (46.9%),45 (46.9%),ED Fig. 1 legend
 ED1,phages infecting BL21,48 (50.0%),48 (50.0%),ED Fig. 1 legend
@@ -16,7 +18,8 @@ ED5,strains infected by PDP110_P1,3,3,ED Fig. 5 legend
 ED5,infected strains that carry K55,3 of 3,3 of 3; K55 strains total 3,ED Fig. 5 legend
 ED7,coverage of the most-covering triplet (%),63,87.6,ED Fig. 7 legend; Methods p.2855
 ED7,baseline triplet,not named,536_P7 + LF82_P8 + NIC06_P2,-
-ED9A,"Mann-Whitney P (step, generic vs tailored)",3.5e-12,4.1e-09,ED Fig. 9 legend
+ED9A,"Mann-Whitney P (per-strain mean step, each strain counted three times as in the notebook)",3.5e-12,3.5e-12,ED Fig. 9 legend
+ED9A,"Mann-Whitney P (per-strain mean step, each strain once)",not given,6.4e-05,-
 ED9,cocktails,18,18,Fig. 6 legend
 ED6A,genome size vs lytic interactions (pMCMC),not stated,"beta -5.85, pMCMC 0.1200",ED Fig. 6 title
 ED6C,genome size vs average MLC (pMCMC),significant,"beta -0.349, pMCMC 0.0032",ED Fig. 6 title

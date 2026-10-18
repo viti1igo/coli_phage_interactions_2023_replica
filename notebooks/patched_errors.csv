@@ -1,0 +1,2 @@
+notebook,code_cell,of,error,message,first_line
+visualize_predictions.ipynb,12,18,ValueError,Could not interpret value `n_infections` for `x`. An entry with this name does not appear in `data`.,"fig, ax = plt.subplots(1, 1, figsize=(6, 6))"

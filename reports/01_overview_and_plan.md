@@ -14,6 +14,7 @@ Reproduce the strain-level phage–host prediction of Gaborieau et al., *Nature 
 | 8 | Re-run the models and the ablation on the regenerated inputs | [02](02_model_reproduction.md), [04](04_feature_necessity.md) |
 | 9 | Paper-vs-shipped-vs-replication tables and figures, configuration differences | [05](05_paper_comparison.md), [07](07_configuration.md) |
 | 10 | Redraw the paper's figures and extended-data figures | [06](06_figures.md) |
+| 11–13 | Use the publisher's supplement and Source Data; run everything that can be run from the authors' repository (notebooks, supplementary analyses, genome maps) and list its differences from the paper | [05](05_paper_comparison.md), [10](10_repository_analyses.md), [11](11_repository_vs_paper.md) |
 
 The task list with the outcome of each step is in [09_task_log.md](09_task_log.md). The code audit and simplification are in [08_code_audit.md](08_code_audit.md).
 

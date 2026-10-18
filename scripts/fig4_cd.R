@@ -8,8 +8,12 @@ pic <- read.table(file.path(ROOT, "data/genomics/bacteria/picard_collection.csv"
 reg <- read.table(file.path(ROOT, "replication/T25_features/picard_collection_regenerated.csv"), sep=";", header=TRUE, row.names=1, na.strings="", check.names=FALSE)
 d <- strain_targets()
 d$ds_shipped <- pic[rownames(M), "n_defense_systems"]; d$ds_ours <- reg[rownames(M), "n_defense_systems"]
+# the paper's Source Data for panel d uses a smaller defense count than panel c (written by compare_source_data.py when the supplement is downloaded)
+f4d <- file.path(ROOT, "data/derived/paper_fig4d_defense_counts.csv")
+d$ds_paper4d <- if (file.exists(f4d)) read.csv(f4d, row.names=1, colClasses=c(bacteria="character"))[rownames(M), "n_defense_4d"] else NA
 lmm <- prepare_lmm(d); d <- lmm$d; Ainv <- lmm$Ainv
-jobs <- expand.grid(model = c("C: n lytic interactions", "D: average MLC upon infection"), ds = c("ds_shipped", "ds_ours"), stringsAsFactors = FALSE)
+jobs <- expand.grid(model = c("C: n lytic interactions", "D: average MLC upon infection"), ds = c("ds_shipped", "ds_ours", "ds_paper4d"), stringsAsFactors = FALSE)
+jobs <- jobs[!(jobs$ds == "ds_paper4d" & (startsWith(jobs$model, "C") | all(is.na(d$ds_paper4d)))), ]
 fit1 <- function(i) {
   j <- jobs[i, ]; y <- if (startsWith(j$model, "C")) "n_lytic" else "avg_mlc"
   dd <- d[!is.na(d[[y]]) & !is.na(d[[j$ds]]), ]; dd$x <- dd[[j$ds]]; dd$y <- dd[[y]]

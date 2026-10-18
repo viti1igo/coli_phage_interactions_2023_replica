@@ -41,6 +41,14 @@ F_ours = f_oneway(*[ours[mor.loc[ours.index] == m].values for m in ["Myoviridae"
 add("Fig 2f", "ANOVA F from the Source Data frequencies", 114.7, round(F_ours.statistic, 1), "Source Data Fig 2f", f"F from the Source Data itself {F_paper.statistic:.2f}; both with 403 strains")
 add("Fig 2f", "P value", "1.44e-26", f"{F_ours.pvalue:.2e}", "Fig 2f legend", f"the Source Data frequencies give {F_paper.pvalue:.2e}, so the printed P is not the one-way ANOVA P of these data")
 
+# ---- Fig 4c/d: the defense count behind panel d is not the one of panel c / Supplementary Table 1
+st1 = sheet(4, "Supplementary Table 1").set_index("bacteria"); ds1 = pd.to_numeric(st1.n_defense_systems, errors="coerce")
+f4c = sheet(8, "Figure_4c").set_index("bacteria"); f4d = sheet(8, "Figure_4d").set_index("bacteria")
+d4d = pd.to_numeric(f4d.iloc[:, 0]).reindex(ds1.index)
+add("Fig 4c", "defense count in the Source Data equals Supplementary Table 1", "yes", f"{(pd.to_numeric(f4c.iloc[:, 0]).reindex(ds1.index) == ds1).mean() * 100:.1f} % of strains", "Source Data Fig 4c", "", "match")
+add("Fig 4d", "defense count in the Source Data equals Supplementary Table 1", "not stated", f"{(d4d == ds1).sum()} of {d4d.notna().sum()} strains equal; the others differ by {int((d4d - ds1)[d4d != ds1].min())} to +{int((d4d - ds1)[d4d != ds1].max())} (median {(d4d - ds1)[d4d != ds1].median():+.0f})", "Source Data Fig 4d", "panel d uses a smaller defense count than panel c; the legend does not say which systems are left out", "not comparable (qualitative)")
+pd.DataFrame({"bacteria": d4d.index, "n_defense_4d": d4d.values}).to_csv(f"{ROOT}/data/derived/paper_fig4d_defense_counts.csv", index=False)
+
 # ---- Fig 5a, 5b, 5c
 pr = pd.read_csv(f"{ROOT}/results/repro/predictions.csv")
 mine = pr.groupby("bacteria").apply(lambda d: roc_auc_score(d.y, d.p) if d.y.nunique() > 1 else np.nan, include_groups=False).dropna()
@@ -87,7 +95,7 @@ conv = lambda s: "-".join(sorted(nm.get(x, x) for x in s.split("-")))
 c6["key"] = c6.cocktail.map(conv); n_ours.index = [conv(x) for x in n_ours.index]
 cmp6 = c6.set_index("key")["count"].to_frame("paper").join(n_ours.rename("ours")).fillna(0).astype(int)
 cmp6.rename_axis("cocktail").to_csv(f"{OUT}/source_data_fig6c_cocktail_counts.csv")
-add("Fig 6c", "strains per cocktail (paper / ours), all 18 cocktails", f"{int(cmp6.paper.sum())} strains", f"{int((cmp6.paper == cmp6.ours).sum())} of {len(cmp6)} cocktails equal; total {int(cmp6.ours.sum())}", "Source Data Fig 6c", "; ".join(f"{k.split('-')[0]}..: {r.paper} vs {r.ours}" for k, r in cmp6[cmp6.paper != cmp6.ours].iterrows()) + "; the Source Data lists 99 strains, the cocktail file 100", "match (within 5%)")
+add("Fig 6c", "strains per cocktail (paper / ours), all 18 cocktails", f"{int(cmp6.paper.sum())} strains", f"{int((cmp6.paper == cmp6.ours).sum())} of {len(cmp6)} cocktails equal; total {int(cmp6.ours.sum())}", "Source Data Fig 6c", "; ".join(f"{k.split('-')[0]}..: {r.paper} vs {r.ours}" for k, r in cmp6[cmp6.paper != cmp6.ours].iterrows()) + "; the Source Data lists 99 strains because the authors' notebook merges on strain names and loses BCH857, which is called BCH857-72 in cocktails_step.csv (its cocktail is 536_P7-LF82_P8-LF82_P9: 22 here, 21 there)", "match (within 5%)")
 e6 = sheet(10, "Figure_6e", text_first=False)
 tb = t7.groupby("Type").size().to_dict()
 add("Fig 6", "strains with tailored / generic cocktails", f"{tb.get('Tailored')} / {tb.get('Generic')} (Supplementary Table 7 labels)", "24 / 76", "Supplementary Table 7", "ST7 labels the 4-strain cocktail 536_P7-DIJ07_P2-LF82_P8 as tailored, but 91.67 % = 22/24 and 78.95 % = 60/76 in Fig 6d need the 24/76 split of the authors' notebook", "differs")
