@@ -2,8 +2,6 @@
 
 A replication, started from the raw data, of the pipeline of Gaborieau et al., *Prediction of strain-level phage–host interactions across the *Escherichia* genus using only genomic information*, Nature Microbiology 9, 2847–2861 (2024), [doi:10.1038/s41564-024-01832-5](https://doi.org/10.1038/s41564-024-01832-5). The authors' repository is https://github.com/mdmparis/coli_phage_interactions_2023.
 
-**Author:** Axel
-
 ## The task
 
 The authors ship the final feature tables and models but, for most preprocessing steps, only the outputs and not the code. This repository rebuilds every model input from the 403 bacterial assemblies, the phage genomes and the raw plaque scores, with the tools and versions stated in the paper, and records for each step how closely the result agrees with the authors' table, which settings the paper does not state, and every difference between the paper's configuration and what was run.
