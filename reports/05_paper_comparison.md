@@ -31,16 +31,41 @@ The publisher's files (13 files, 8.7 MB) are downloaded by `scripts/download_sup
 | Mann–Whitney (Fig 6e) | U 399.5, P 0.019; U 1171.5, P 0.034 | same data | identical | not applicable |
 | Defense count vs lytic interactions, β (Fig 4c) | −0.22 (CI −0.74 to 0.34) | – | −0.233 | −0.235 |
 | Defense count vs average MLC, β (Fig 4d) | −0.04 (CI −0.05 to −0.01) | – | −0.033 | −0.037 |
-| ANOVA, host range by morphotype (Fig 2f) | F = 114.7 | – | F = 114.7 | – |
-| PERMANOVA adj. R², genus added after isolation strain / isolation strain / both | 0.13 / 0.53 / 0.65 | – | 0.13 / 0.55 / 0.69 | – |
-| BRIM modularity Q (ED2) | 0.23 | – | 0.233 | – |
-| PDP110_P1 infected strains, all K55 (ED5) | 3, all K55 | – | 3, all K55 | – |
+| ANOVA, host range by morphotype (Fig 2f) | F = 114.7 | – | F = 114.7 | F = 118.7 (369 strains) |
+| PERMANOVA adj. R², genus added after isolation strain / isolation strain / both | 0.13 / 0.53 / 0.65 | – | 0.13 / 0.55 / 0.69 | 0.14 / 0.53 / 0.67 (369 strains) |
+| BRIM modularity Q (ED2) | 0.23 | – | 0.233 | 0.242 (369 strains) |
+| PDP110_P1 infected strains, all K55 (ED5) | 3, all K55 | – | 3, all K55 | 2, both K55 (369 strains) |
 
 The table has 97 rows in all: 33 match within 5 %, 12 match, 1 matches once explained (the 403rd strain), 4 are consistent with the paper's confidence interval or item list, 23 differ, and 24 cannot be compared numerically (the paper gives no number, or the panel is qualitative). Rows 74 to 97 come from the supplementary analyses and the genome maps of [10](10_repository_analyses.md). The chart shows each comparable number as our value divided by the paper's.
 
 ![Headline numbers against the paper](../results/comparison/cmp_headline.png)
 
 Data: `results/comparison/cmp_headline.csv`.
+
+## Matrix-only analyses on the regenerated matrix
+
+The matrix regenerated from the raw plaque scores covers 369 strains: the 33 phage isolation strains were assayed separately and are not in the raw table, and 21 cells could not be interpreted. Fig 2f, Fig 3a, ED2 and ED5 need only the matrix, so they were redone on it (`scripts/regen_matrix_analyses.py`). Each analysis is shown three ways so that the effect of the missing strains can be told from the effect of regenerating the matrix:
+
+| Analysis | Paper | Authoritative matrix, 403 strains | Same 369 strains | Regenerated matrix, 369 strains |
+|---|---|---|---|---|
+| ANOVA F, host range by morphotype | 114.7 | 114.7 | 119.3 | 118.7 |
+| PERMANOVA adj. R², genus added after isolation strain | 0.13 | 0.13 | 0.13 | 0.14 |
+| PERMANOVA adj. R², isolation strain | 0.53 | 0.55 | 0.53 | 0.53 |
+| PERMANOVA adj. R², both | 0.65 | 0.69 | 0.67 | 0.67 |
+| NODF (nestedness; the paper's BINMATNEST T = 11.63 is not comparable) | – | 52.1 | 53.3 | 53.2 |
+| BRIM modularity Q (modules) | 0.23 | 0.233 (4) | 0.240 (7) | 0.242 (8) |
+| Strains infected by PDP110_P1 (all K55) | 3 | 3 | 2 | 2 |
+
+What the table shows. Regenerating the matrix changes almost nothing (the last two columns agree to about 0.5 % for the ANOVA, 0.01 for the R² and 0.002 for Q); the differences from the paper come from the missing strains. Without the 33 isolation strains the host-range R² moves toward the paper's (0.55 to 0.53; both 0.69 to 0.67) and the ANOVA F moves away from it (114.7 to 119). The best number of BRIM modules is unstable (4, 7, 8) although Q is stable (0.23 to 0.24). ED5 loses one of its three infected strains because the third is the isolation strain PDP110 itself, which is not in the 369; regenerated Kaptive types call K55 for the other two but miss K55 in PDP110, as in [03](03_feature_regeneration.md). Data: `results/comparison/regenerated_matrix_analyses.csv`.
+
+## Empty cells in the headline table, and why
+
+| Where | Why it is empty |
+|---|---|
+| "Authors' shipped" column, "–" | The repository holds no result for these numbers (the β of Fig 4c–d, the ANOVA, the PERMANOVA, the modularity, ED5, the supplementary analyses); they were computed here from the authors' data |
+| "Regenerated inputs" column, cocktail success and Mann–Whitney (Fig 6) | Cannot be run. They are in vitro results on 100 test strains, not model output; the recommender's code is not published and the test-strain genomes are not available |
+| "Regenerated inputs" column, Fig 2f, PERMANOVA, ED2, ED5 | Not run at first; run now on the regenerated matrix (table above), with the 33 isolation strains missing |
+| "Regenerated inputs" column, ED6, ED7, ED9, the supplementary texts | Not run on regenerated inputs: ED6 uses genome sizes and the paper's AMR counts (not features we regenerated), ED7 and ED9 use cocktail data, and the supplementary analyses use the shipped feature and defense tables; each could be repeated on the regenerated tables, but none has been |
 
 ## Pooled ROC and precision–recall curves
 

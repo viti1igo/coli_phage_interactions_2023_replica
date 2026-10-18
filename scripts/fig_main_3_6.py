@@ -8,6 +8,7 @@ from scipy.spatial.distance import pdist, squareform
 from sklearn.metrics import f1_score, average_precision_score, roc_auc_score
 from figlib import *
 from matrix import load_matrix
+from matrix_stats import phage_distance, phage_models
 import supp
 from supp import sheet
 
@@ -16,41 +17,14 @@ ph = pd.read_csv(f"{D}/genomics/phages/guelin_collection.csv", sep=";", index_co
 M = load_matrix()  # 403 strains when the supplement is present (the public matrix lacks LF110)
 
 # ---------------- Fig 3a: Jaccard distance on binary lytic vectors (NaN = no lysis), UMAP, PERMANOVA
-B = (M.fillna(0) > 0).values.T.astype(bool)           # phages x strains
-Dm = squareform(pdist(B, "jaccard")); Dm = np.nan_to_num(Dm)
+Dm = phage_distance(M)
 import umap
 emb = umap.UMAP(n_neighbors=15, min_dist=0.1, metric="precomputed", random_state=0).fit_transform(Dm)  # paper: parameters not stated
 
 
-def design(factors, data):
-    cols = [np.ones(len(data))]
-    for f in factors:
-        cols.append(pd.get_dummies(data[f], drop_first=True).values.astype(float))
-    return np.column_stack(cols)
-
-
-def permanova(Dm, X, Xr, perms=999, seed=0):
-    """Pseudo-F test of full design X against reduced Xr on a distance matrix (Anderson 2001); returns R2, adjusted R2, p."""
-    n = len(Dm); G = -0.5 * (np.eye(n) - 1 / n) @ (Dm ** 2) @ (np.eye(n) - 1 / n)
-    hat = lambda Z: Z @ np.linalg.pinv(Z)
-    Hf, Hr = hat(X), hat(Xr)
-    def stat_(perm):
-        Gp = G[np.ix_(perm, perm)]
-        ssm = np.trace(Hf @ Gp @ Hf) - np.trace(Hr @ Gp @ Hr)
-        sse = np.trace(Gp) - np.trace(Hf @ Gp @ Hf)
-        return (ssm / (np.linalg.matrix_rank(X) - np.linalg.matrix_rank(Xr))) / (sse / (n - np.linalg.matrix_rank(X)))
-    f0 = stat_(np.arange(n)); rng = np.random.default_rng(seed)
-    p = (1 + sum(stat_(rng.permutation(n)) >= f0 for _ in range(perms))) / (perms + 1)
-    tot = np.trace(G); r2 = (np.trace(Hf @ G @ Hf) - np.trace(Hr @ G @ Hr)) / tot
-    rk = np.linalg.matrix_rank(X)
-    return r2, 1 - (1 - (np.trace(Hf @ G @ Hf) / tot)) * (n - 1) / (n - rk), p
-
-
 meta = ph.loc[M.columns, ["Genus", "Phage_host"]].copy()
 meta["Genus"] = meta.Genus.astype(str); meta["Host"] = meta.Phage_host.astype(str)
-one = np.ones((len(meta), 1))
-Xg, Xh = design(["Genus"], meta), design(["Host"], meta)
-res = {"genus": permanova(Dm, Xg, one), "isolation strain": permanova(Dm, Xh, one), "genus x isolation strain": permanova(Dm, np.column_stack([Xg, Xh[:, 1:]]), one)}
+res = phage_models(Dm, meta)
 for k, (r2, adj, p) in res.items():
     print(f"PERMANOVA {k}: R2 {r2:.3f} adj {adj:.3f} p {p:.4f}")
 inc = res["genus x isolation strain"][1] - res["isolation strain"][1]  # genus added after isolation strain (sequential terms, as adonis2 reports them)

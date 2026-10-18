@@ -110,6 +110,7 @@ Rscript scripts/fig_ed6.R                 # needs data/derived/paper_amr_counts.
 .venv/bin/python scripts/run_notebooks.py shipped
 .venv/bin/python scripts/run_notebooks.py patched
 .venv/bin/python scripts/si_analyses.py
+.venv/bin/python scripts/regen_matrix_analyses.py
 Rscript scripts/si_rbp_lmm.R
 MAFFT=/path/to/mafft .venv/bin/python scripts/fig_phage_maps.py
 

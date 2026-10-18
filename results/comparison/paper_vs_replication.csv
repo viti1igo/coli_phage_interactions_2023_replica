@@ -11,8 +11,8 @@ ED2,"nestedness (paper: BINMATNEST temperature T; ours: NODF, not comparable)","
 ED4A,AL505_Sd2: infected strains that are ABC K1,all K1-associated (qualitative),-,36 of 77 infected; 36 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
 ED4A,412_P2: infected strains that are ABC K1,all K1-associated (qualitative),-,36 of 53 infected; 36 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
 ED4A,MT1B1_3A1: infected strains that are ABC K1,all K1-associated (qualitative),-,37 of 68 infected; 37 of 42 K1 strains infected,-,not comparable (qualitative),,ED Fig. 4A legend
-ED5,strains infected by PDP110_P1,3,-,3,-,match (within 5%),,ED Fig. 5 legend
-ED5,infected strains that carry K55,3 of 3,-,3 of 3; K55 strains total 3,-,not comparable (qualitative),,ED Fig. 5 legend
+ED5,strains infected by PDP110_P1,3,-,3,2 (369 strains; the isolation strain PDP110 is not among them),match (within 5%),,ED Fig. 5 legend
+ED5,infected strains that carry K55,3 of 3,-,3 of 3; K55 strains total 3,2 of 2 with regenerated Kaptive types,not comparable (qualitative),,ED Fig. 5 legend
 ED7,baseline triplet,not named,-,536_P7 + LF82_P8 + NIC06_P2,-,not comparable (qualitative),,-
 ED9A,"Mann-Whitney P (per-strain mean step, each strain counted three times as in the notebook)",3.5e-12,-,3.5e-12,-,match,"the authors' notebook merges the per-strain means onto a table with three rows per strain, so every strain enters the test three times (U = 3856.5); with each strain once the P is 6.4e-5",ED Fig. 9 legend
 ED9A,"Mann-Whitney P (per-strain mean step, each strain once)",not given,-,6.4e-05,-,not comparable (qualitative),,-
@@ -28,9 +28,9 @@ Fig 2f,ANOVA P,1.44e-26,-,7.92e-26,-,match,,Fig 2f legend
 Fig 2f,"mean % lytic interactions, Myoviridae",41.3,-,41.3,-,match (within 5%),,Results p.2850
 Fig 2f,"mean % lytic interactions, Podoviridae",11.1,-,11.2,-,match (within 5%),,Results p.2850
 Fig 2f,"mean % lytic interactions, Siphoviridae",9.1,-,9.1,-,match (within 5%),,Results p.2850
-Fig 3a,"PERMANOVA adj. R2, genus added after isolation strain",0.13,-,0.13,-,match (within 5%),,Results p.2851 (inferred: the 0.13 equals the sequential increment of genus after isolation strain)
-Fig 3a,"PERMANOVA adj. R2, isolation strain",0.53,-,0.55,-,match (within 5%),our own PERMANOVA; the adjusted-R2 formula may differ from the paper's,Results p.2851
-Fig 3a,"PERMANOVA adj. R2, genus + isolation strain",0.65,-,0.69,-,differs,,Results p.2851
+Fig 3a,"PERMANOVA adj. R2, genus added after isolation strain",0.13,-,0.13,0.14 (369 strains),match (within 5%),,Results p.2851 (inferred: the 0.13 equals the sequential increment of genus after isolation strain)
+Fig 3a,"PERMANOVA adj. R2, isolation strain",0.53,-,0.55,0.53 (369 strains),match (within 5%),our own PERMANOVA; the adjusted-R2 formula may differ from the paper's,Results p.2851
+Fig 3a,"PERMANOVA adj. R2, genus + isolation strain",0.65,-,0.69,0.67 (369 strains),differs,,Results p.2851
 Fig 3a,"PERMANOVA adj. R2, genus alone",not stated,-,0.27,-,not comparable (qualitative),,-
 Fig 3a,"PERMANOVA R2 (unadjusted), genus",not stated,-,0.405,-,not comparable (qualitative),,-
 Fig 3a,"PERMANOVA R2 (unadjusted), isolation strain",not stated,-,0.709,-,not comparable (qualitative),,-
@@ -53,7 +53,7 @@ Fig 3b,mean entropy of the alignment (bits),not printed,-,0.246,-,not comparable
 Data,strains in the matrix,403,-,403 (public file 402),-,match (explained),the public matrix lacks strain LF110; Supplementary Table 3 has it,Fig 2 legend; Supplementary Table 3
 Data,phage names,"new names (Supp. Tables 2, 3, 7)",-,96 of 96 mapped to the public names by identical interaction vectors,-,match,mapping is exact (one-to-one); PDP110_P1 = 411_P1,"Supplementary Tables 2, 3"
 Data,public matrix equals Supplementary Table 3 (402 shared strains),-,-,True,-,match,,Supplementary Table 3
-Fig 2f,ANOVA F from the Source Data frequencies,114.7,-,114.7,-,match (within 5%),F from the Source Data itself 114.66; both with 403 strains,Source Data Fig 2f
+Fig 2f,ANOVA F from the Source Data frequencies,114.7,-,114.7,118.7 (369 strains),match (within 5%),F from the Source Data itself 114.66; both with 403 strains,Source Data Fig 2f
 Fig 2f,P value,1.44e-26,-,7.92e-26,-,match,"the Source Data frequencies give 7.93e-26, so the printed P is not the one-way ANOVA P of these data",Fig 2f legend
 Fig 4c,defense count in the Source Data equals Supplementary Table 1,yes,-,99.8 % of strains,-,match,,Source Data Fig 4c
 Fig 4d,defense count in the Source Data equals Supplementary Table 1,not stated,-,47 of 400 strains equal; the others differ by -8 to +2 (median -2),-,not comparable (qualitative),panel d uses a smaller defense count than panel c; the legend does not say which systems are left out,Source Data Fig 4d
@@ -74,7 +74,7 @@ ED7,coverage at k = 1 (%),42.7 (Source Data),-,65.5,-,differs,"no threshold on t
 ED7,coverage at k = 3 (%),67.0 (Source Data); 63 in the text,-,87.6,-,differs,"no threshold on the MLC scores reproduces the paper's curve (best single phage 172 of 403 strains in the Source Data; MLC>0 gives 264, MLC>=2 gives 175); the text (63 %) also disagrees with the Source Data (67 %)",Source Data ED7; SI Text 10
 ED7,coverage at k = 4 (%),73.7 (Source Data); 68 in the text,-,90.8,-,differs,"no threshold on the MLC scores reproduces the paper's curve (best single phage 172 of 403 strains in the Source Data; MLC>0 gives 264, MLC>=2 gives 175); the text (63 %) also disagrees with the Source Data (67 %)",Source Data ED7; SI Text 10
 ED7,coverage when all phages are used (%),89.3,-,97.0 (lysis at any concentration),-,differs,,Source Data ED7
-ED2,"modularity Q (BRIM), 4 modules",0.23,-,0.233,-,match (within 5%),"ours Q = 0.233 and P = 0.001 (1,000 null matrices)",Supplementary Text 5
+ED2,"modularity Q (BRIM), 4 modules",0.23,-,0.233,"0.242, 8 modules (369 strains)",match (within 5%),"ours Q = 0.233 and P = 0.001 (1,000 null matrices)",Supplementary Text 5
 ED2,nestedness temperature T (BINMATNEST),"11.63, P < 1e-5 (SI Text 5)",-,not computed (NODF used),-,not comparable (qualitative),T is a temperature on a different scale from NODF,Supplementary Text 5
 Fig 6 recommender,identical cocktails out of 100,100 (the authors' recommendations),-,2,-,differs,re-implementation from the Methods; the test strains' ABC and Klebsiella types and UMAP are unavailable (see reports/05),Fig 6; Methods p.2859; dev/cocktails/data/cocktails_step.csv
 Fig 6 recommender,phages in common per cocktail (of 3),3,-,0.97,-,differs,75 of 100 cocktails share exactly one phage with the authors',same

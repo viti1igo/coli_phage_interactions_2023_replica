@@ -106,6 +106,11 @@ _This file is updated after every step (user request). Latest update: see the St
 - [x] T54 Fig 3b and ED3: pyrodigal + MAFFT (internal micromamba env `aln`, removed afterwards); entropy 0.62 bits in RBP genes vs 0.24 elsewhere.
 - [x] T55 28 differences in `reports/11_repository_vs_paper.md`; also found: ED9a P 3.5e-12 comes from counting each strain three times (6.4e-5 once); Fig 4d defense counts differ from Fig 4c; BCH857/BCH857-72 name mismatch explains 99 vs 100 strains. Comparison table now 97 rows.
 
+## Phase 14 - Matrix-only analyses on the regenerated matrix (2026-10-18, requested by the user)
+- [x] T56 `scripts/regen_matrix_analyses.py`: ANOVA, PERMANOVA, NODF/BRIM and ED5 on the matrix regenerated from raw plaque scores (369 strains, no isolation strains), shown against the authoritative matrix with all strains and with the same 369 strains. Regenerating the matrix changes almost nothing; the gap to the paper comes from the missing 33 strains. Helpers moved to `scripts/matrix_stats.py` (outputs of the two figure scripts checked identical).
+- [x] T57 Report 05 now lists why each empty cell of the headline table is empty (not published by the authors / cannot be run: Fig 6 wet-lab results and recommender / not run).
+- [ ] Not run on regenerated inputs (could be): ED6, ED7, ED9, the supplementary analyses (SI texts 4-8), the RBP-count LMM.
+
 ## Status log (newest last; updated after every step)
 - 2026-10-17 T11 timing; PanACoTA annotate Prodigal vs Prokka compared on 5 genomes (Prodigal 2-7% more CDS, 90-97% of its proteins identical to Prokka's).
 - 2026-10-17 T18 done (ECTyper 403 genomes, 12 min). T16/T17 done.
@@ -139,3 +144,4 @@ _This file is updated after every step (user request). Latest update: see the St
 - 2026-10-18 GitHub repo history rewritten at the user's request: one commit `ab85ee0` on `main` (old commits removed from the branch); README rewritten around the from-scratch replication. Local `git gc` fails on exFAT `._*` files in `.git` (cosmetic).
 - 2026-10-18 Phase 12 COMPLETE (T47-T51).
 - 2026-10-18 Phase 13 COMPLETE (T52-T55); reports 10 and 11 written.
+- 2026-10-18 Phase 14 COMPLETE (T56-T57).

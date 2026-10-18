@@ -27,9 +27,11 @@ The scripts were audited for over-engineering (the `ponytail-audit` pass) and si
 
 There is no test suite, so behaviour was checked by output. The Fig 1–2 and tree scripts were re-run and their CSVs are byte-identical to the earlier outputs. The model runs were repeated with fixed seeds (see below) and the figure and comparison tables regenerated from them.
 
+The PERMANOVA, NODF and BRIM functions of `fig_main_3_6.py` and `fig_extended.py` were moved into `matrix_stats.py` after the audit; the outputs of both scripts were checked to be identical before and after.
+
 ## Code added after the audit
 
-`supp.py`, `matrix.py`, `compare_source_data.py`, `recommender.py`, `download_supplement.sh`, `run_notebooks.py`, `notebook_patches.py`, `phage_genomes.py`, `fig_phage_maps.py`, `si_analyses.py`, `si_rbp_lmm.R` and the extensions of `fig_ed6.R`, `fig_comparison.py` and `build_comparison.py` were written after the audit and were not audited.
+`supp.py`, `matrix.py`, `matrix_stats.py`, `regen_matrix_analyses.py`, `compare_source_data.py`, `recommender.py`, `download_supplement.sh`, `run_notebooks.py`, `notebook_patches.py`, `phage_genomes.py`, `fig_phage_maps.py`, `si_analyses.py`, `si_rbp_lmm.R` and the extensions of `fig_ed6.R`, `fig_comparison.py` and `build_comparison.py` were written after the audit and were not audited.
 
 ## Not published on purpose
 

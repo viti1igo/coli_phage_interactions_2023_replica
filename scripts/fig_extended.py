@@ -7,6 +7,7 @@ from matplotlib.patches import Patch
 from scipy.stats import mannwhitneyu
 from figlib import *
 from matrix import load_matrix
+from matrix_stats import nested_modular
 
 D = f"{ROOT}/data"
 pic = pd.read_csv(f"{D}/genomics/bacteria/picard_collection.csv", sep=";", index_col=0)
@@ -73,46 +74,9 @@ for s, paper in [("BE", "45 (46.9%)"), ("BL21", "48 (50.0%)")]:
     stat("ED1", f"phages infecting {s}", paper, f"{int((M.loc[s] > 0).sum())} ({(M.loc[s] > 0).mean() * 100:.1f}%)", "ED Fig. 1 legend")
 
 # ---------------- ED2: nestedness (NODF as stand-in for BINMATNEST temperature) and BRIM modularity, 1000 null matrices
-rng = np.random.default_rng(0)
 A = L.values.astype(float)
-
-
-def nodf(A):
-    deg = A.sum(1); ov = A @ A.T
-    def one(deg, ov):
-        n = len(deg); i, j = np.triu_indices(n, 1)
-        di, dj = deg[i], deg[j]; mn = np.minimum(di, dj)
-        pn = np.where((di != dj) & (mn > 0), ov[i, j] / np.maximum(mn, 1), 0.0)
-        return pn.sum(), n * (n - 1) / 2
-    r = one(deg, ov); c = one(A.sum(0), A.T @ A)
-    return 100 * (r[0] + c[0]) / (r[1] + c[1])
-
-
-def brim(A, c, tries=3, rg=None):
-    """Barber's bipartite modularity, optimised by BRIM (alternating assignment of rows and columns to c modules)."""
-    m = A.sum(); k, dg = A.sum(1), A.sum(0); B = A - np.outer(k, dg) / m; best = -1
-    for _ in range(tries):
-        R = np.eye(c)[rg.integers(0, c, A.shape[1])]   # column memberships
-        q_old = -1
-        for _ in range(50):
-            Sr = np.eye(c)[(B @ R).argmax(1)]
-            R = np.eye(c)[(B.T @ Sr).argmax(1)]
-            q = np.trace(Sr.T @ B @ R) / m
-            if q - q_old < 1e-9: break
-            q_old = q
-        best = max(best, q)
-    return best
-
-
-T0 = nodf(A)
-dens = A.mean()
-nulls = np.array([nodf((rng.random(A.shape) < dens).astype(float)) for _ in range(1000)])
-p_nodf = (1 + (nulls >= T0).sum()) / 1001
-cs = range(2, 9)
-q_by_c = {c: brim(A, c, rg=rng) for c in cs}
-cbest = max(q_by_c, key=q_by_c.get); Q0 = q_by_c[cbest]
-qn = np.array([brim((rng.random(A.shape) < dens).astype(float), cbest, tries=2, rg=rng) for _ in range(1000)])
-p_q = (1 + (qn >= Q0).sum()) / 1001
+nm = nested_modular(A)
+T0, nulls, p_nodf, cbest, Q0, qn, p_q = (nm[k] for k in ("T0", "nulls", "p_nodf", "cbest", "Q0", "qn", "p_q"))
 print(f"NODF {T0:.2f} (null {nulls.mean():.2f} +- {nulls.std():.2f}, p {p_nodf:.4f}); Q {Q0:.3f} at c={cbest} (null {qn.mean():.3f} +- {qn.std():.3f}, p {p_q:.4f})")
 ro, co = np.argsort(-A.sum(1)), np.argsort(-A.sum(0))
 fig, axs = plt.subplots(1, 3, figsize=(15, 4.6), gridspec_kw={"width_ratios": [1.3, 1, 1]})

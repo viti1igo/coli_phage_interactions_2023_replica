@@ -30,6 +30,17 @@ extra = {  # (figure, metric) -> (shipped data result, regenerated inputs result
 fig4 = pd.read_csv(f"{R}/fig4_summary/fig4cd.csv")
 for _, r in fig4[fig4.defence_count == "ds_ours"].iterrows():
     extra[(f"Fig 4{'c' if r.model.startswith('C') else 'd'}", "beta (defense systems)")] = ("-", round(r.beta, 3))
+rm = pd.read_csv(f"{R}/comparison/regenerated_matrix_analyses.csv").iloc[-1]   # matrix regenerated from the raw plaque scores (369 strains)
+n_rm = int(rm.strains)
+extra.update({
+    ("Fig 2f", "ANOVA F from the Source Data frequencies"): ("-", f"{rm.anova_F:.1f} ({n_rm} strains)"),
+    ("Fig 3a", "PERMANOVA adj. R2, genus added after isolation strain"): ("-", f"{rm.adjR2_genus_after_host:.2f} ({n_rm} strains)"),
+    ("Fig 3a", "PERMANOVA adj. R2, isolation strain"): ("-", f"{rm.adjR2_host:.2f} ({n_rm} strains)"),
+    ("Fig 3a", "PERMANOVA adj. R2, genus + isolation strain"): ("-", f"{rm.adjR2_both:.2f} ({n_rm} strains)"),
+    ("ED2", "modularity Q (BRIM), 4 modules"): ("-", f"{rm.BRIM_Q:.3f}, {int(rm.BRIM_modules)} modules ({n_rm} strains)"),
+    ("ED5", "strains infected by PDP110_P1"): ("-", f"{int(rm.PDP110_P1_infected)} ({n_rm} strains; the isolation strain PDP110 is not among them)"),
+    ("ED5", "infected strains that carry K55"): ("-", f"{int(rm.PDP110_P1_infected_and_K55_regenerated_typing)} of {int(rm.PDP110_P1_infected)} with regenerated Kaptive types"),
+})
 stats["published_data_result"] = [extra.get((f, m), ("-", "-"))[0] for f, m in zip(stats.figure, stats.metric)]
 stats["replication_regenerated_inputs"] = [extra.get((f, m), ("-", "-"))[1] for f, m in zip(stats.figure, stats.metric)]
 
@@ -91,7 +102,7 @@ sd = pd.concat([sd, sd_extra], ignore_index=True)
 sd["ours"] = sd.ours.map(fmt)
 sd["status"] = [st if isinstance(st, str) else status(p, o) for st, p, o in zip(sd.status, sd.paper, sd.ours)]
 sd["published_data_result"] = "-"
-sd["replication_regenerated_inputs"] = "-"
+sd["replication_regenerated_inputs"] = [extra.get((f, m), ("-", "-"))[1] for f, m in zip(sd.figure, sd.metric)]
 stats = pd.concat([stats, sd.rename(columns={"ours": "replication_shipped_inputs"})], ignore_index=True)
 stats = stats[["figure", "metric", "paper", "published_data_result", "replication_shipped_inputs", "replication_regenerated_inputs", "status", "note", "paper_source"]]
 stats.to_csv(f"{OUT}/paper_vs_replication.csv", index=False)
