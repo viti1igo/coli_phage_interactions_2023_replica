@@ -14,16 +14,25 @@ d = pd.read_csv(f"{C}/paper_vs_replication.csv")
 num = lambda v: pd.to_numeric(v, errors="coerce")
 first = lambda v: num(re.match(r"\s*(-?[\d.]+)", str(v)).group(1)) if re.match(r"\s*-?[\d.]", str(v)) else np.nan
 d["paper_n"], d["rep_n"], d["regen_n"] = d.paper.map(first), d.replication_shipped_inputs.map(first), d.replication_regenerated_inputs.map(first)
-d = d[d.paper_n.notna() & d.rep_n.notna() & (d.paper_n != 0) & ~d.metric.str.contains(r"\bP\b|pMCMC|P,", regex=True)].copy()
+d = d[d.paper_n.notna() & d.rep_n.notna() & (d.paper_n != 0) & ~d.metric.str.contains(r"\bP\b|pMCMC|P,", regex=True)
+      & ~d.replication_shipped_inputs.astype(str).str.contains(r" of |/|;") & (d.figure != "Fig 6c")].copy()   # numbers that are a single value on both sides
 d["ratio_replication"] = d.rep_n / d.paper_n; d["ratio_regenerated"] = d.regen_n / d.paper_n
 d["label"] = d.figure + "  " + d.metric.str.slice(0, 62)
 d = d.iloc[::-1].reset_index(drop=True)
+edge = {}
+LO, HI = 0.4, 1.8   # ratios outside the axis are drawn at its edge as a triangle with their value
 fig, ax = plt.subplots(figsize=(8.5, 0.28 * len(d) + 1.4))
 ax.axvline(1, color=MUTED, lw=1); ax.axvspan(0.95, 1.05, color="#e6e5e0", alpha=0.6, lw=0)
-ax.scatter(d.ratio_replication, d.index, s=28, color=BLUE, label="Replication, shipped inputs", zorder=3, edgecolor=SURF, lw=0.5)
-m = d.ratio_regenerated.notna()
-ax.scatter(d.ratio_regenerated[m], d.index[m], s=28, color=ORANGE, label="Replication, regenerated inputs", zorder=3, edgecolor=SURF, lw=0.5)
-ax.set_yticks(d.index); ax.set_yticklabels(d.label, fontsize=7); ax.set_xlabel("Our value / paper value (grey band = within 5%)"); ax.set_title("Headline numbers against the paper", loc="left")
+for col, c, lab in (("ratio_replication", BLUE, "Replication, shipped inputs"), ("ratio_regenerated", ORANGE, "Replication, regenerated inputs")):
+    r = d[col]; m = r.notna(); inside = m & (r >= LO) & (r <= HI)
+    ax.scatter(r[inside], d.index[inside], s=28, color=c, label=lab, zorder=3, edgecolor=SURF, lw=0.5)
+    for i in d.index[m & ~inside]:
+        hi = r[i] > HI; ax.scatter([HI if hi else LO], [i], s=34, color=c, marker=">" if hi else "<", zorder=3)
+        edge.setdefault(i, []).append((hi, f"{r[i]:.2f}"))
+for i, v in edge.items():   # one label per row: the values beyond the axis, shipped then regenerated
+    hi = v[0][0]; ax.text(HI - 0.05 if hi else LO + 0.05, i, " / ".join(t for _, t in v), fontsize=6.5, color=INK, ha="right" if hi else "left", va="center")
+ax.set_xlim(LO - 0.04, HI + 0.04)
+ax.set_yticks(d.index); ax.set_yticklabels(d.label, fontsize=7); ax.set_xlabel("Our value / paper value (grey band = within 5 %; triangles = beyond the axis, value written beside them)"); ax.set_title("Headline numbers against the paper", loc="left")
 ax.legend(frameon=False, labelcolor=INK, fontsize=8, loc="lower right"); style(ax, "x")
 save(fig, "cmp_headline", d[["figure", "metric", "paper_n", "rep_n", "regen_n", "ratio_replication", "ratio_regenerated"]])
 

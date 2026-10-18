@@ -77,3 +77,18 @@ def nested_modular(A, n_null=1000, seed=0):
     cbest = max(q_by_c, key=q_by_c.get); Q0 = q_by_c[cbest]
     qn = np.array([brim((rng.random(A.shape) < dens).astype(float), cbest, tries=2, rg=rng) for _ in range(n_null)])
     return dict(T0=T0, nulls=nulls, p_nodf=p_nodf, cbest=cbest, Q0=Q0, qn=qn, p_q=(1 + (qn >= Q0).sum()) / (n_null + 1))
+
+
+def coverage_curve(L, kmax=25):
+    """Share (%) of strains lysed by at least one phage of the most-covering k-set of phages: exact for k <= 3, greedy above (ED7).
+    L: boolean strains x phages DataFrame. Returns ({k: coverage}, indices of the best triplet)."""
+    import itertools
+    cols = L.values; n, m = cols.shape
+    cover = lambda idx: cols[:, idx].any(axis=1).sum() / n * 100
+    best3 = max(itertools.combinations(range(m), 3), key=cover)
+    cov = {1: max(cover([i]) for i in range(m))}
+    cov[2] = max(cover(c) for c in itertools.combinations(range(m), 2)); cov[3] = cover(best3)
+    chosen = list(best3)
+    for k in range(4, kmax + 1):
+        chosen.append(max((i for i in range(m) if i not in chosen), key=lambda i: cover(chosen + [i]))); cov[k] = cover(chosen)
+    return cov, best3

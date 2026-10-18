@@ -3,7 +3,10 @@
 .libPaths(c(file.path(ROOT, ".Rlib"), .libPaths()))
 suppressMessages({library(MCMCglmm); library(ape); library(parallel)})
 set.seed(1)
-M <- read.table(file.path(ROOT, "data/interactions/interaction_matrix.csv"), sep=";", header=TRUE, check.names=FALSE, row.names=1)
+# MATRIX_SET=regenerated uses the matrix rebuilt from the raw plaque scores (replication/T26_matrix; strains without raw data are dropped), outputs get the suffix _regenerated
+SET <- Sys.getenv("MATRIX_SET", "shipped"); SUFFIX <- if (SET == "regenerated") "_regenerated" else ""
+M <- if (SET == "regenerated") { m <- read.table(file.path(ROOT, "replication/T26_matrix/mlc_matrix_regenerated.csv"), sep=";", header=TRUE, check.names=FALSE, row.names=1); m[rowSums(!is.na(m)) > 0, ] } else
+  read.table(file.path(ROOT, "data/interactions/interaction_matrix.csv"), sep=";", header=TRUE, check.names=FALSE, row.names=1)
 strain_targets <- function() data.frame(bacteria = rownames(M), n_lytic = rowSums(M > 0, na.rm=TRUE),
   avg_mlc = apply(M, 1, function(x) { x <- x[!is.na(x) & x > 0]; if (length(x)) mean(x) else NA }))
 # d: data frame with a `bacteria` column. Returns the rows that are in the ultrametric tree, plus the inverse relatedness matrix.

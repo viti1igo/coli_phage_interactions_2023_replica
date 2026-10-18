@@ -41,6 +41,14 @@ extra.update({
     ("ED5", "strains infected by PDP110_P1"): ("-", f"{int(rm.PDP110_P1_infected)} ({n_rm} strains; the isolation strain PDP110 is not among them)"),
     ("ED5", "infected strains that carry K55"): ("-", f"{int(rm.PDP110_P1_infected_and_K55_regenerated_typing)} of {int(rm.PDP110_P1_infected)} with regenerated Kaptive types"),
 })
+fr = pd.read_csv(f"{R}/fig4_summary/fig4cd_regenerated.csv"); er = pd.read_csv(f"{R}/fig4_summary/ed6_regenerated.csv").set_index("panel")
+for _, r in fr[fr.defence_count == "ds_ours"].iterrows():
+    extra[(f"Fig 4{'c' if r.model.startswith('C') else 'd'}", "beta (defense systems)")] = ("-", f"{r.beta:.3f} ({int(r.n_strains)} strains)")
+for pn, what in [("A", "genome size vs lytic interactions"), ("C", "genome size vs average MLC"), ("B", "AMR genes vs lytic interactions"), ("D", "AMR genes vs average MLC")]:
+    extra[(f"ED6{pn}", f"{what} (pMCMC)")] = ("-", f"beta {er.loc[pn].beta:.3g}, pMCMC {er.loc[pn].pMCMC:.4f}")
+for k, key in ((1, "ED7_coverage_k1"), (3, "ED7_coverage_k3"), (4, "ED7_coverage_k4")):
+    extra[("ED7", f"coverage at k = {k} (%)")] = ("-", f"{rm[key]:.1f}")
+extra[("ED7", "coverage when all phages are used (%)")] = ("-", f"{rm.ED7_coverage_k25:.1f} (k = 25)")
 stats["published_data_result"] = [extra.get((f, m), ("-", "-"))[0] for f, m in zip(stats.figure, stats.metric)]
 stats["replication_regenerated_inputs"] = [extra.get((f, m), ("-", "-"))[1] for f, m in zip(stats.figure, stats.metric)]
 
@@ -93,7 +101,12 @@ sd_extra = pd.DataFrame([
 si = pd.read_csv(f"{ROOT}/results/si/stats.csv").rename(columns={"item": "figure"}); si["paper_source"] = si.figure
 lm = pd.read_csv(f"{ROOT}/results/si/rbp_lmm.csv")
 si = pd.concat([si, pd.DataFrame([dict(figure="SI Text 7", metric=f"LMM beta of the RBP count on lytic interactions, {r.set}", paper=28.11, ours=round(r.beta, 1), paper_source="SI Text 7", note=f"95% CI {r.ci_low:.0f} to {r.ci_high:.0f}, pMCMC {r.pMCMC:.2f} (paper CI -33 to 84, pMCMC 0.33): not significant in both", status="differs") for r in lm.itertuples()])], ignore_index=True)
-sd_extra = pd.concat([sd_extra, si[["figure", "metric", "paper", "ours", "paper_source", "note", "status"]]], ignore_index=True)
+# the same supplementary analyses on regenerated inputs (MATRIX_SET=regenerated)
+sr = pd.read_csv(f"{ROOT}/results/si_regenerated/stats.csv"); lr = pd.read_csv(f"{ROOT}/results/si_regenerated/rbp_lmm.csv")
+regen_si = {(r.item, r.metric): r.ours for r in sr.itertuples()}
+regen_si.update({("SI Text 7", f"LMM beta of the RBP count on lytic interactions, {r.set}"): round(r.beta, 1) for r in lr.itertuples()})
+si["regen"] = [regen_si.get((f, m), "-") for f, m in zip(si.figure, si.metric)]
+sd_extra = pd.concat([sd_extra, si[["figure", "metric", "paper", "ours", "paper_source", "note", "status", "regen"]]], ignore_index=True)
 DROP = [("Fig 2f", "ANOVA F (host range ~ morphotype)"), ("ED7", "coverage of the most-covering triplet (%)"), ("ED2", "modularity Q (BRIM) significance")]
 stats = stats[[(f, m) not in DROP for f, m in zip(stats.figure, stats.metric)]].rename(columns={"ours": "replication_shipped_inputs"})
 sd = pd.read_csv(f"{OUT}/source_data_checks.csv")  # from scripts/compare_source_data.py (needs the downloaded supplement)
@@ -102,7 +115,7 @@ sd = pd.concat([sd, sd_extra], ignore_index=True)
 sd["ours"] = sd.ours.map(fmt)
 sd["status"] = [st if isinstance(st, str) else status(p, o) for st, p, o in zip(sd.status, sd.paper, sd.ours)]
 sd["published_data_result"] = "-"
-sd["replication_regenerated_inputs"] = [extra.get((f, m), ("-", "-"))[1] for f, m in zip(sd.figure, sd.metric)]
+sd["replication_regenerated_inputs"] = [r if isinstance(r, str) and r != "-" or (not isinstance(r, str) and pd.notna(r)) else extra.get((f, m), ("-", "-"))[1] for f, m, r in zip(sd.figure, sd.metric, sd.get("regen", pd.Series(["-"] * len(sd))))]
 stats = pd.concat([stats, sd.rename(columns={"ours": "replication_shipped_inputs"})], ignore_index=True)
 stats = stats[["figure", "metric", "paper", "published_data_result", "replication_shipped_inputs", "replication_regenerated_inputs", "status", "note", "paper_source"]]
 stats.to_csv(f"{OUT}/paper_vs_replication.csv", index=False)

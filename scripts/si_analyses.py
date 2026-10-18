@@ -16,13 +16,22 @@ import phage_genomes as G
 
 warnings.filterwarnings("ignore")  # pyrodigal warns for every genome shorter than 100 kb
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-OUT = f"{ROOT}/results/si"; os.makedirs(OUT, exist_ok=True)
+SET = os.environ.get("MATRIX_SET", "shipped")     # regenerated: the matrix, features, tree and defense subtypes rebuilt from the genomes and raw plaque scores
+SUF = "_regenerated" if SET == "regenerated" else ""
+OUT = f"{ROOT}/results/si{SUF}"; os.makedirs(OUT, exist_ok=True)
 rows = []
 def add(item, metric, paper, ours, note="", status=None): rows.append(dict(item=item, metric=metric, paper=paper, ours=ours, note=note, status=status))
 
 M = load_matrix()
+if SET == "regenerated":
+    reg_m = pd.read_csv(f"{ROOT}/replication/T26_matrix/mlc_matrix_regenerated.csv", sep=";", index_col=0); reg_m.index = reg_m.index.astype(str)
+    M = reg_m.loc[reg_m.notna().any(axis=1), M.columns]
 col = pd.read_csv(f"{ROOT}/data/genomics/phages/guelin_collection.csv", sep=";", index_col=0)
 bact = pd.read_csv(f"{ROOT}/data/genomics/bacteria/picard_collection.csv", sep=";", index_col=0)
+LST = pd.read_csv(f"{ROOT}/replication/T14_panacota/annot/LSTINFO-list.lst", sep="\t").assign(strain=lambda d: d.orig_name.str.replace(r"\.fasta$", "", regex=True)).set_index("gembase_name").strain
+if SET == "regenerated":
+    rg = pd.read_csv(f"{ROOT}/replication/T25_features/picard_collection_regenerated.csv", sep=";", index_col=0, dtype={"ST_Warwick": str}); rg.index = rg.index.astype(str)
+    bact = rg.rename(columns={"ABC_model (best system)": "ABC_serotype", "LPS_type (cross-validated markers)": "LPS_type"})
 lytic = (M.fillna(0) > 0)
 n_lytic = lytic.sum()
 
@@ -55,7 +64,8 @@ pd.DataFrame({"n_rbp": cnt, "n_lytic": n_lytic}).rename_axis("phage").to_csv(f"{
 add("SI Text 7", "phages with 0 / 1 / 2 RBP in RBP_list.csv", "all phages have 1 or 2", f"{(cnt == 0).sum()} / {(cnt == 1).sum()} / {(cnt == 2).sum()}", "7 phages are listed with NA: " + ", ".join(cnt.index[cnt == 0]), "differs")
 
 # ---- SI Text 8: PERMANOVA models
-tree_names, D = patristic(f"{ROOT}/data/genomics/bacteria/panacota/tree/370+host_tree_root=albertii.nwk")
+tree_names, D = patristic(f"{ROOT}/replication/T14_panacota/tree/ESCO.nucl.grp.aln.fasttree_tree.nwk" if SET == "regenerated" else f"{ROOT}/data/genomics/bacteria/panacota/tree/370+host_tree_root=albertii.nwk")
+if SET == "regenerated": tree_names = [LST.get(x, x) for x in tree_names]
 strains = [s for s in tree_names if s in M.index and s in bact.index]
 ix = [tree_names.index(s) for s in strains]; Dt = D[np.ix_(ix, ix)]
 def pcoa(Dm, k=8):
@@ -72,8 +82,14 @@ def ind(df, minobs=8):
     return pd.DataFrame(out, index=df.index)
 af_cols = ["O-type", "H-type", "LPS_type", "Klebs_capsule_type", "ABC_serotype"]
 omp = pd.read_csv(f"{ROOT}/data/genomics/bacteria/outer_membrane_proteins/blast_results_cured_clusters=99_wide.tsv", sep="\t", index_col=0)
+if SET == "regenerated": omp = rg[[c for c in rg.columns if c.startswith("OMP_cluster_")]]
 AF = pd.concat([ind(bact.loc[strains, af_cols]), ind(omp.reindex(strains))], axis=1)
 dsub = pd.read_csv(f"{ROOT}/data/genomics/bacteria/defense_finder/370+host_defense_systems_cluster_80_80.csv", sep=";", index_col=0).reindex(strains).fillna(0) > 0
+if SET == "regenerated":   # our DefenseFinder subtypes (the 80/80 gene clusters are not regenerated); used in place of the subfamilies
+    import glob
+    ours_d = {LST[os.path.basename(f).replace("_defense_finder_systems.tsv", "")]: (pd.read_csv(f, sep="\t").subtype.value_counts() if len(pd.read_csv(f, sep="\t")) else pd.Series(dtype=int))
+              for f in glob.glob(f"{ROOT}/replication/T22_defense/runs/*/*_defense_finder_systems.tsv")}
+    dsub = pd.DataFrame(ours_d).T.reindex(strains).fillna(0) > 0
 DS = dsub.loc[:, dsub.sum() >= 8].astype(float)
 def fit(*blocks):
     X = np.column_stack([np.ones(n), phylo] + [b.values for b in blocks]); H = X @ np.linalg.pinv(X); rk = np.linalg.matrix_rank(X)

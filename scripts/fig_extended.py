@@ -7,7 +7,7 @@ from matplotlib.patches import Patch
 from scipy.stats import mannwhitneyu
 from figlib import *
 from matrix import load_matrix
-from matrix_stats import nested_modular
+from matrix_stats import coverage_curve, nested_modular
 
 D = f"{ROOT}/data"
 pic = pd.read_csv(f"{D}/genomics/bacteria/picard_collection.csv", sep=";", index_col=0)
@@ -111,14 +111,8 @@ stat("ED5", "strains infected by PDP110_P1", 3, int(x.sum()), "ED Fig. 5 legend"
 stat("ED5", "infected strains that carry K55", "3 of 3", f"{int((x & k55).sum())} of {int(x.sum())}; K55 strains total {int(k55.sum())}", "ED Fig. 5 legend")
 
 # ---------------- ED7: most-covering k-uplet of phages (exact for k <= 3, greedy above)
-cols = L.values; n = cols.shape[0]; names = list(L.columns)
-def cover(idx): return cols[:, idx].any(axis=1).sum() / n * 100
-best3 = max(itertools.combinations(range(cols.shape[1]), 3), key=cover)
-cov = {1: max(cover([i]) for i in range(cols.shape[1]))}
-cov[2] = max(cover(c) for c in itertools.combinations(range(cols.shape[1]), 2)); cov[3] = cover(best3)
-chosen = list(best3)
-for k in range(4, 26):
-    nxt = max((i for i in range(cols.shape[1]) if i not in chosen), key=lambda i: cover(chosen + [i])); chosen.append(nxt); cov[k] = cover(chosen)
+names = list(L.columns)
+cov, best3 = coverage_curve(L)
 fig, ax = plt.subplots(figsize=(6, 3.8))
 ax.plot(list(cov), list(cov.values()), color=BLUE, lw=2, marker="o", ms=4); ax.axhline(cov[3], color=MUTED, lw=1, ls=(0, (4, 3)))
 ax.text(14, cov[3] - 4, f"best triplet {cov[3]:.1f}%", color=INK, fontsize=8); ax.set_xlabel("k (phages in the cocktail)"); ax.set_ylabel("Strains lysed by at least one (%)"); ax.set_title("ED7  Coverage of the most-covering k-uplet", loc="left"); ax.set_ylim(0, 100); style(ax)

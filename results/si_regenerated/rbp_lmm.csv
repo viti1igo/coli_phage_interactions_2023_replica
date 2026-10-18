@@ -1,0 +1,3 @@
+"set","n_phages","beta","ci_low","ci_high","pMCMC","paper_beta","paper_ci","paper_pMCMC"
+"all 96 phages (the 7 listed without RBP count as 0)",96,-15.4069403390438,-55.0171375452774,19.8228734329459,0.405789473684211,28.11,"-33.09 to 83.58",0.33
+"89 phages with at least one RBP",89,10.4431422093475,-40.7712842102628,62.9794804899648,0.668421052631579,28.11,"-33.09 to 83.58",0.33

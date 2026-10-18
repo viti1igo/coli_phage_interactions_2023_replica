@@ -40,6 +40,8 @@ The table has 97 rows in all: 33 match within 5 %, 12 match, 1 matches once expl
 
 ![Headline numbers against the paper](../results/comparison/cmp_headline.png)
 
+*Annotation.* One row per paper number with a single numeric value on both sides; x = our value divided by the paper's (black line = 1, grey band = within 5 %); blue = shipped inputs, orange = regenerated inputs; triangles at the edge mark ratios beyond the axis, with the value beside them. Full annotation in [06](06_figures.md).
+
 Data: `results/comparison/cmp_headline.csv`.
 
 ## Matrix-only analyses on the regenerated matrix
@@ -58,14 +60,45 @@ The matrix regenerated from the raw plaque scores covers 369 strains: the 33 pha
 
 What the table shows. Regenerating the matrix changes almost nothing (the last two columns agree to about 0.5 % for the ANOVA, 0.01 for the R² and 0.002 for Q); the differences from the paper come from the missing strains. Without the 33 isolation strains the host-range R² moves toward the paper's (0.55 to 0.53; both 0.69 to 0.67) and the ANOVA F moves away from it (114.7 to 119). The best number of BRIM modules is unstable (4, 7, 8) although Q is stable (0.23 to 0.24). ED5 loses one of its three infected strains because the third is the isolation strain PDP110 itself, which is not in the 369; regenerated Kaptive types call K55 for the other two but miss K55 in PDP110, as in [03](03_feature_regeneration.md). Data: `results/comparison/regenerated_matrix_analyses.csv`.
 
+## Mixed models, ED6, ED7 and the supplementary analyses on regenerated inputs
+
+Everything that can be rebuilt was rerun with the regenerated inputs: the matrix from the raw plaque scores (369 strains, no isolation strains), the features, tree and defense subtypes regenerated from the genomes. Fixed items stay as they are: the phage genomes, `RBP_list.csv` (no RBP detection was rerun), the paper's AMR counts and the paper's defense counts of panel d. The 38 rows of the comparison table that have a regenerated value are marked in `results/comparison/paper_vs_replication.csv`.
+
+| Item | Paper | Shipped inputs | Regenerated inputs |
+|---|---|---|---|
+| Fig 4c, defense count vs lytic interactions, β (pMCMC) | −0.22 (0.41) | −0.223 (0.40) | −0.193 (0.51), 369 strains |
+| Fig 4d, defense count vs average MLC, β (pMCMC) | −0.04 (0.004) | −0.033 (0.0005) | −0.034 (0.0003), 357 strains |
+| Fig 4d with the paper's panel-d defense counts | −0.04 (0.004) | −0.032 (0.0005) | −0.028 (0.0021) |
+| ED6 C, genome size vs average MLC, β per Mb (pMCMC) | significant | −0.35 (0.003) | −0.24 (0.014) |
+| ED6 D, AMR genes vs average MLC (pMCMC) | not significant | −0.021 (0.0105) | −0.018 (0.020) |
+| ED6 A and B (lytic interactions) | – | genome size 0.12; AMR 0.047 | genome size 0.55; AMR 0.063 |
+| ED7 coverage at k = 1 / 3 / 4 (%) | 42.7 / 67.0 / 73.7 (Source Data) | 65.5 / 87.6 / 90.8 | 66.1 / 87.0 / 90.5 |
+| SI 4, genome-size coefficient (P) | 2.3e-4 (0.17) | 2.32e-4 (0.17) | 2.2e-4 (0.16) |
+| SI 6, K1 strains | 45 | 42 | 41 in the 369 strains (45 with the four K1 isolation strains) |
+| SI 6, K1 rule on the three phages: precision / recall (%) | 73 / 72 | 87 / 55 | 89 / 65 |
+| SI 6, K1 rule on the 28 other phages: precision / recall (%) | 7 / 14 | 18 / 18 | 17 / 20 |
+| SI 7, RBP-count LMM β (pMCMC), 96 phages | 28.1 (0.33) | −13.0 (0.52) | −15.4 (0.41) |
+| SI 8, PERMANOVA adjusted R² adsorption factors / full / defense | 0.27 / 0.28 / 0.05 | 0.26 / 0.27 / 0.17 | 0.25 / 0.28 / 0.14 |
+| SI 8, AIC adsorption factors / full / defense | −435 / −418 / −372 | −458 / −437 / −427 | −411 / −409 / −395 |
+| RBP sharing, host-range distance sharing / not (≥ 50 % identity) | qualitative | 0.56 / 0.85 | 0.56 / 0.85 |
+
+Reading it.
+- **Regeneration does not change the conclusions.** Defense systems stay non-significant for the number of lytic interactions and significant (small) for the average MLC; genome size stays associated with the average MLC and not with the number of lytic interactions; the K1 rule stays imprecise outside the three phages; the RBP count stays unrelated to host range; adsorption factors stay the best PERMANOVA model by a little (AIC −410.7 against −409.2 for the full model in the regenerated set).
+- **The K1 count is reproduced by regeneration.** Our ABC calls give 45 K1 strains in the whole collection, the paper's number, where the shipped table has 42 (three strains the shipped table leaves without a serotype). The paper's 45 therefore probably comes from a later classification than the shipped table.
+- **The genome-size association is weaker on the regenerated matrix** (0.014 against 0.003) and is significant again with the paper's own genome sizes (0.002), so it depends on the 33 isolation strains and on small differences between assemblies.
+- **With the paper's panel-d defense counts the regenerated-matrix pMCMC (0.0021) is the closest to the paper's 0.004 of all runs.**
+- The AIC values are on a different scale in the two columns because the number of strains differs (402 and 369).
+
+Not run on regenerated inputs: Fig 4a–b (the per-phage mixed models take about 4.5 hours and would need regenerated defense subfamilies, which need the authors' gene clustering), and ED9 (the cocktail data belong to the 100 test strains, whose genomes are not available).
+
 ## Empty cells in the headline table, and why
 
 | Where | Why it is empty |
 |---|---|
 | "Authors' shipped" column, "–" | The repository holds no result for these numbers (the β of Fig 4c–d, the ANOVA, the PERMANOVA, the modularity, ED5, the supplementary analyses); they were computed here from the authors' data |
 | "Regenerated inputs" column, cocktail success and Mann–Whitney (Fig 6) | Cannot be run. They are in vitro results on 100 test strains, not model output; the recommender's code is not published and the test-strain genomes are not available |
-| "Regenerated inputs" column, Fig 2f, PERMANOVA, ED2, ED5 | Not run at first; run now on the regenerated matrix (table above), with the 33 isolation strains missing |
-| "Regenerated inputs" column, ED6, ED7, ED9, the supplementary texts | Not run on regenerated inputs: ED6 uses genome sizes and the paper's AMR counts (not features we regenerated), ED7 and ED9 use cocktail data, and the supplementary analyses use the shipped feature and defense tables; each could be repeated on the regenerated tables, but none has been |
+| "Regenerated inputs" column, Fig 4a–b and ED9 | Not run: Fig 4a–b needs 4.5 hours of sampling and regenerated defense subfamilies; ED9 uses the test strains' cocktail data |
+| "Regenerated inputs" column, everything else | Filled (see above and the matrix-only table), with the 33 isolation strains missing from the regenerated matrix |
 
 ## Pooled ROC and precision–recall curves
 
@@ -73,17 +106,35 @@ The three curves of the authors' shipped predictions, this run on the shipped in
 
 ![Pooled ROC and precision-recall curves](../results/comparison/cmp_roc_pr.png)
 
+*Annotation.* Left ROC, right precision–recall, pooled over the 96 phages. Orange = authors' shipped predictions, blue = this run (shipped inputs), aqua = this run (regenerated inputs), black dashed = the paper's Source Data curve, grey dashed = chance. Overlapping curves mean the same pooled performance. Full annotation in [06](06_figures.md).
+
 Data: `results/comparison/cmp_roc_pr.csv` (without the paper's points, which are the publisher's data). Per-phage AUROC against the authors' shipped values (correlation 0.92 on shipped inputs, 0.79 on regenerated ones):
 
 ![Per-phage AUROC](../results/comparison/cmp_per_phage_auroc.png)
 
+*Annotation.* One dot per phage: x = AUROC in the authors' results, y = AUROC here; dashed diagonal = identical. Blue = shipped inputs (r = 0.92), orange = regenerated inputs (r = 0.79).
+
 Redrawn panels next to their paper numbers (per-strain AUROC with the paper's Source Data points in orange, cocktails, mixed models and defense count, host range by morphotype, host-range UMAP):
 
 ![Per-strain AUROC, AUROC vs lytic interactions, prediction matrix](../results/figures/fig5_a_c_d.png)
+
+*Annotation.* a: histogram of the AUROC of each strain (mean 0.878, dashed). Second panel: AUROC of each phage (mean 0.787, the preprint's number). c: AUROC of each strain against its lytic interactions, blue = this run, orange circles = the paper's Source Data. d: prediction matrix, rows = phages by host range, columns = strains in tree order; blue = true positive, light orange = false positive, orange = false negative.
+
 ![Cocktail experiment](../results/figures/fig6_c_e.png)
+
+*Annotation.* c: strains per recommended cocktail (orange = generic, blue = tailored). d: success rate, tailored 91.7 %, generic 78.9 %, baseline 81.0 %. e: share of strains per MLC bin (0, 1–2, 3–4, 5–6) for tailored (blue), generic (orange) and baseline (grey).
+
 ![Mixed-model results and defense count](../results/figures/fig4_a_d.png)
+
+*Annotation.* a: significant terms at pMCMC < 1e-3 (blue adsorption factors 28, orange defense systems 0). b: phages with a significant term per adsorption-factor family, blue = this re-run, orange = authors' shipped model. c, d: strains by number of defense systems against lytic interactions (c) and average MLC (d); titles give the mixed-model β and pMCMC against the paper's.
+
 ![Host range by morphotype](../results/figures/fig2_f.png)
+
+*Annotation.* Box plot of the percentage of strains each phage infects, by morphotype (32 myoviruses, 41 podoviruses, 23 siphoviruses); medians 42.5, 11.0 and 7.0 %; title gives the one-way ANOVA.
+
 ![Host-range UMAP](../results/figures/fig3_a.png)
+
+*Annotation.* UMAP of the Jaccard distance between the lytic vectors of the 96 phages, one dot per phage; left coloured by genus, right by isolation strain (top 8 coloured, others grey).
 
 ## What still does not match
 
@@ -107,6 +158,8 @@ The re-implementation does not reproduce the authors' cocktails: 2 of 100 are id
 
 ![Recommender against the authors' cocktails](../results/comparison/cmp_recommender.png)
 
+*Annotation.* Left: test strains by the number of phages (0–3) their cocktail shares with the authors'. Right: share of recommended phages chosen at each step; orange = authors, blue = this re-implementation.
+
 Data: `results/comparison/cmp_recommender.csv`, `results/recommender/`.
 
 ## Regenerated inputs and necessity of features
@@ -114,7 +167,12 @@ Data: `results/comparison/cmp_recommender.csv`, `results/recommender/`.
 How well each input was regenerated is in [03](03_feature_regeneration.md); the ablation on both input sets is in [04](04_feature_necessity.md). In short, the pooled AUROC survives regeneration, and the verdicts on the ABC capsule, LPS and the O-type/ST pair are the same on both input sets; three of twelve verdicts differ.
 
 ![Agreement of regenerated features with the shipped ones](../results/comparison/cmp_feature_agreement.png)
+
+*Annotation.* Left: strain-level agreement (0–100 %) of each regenerated typing feature with the shipped table. Right: adjusted Rand index, F1, correlation or neighbour overlap (0–1) for the clusterings, defense subtypes and tree.
+
 ![Feature ablation on shipped and regenerated inputs](../results/comparison/cmp_ablation.png)
+
+*Annotation.* Change in per-phage AUROC when a feature group is removed (negative = worse); blue = shipped inputs, orange = regenerated inputs, grey segment joins the same group.
 
 ## Not drawn, and why
 

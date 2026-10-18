@@ -22,6 +22,6 @@ fit1 <- function(i) {
   data.frame(panel = j$panel, target = j$y, covariate = j$x, n_strains = nrow(dd), beta = s["post.mean"], ci_low = s["l-95% CI"], ci_high = s["u-95% CI"], pMCMC = s["pMCMC"], ESS = s["eff.samp"], row.names = NULL)
 }
 res <- do.call(rbind, mclapply(seq_len(nrow(jobs)), fit1, mc.cores = 3))
-write.csv(res, file.path(ROOT, "results/fig4_summary/ed6.csv"), row.names=FALSE)
-write.csv(d[, c("bacteria", "n_lytic", "avg_mlc", "mb", "mb_paper", "amr")], file.path(ROOT, "results/fig4_summary/ed6_data.csv"), row.names=FALSE)
+write.csv(res, file.path(ROOT, paste0("results/fig4_summary/ed6", SUFFIX, ".csv")), row.names=FALSE)
+write.csv(d[, c("bacteria", "n_lytic", "avg_mlc", "mb", "mb_paper", "amr")], file.path(ROOT, paste0("results/fig4_summary/ed6_data", SUFFIX, ".csv")), row.names=FALSE)
 print(res)

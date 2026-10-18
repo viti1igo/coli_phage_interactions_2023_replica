@@ -5,7 +5,8 @@ ROOT <- normalizePath(file.path(dirname(sub("--file=", "", grep("--file=", comma
 .libPaths(c(file.path(ROOT, ".Rlib"), .libPaths()))
 suppressMessages({library(MCMCglmm); library(ape); library(parallel)})
 set.seed(1)
-d <- read.csv(file.path(ROOT, "results/si/rbp_count_vs_lytic.csv"), stringsAsFactors = FALSE)
+SUFFIX <- if (Sys.getenv("MATRIX_SET", "shipped") == "regenerated") "_regenerated" else ""
+d <- read.csv(file.path(ROOT, paste0("results/si", SUFFIX, "/rbp_count_vs_lytic.csv")), stringsAsFactors = FALSE)
 tree <- read.tree(file.path(ROOT, "data/genomics/phages/tree/96_viridic_distance_phylogenetic_tree_algo=upgma.nwk"))
 d$animal <- make.names(d$phage); tree$tip.label <- make.names(tree$tip.label)
 stopifnot(all(d$animal %in% tree$tip.label))
@@ -20,5 +21,5 @@ fit1 <- function(dd, label) {
 }
 res <- do.call(rbind, mclapply(list(list(d, "all 96 phages (the 7 listed without RBP count as 0)"), list(d[d$n_rbp > 0, ], "89 phages with at least one RBP")), function(a) fit1(a[[1]], a[[2]]), mc.cores = 2))
 res$paper_beta <- 28.11; res$paper_ci <- "-33.09 to 83.58"; res$paper_pMCMC <- 0.33
-write.csv(res, file.path(ROOT, "results/si/rbp_lmm.csv"), row.names = FALSE)
+write.csv(res, file.path(ROOT, paste0("results/si", SUFFIX, "/rbp_lmm.csv")), row.names = FALSE)
 print(res)

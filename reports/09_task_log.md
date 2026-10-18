@@ -111,6 +111,12 @@ _This file is updated after every step (user request). Latest update: see the St
 - [x] T57 Report 05 now lists why each empty cell of the headline table is empty (not published by the authors / cannot be run: Fig 6 wet-lab results and recommender / not run).
 - [ ] Not run on regenerated inputs (could be): ED6, ED7, ED9, the supplementary analyses (SI texts 4-8), the RBP-count LMM.
 
+## Phase 15 - Remaining analyses on regenerated inputs (2026-10-18, requested by the user)
+- [x] T58 Fig 4c-d and ED6 mixed models on the regenerated matrix (`MATRIX_SET=regenerated`): 4c beta -0.193 (p 0.51), 4d -0.034; ED6 genome size vs avg MLC p 0.014 (0.003 on shipped); ED7 coverage 66.1/87.0/90.5 %.
+- [x] T59 Supplementary analyses (SI 4, 6, 7, 8, RBP sharing) on regenerated inputs (`MATRIX_SET=regenerated`): K1 count 45 = the paper's (shipped table 42); SI 8 AF/full/defense adj R2 0.25/0.28/0.14.
+- [x] T60 ED9: not regenerable (test-strain data); state it. ED6 AMR counts stay the paper's.
+- [x] T61 Update reports 05/10, push.
+
 ## Status log (newest last; updated after every step)
 - 2026-10-17 T11 timing; PanACoTA annotate Prodigal vs Prokka compared on 5 genomes (Prodigal 2-7% more CDS, 90-97% of its proteins identical to Prokka's).
 - 2026-10-17 T18 done (ECTyper 403 genomes, 12 min). T16/T17 done.
@@ -145,3 +151,7 @@ _This file is updated after every step (user request). Latest update: see the St
 - 2026-10-18 Phase 12 COMPLETE (T47-T51).
 - 2026-10-18 Phase 13 COMPLETE (T52-T55); reports 10 and 11 written.
 - 2026-10-18 Phase 14 COMPLETE (T56-T57).
+- 2026-10-18 Phase 15 COMPLETE (T58-T61). 38 rows of the comparison table now have a regenerated value; Fig 4a-b and ED9 are the only items not run on regenerated inputs.
+
+## Phase 16 - Annotated figures (2026-10-18, requested by the user)
+- [x] T62 `reports/06_figures.md` rewritten: 31 figures, each with an annotation table (layout, axes, marks and colours, data file, how to read, numbers, paper comparison, caveats); one-paragraph annotations under every figure in reports 05 and 10; the headline figure now clips outliers at the axis edge.
