@@ -13,7 +13,7 @@ I found everything below by running the repository's code and notebooks, or by c
 | 5 | Cocktail strain names | `BCH857` in the cocktail, composition and feature files, `BCH857-72` in `cocktails_step.csv` and Supplementary Table 6 | not stated | the authors' notebook merges on names and silently loses this strain, so some counts have 99 strains (Source Data Fig 6c) and the cocktail 536_P7-LF82_P8-LF82_P9 counts 21 instead of 22 |
 | 6 | Strain name used twice | `AN03` is a Picard strain and a test strain | not stated | any join on strain names mixes them |
 | 7 | Phage genome files | `T4LD.fna` starts with an empty record | not stated | readers that take the first record fail |
-| 8 | Fraction of positive pairs | README: "81 % negative, 19 % positive" | not stated | the shipped matrix has 20.7 % lytic pairs (MLC above 0) |
+| 8 | Fraction of positive pairs | README: "81 % negative, 19 % positive" | text (both versions): 20.3 % | the shipped matrix has 20.7 % lytic pairs (MLC above 0); the paper's own 20.6 % per phage and 20.8 % per strain imply 20.7 %, so the 20.3 % does not match either |
 | 9 | Cross-validation groups | README: the file `370+host_cross_validation_groups_1e-4.csv` "is not available anymore" | Methods describe the grouping | the groups have to be rebuilt from the tree (0.3 % of the rebuilt groups differ from the authors' folds) |
 
 ## Statistics and definitions
@@ -30,7 +30,7 @@ I found everything below by running the repository's code and notebooks, or by c
 | 17 ★ | Average AUROC of Fig 5a | the panel plots one AUROC per strain (Source Data: mean 0.872) | text: 85 % average; the preprint: 77 % per phage | the text's 85 % is below the mean of its own data |
 | 18 ★ | PERMANOVA of the phage host range | no code in the repository | text: genus R² = 0.13 | 0.13 is the increase of the adjusted R² when genus is added after isolation strain; genus alone gives 0.27 |
 | 19 ★ | ED9a test | the notebook merges the per-strain mean step number back onto the three-rows-per-strain table, so each strain enters the Mann-Whitney test three times | P = 3.5e-12 | with each strain once, P = 6.4e-5 |
-| 20 ★ | ED7 coverage | no code in the repository | text: 63 % (triplet) and 68 % (four phages); Source Data: 67.0 % and 73.7 % | the curve of the Source Data cannot be obtained from the matrix with any set of MLC scores |
+| 20 ★ | ED7 coverage | no code in the repository | published text: 63 % (triplet); preprint text: 68 % (four phages); Source Data: 67.0 % and 73.7 % | the curve of the Source Data cannot be obtained from the matrix with any set of MLC scores |
 | 21 | ED9b | Source Data "number of haplotypes" equals the strains per cocktail (31, 21, 19, 4) | legend: number of haplotypes | the plotted values are strain counts; the haplotype counts are 20, 18, 18 and 4 |
 | 22 ★ | Generic cocktails | Fig 6 analysis: four generic cocktails (24 tailored, 76 generic strains); ED9 cell of the same notebook: three (Supplementary Table 7: 28 and 72) | Fig 6d: 91.67 % = 22/24, 78.95 % = 60/76 | the two figures use different groups |
 | 23 | Printed P of Fig 2f | no code in the repository | 1.44e-26 | the one-way ANOVA of its own Source Data gives 7.9e-26 |

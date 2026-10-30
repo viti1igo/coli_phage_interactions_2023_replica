@@ -1,0 +1,3 @@
+tier,pairs,flips,flip_rate,spearman,flips_with_label_change,flips_with_strain_feature_change,flips_with_host_feature_change,flips_with_best_model_change,flips_with_none
+T3,38435,3150,0.08195655001951346,0.8831541768226538,0,1483,1582,1974,310
+T4,38435,3123,0.08125406530506049,0.87798230586558,12,1475,1437,2150,195

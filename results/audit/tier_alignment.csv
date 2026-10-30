@@ -1,0 +1,5 @@
+tier,strains,phages,pairs,lytic_fraction,pairs_not_in_T2,T2_pairs_missing,label_flips_vs_T2
+T1,402,96,38378,0.2076,1,58,0
+T2,402,96,38435,0.2075,0,0,0
+T3,402,96,38435,0.2075,0,0,0
+T4,402,96,38570,0.2055,135,0,72

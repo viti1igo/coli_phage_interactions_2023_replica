@@ -116,3 +116,24 @@ One line per task, with what came out of it. `tasks/todo.md` in the working copy
 ## Phase 17: plain-prose rewrite
 
 - T63: I rewrote the README and reports 01 to 11 in plain prose. Numbers, tables, code blocks, paths and links are unchanged.
+
+## Phase 18: gap audit
+
+- T64: I built a register of the 47 rows of the paper comparison that did not match, each with a cause code.
+- T65: All tiers have 402 strains and 96 phages. The authors' predictions lack 58 pairs that the shipped matrix has and hold 1 pair it lacks.
+- T66: Overall metrics with bootstrap intervals for the authors' run and ours. The shipped-input run lies inside the interval on every metric.
+- T67: The 28 differences between the repository and the paper each have a code: P 20, D 4, U 3, C 1.
+- T68, T69: Per-phage table for 96 phages and a cause for every phage that moves by more than 0.05.
+- T70, T71: Pair-level comparison. Calls agree for 94.5 % of pairs between the authors' run and ours.
+- T72a: With the authors' fold assignment the mean change in per-phage AUROC falls from 0.026 to 0.0065, and 34 of 96 phages match to six decimals.
+- T72: Seed noise with fixed folds is 0.0011 on the mean per-phage AUROC and 0.0031 with a random partition.
+- T73, T73b: Regenerated features cost 0.018 mean per-phage AUROC with the folds fixed. The O-type and Klebsiella capsule type carry it, mostly through phages with few lytic strains.
+- T74: ED7 (4 thresholds, 12 raw-plaque definitions) and Fig 3a (LF110, genus labels) tested; 8 rows stay residual.
+- T75: Report 12 written from the audit tables.
+- T76: I checked the audit against an independent bioRxiv preprint (Noonan et al.) on the same matrix. Dataset counts and overall AUROC (0.869 against 0.86) agree, and its promiscuity baseline supports my ED7 reading.
+- T77: I compared the original preprint with the published paper and the repository (23 statements). Two register rows wrongly said the paper gives no number and are fixed. The 68 % four-phage coverage is from the preprint only. The authors' folds fit greedy group packing of our groups once one group is taken apart, and scikit-learn 1.1.2 against 1.9.1 does not explain the fold difference.
+
+## Phase 20: pinned environment rerun
+
+- T81: I built the conda environment `ml_pinned` (scikit-learn 1.1.2, scipy 1.11.2, Python 3.10.22, numpy 1.23.5, pandas 1.5.3, joblib 1.2.0). The authors state no Python version for the model step, so 3.10 follows scikit-learn 1.1.2. `predict.py` now passes `penalty="l1"` below scikit-learn 1.8, because 1.1.2 fits L2 when only `l1_ratio=1` is given.
+- T82: Reruns T2.1 (shipped inputs), T2.1 with the authors' folds, and T3.1 (regenerated features). With the authors' folds the mean change in per-phage AUROC is 0.0042 and mean AUROC 0.7813 against 0.7812. LogReg L2 probabilities are identical for 72.2 % of pairs. With our own groups the version changes the folds and does not close the gap (0.0296 against 0.0261). Every unmatched component of the authors' environment is listed with its reason in `results/audit/env_match.csv`.

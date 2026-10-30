@@ -1,0 +1,17 @@
+family,definition,strains,k1,k2,k3,k4,plateau,matches_source_data
+MLC score,MLC >= 1,403,264,324,353,366,391,False
+MLC score,MLC >= 2,403,175,265,310,330,376,False
+MLC score,MLC >= 3,403,118,178,221,251,336,False
+MLC score,MLC >= 4,403,59,104,138,156,253,False
+raw plaque scores,positive in >= 1 of 3 replicates at dilution 0 or more dilute,369,262,316,338,350,362,False
+raw plaque scores,positive in >= 2 of 3 replicates at dilution 0 or more dilute,369,244,301,321,334,357,False
+raw plaque scores,positive in >= 3 of 3 replicates at dilution 0 or more dilute,369,191,255,285,302,343,False
+raw plaque scores,positive in >= 1 of 3 replicates at dilution -1 or more dilute,369,176,260,291,310,345,False
+raw plaque scores,positive in >= 2 of 3 replicates at dilution -1 or more dilute,369,132,203,246,268,329,False
+raw plaque scores,positive in >= 3 of 3 replicates at dilution -1 or more dilute,369,69,111,137,155,241,False
+raw plaque scores,positive in >= 1 of 3 replicates at dilution -2 or more dilute,369,126,193,229,256,329,False
+raw plaque scores,positive in >= 2 of 3 replicates at dilution -2 or more dilute,369,100,154,192,219,294,False
+raw plaque scores,positive in >= 3 of 3 replicates at dilution -2 or more dilute,369,69,111,137,155,241,False
+raw plaque scores,positive in >= 1 of 3 replicates at dilution -4 or more dilute,369,53,88,115,131,192,False
+raw plaque scores,positive in >= 2 of 3 replicates at dilution -4 or more dilute,369,0,0,0,0,0,False
+raw plaque scores,positive in >= 3 of 3 replicates at dilution -4 or more dilute,369,0,0,0,0,0,False

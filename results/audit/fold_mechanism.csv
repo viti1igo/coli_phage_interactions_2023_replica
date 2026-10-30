@@ -1,0 +1,13 @@
+,value
+our_groups,301.0
+our_groups_split_by_authors_folds,1.0
+strains_in_them,2.0
+phages_packing_consistent_original_groups,0.0
+phages_packing_consistent_after_splitting,96.0
+phages,96.0
+size_blocks_consistent_after_splitting,672.0
+size_blocks,672.0
+ari_installed_sklearn,0.021962764256543532
+ari_installed_sklearn_max,0.029904866211398876
+ari_sklearn_1_1_2_copy,0.028382598700820046
+ari_sklearn_1_1_2_copy_max,0.043343726379440665

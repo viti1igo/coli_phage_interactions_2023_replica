@@ -1,0 +1,24 @@
+tier,factor,value,pairs,flips,flip_rate
+T3,label_changed,False,38435,3150,0.08195655001951346
+T3,strain_features_changed,False,20185,1667,0.08258607877136487
+T3,strain_features_changed,True,18250,1483,0.08126027397260274
+T3,host_features_changed,False,20424,1568,0.07677242459851155
+T3,host_features_changed,True,18011,1582,0.08783521181500194
+T3,best_model_changed,False,18020,1176,0.06526082130965594
+T3,best_model_changed,True,20415,1974,0.09669360764144012
+T3,strain_features_changed x best_model_changed,False x False,9463,570,0.06023459790764028
+T3,strain_features_changed x best_model_changed,False x True,10722,1097,0.10231300130572654
+T3,strain_features_changed x best_model_changed,True x False,8557,606,0.07081921234077364
+T3,strain_features_changed x best_model_changed,True x True,9693,877,0.09047766429382029
+T4,label_changed,False,38363,3111,0.08109376221880457
+T4,label_changed,True,72,12,0.16666666666666666
+T4,strain_features_changed,False,20185,1648,0.0816447857319792
+T4,strain_features_changed,True,18250,1475,0.08082191780821918
+T4,host_features_changed,False,20424,1686,0.08254994124559342
+T4,host_features_changed,True,18011,1437,0.07978457609238798
+T4,best_model_changed,False,15221,973,0.0639248406806386
+T4,best_model_changed,True,23214,2150,0.0926165245110709
+T4,strain_features_changed x best_model_changed,False x False,7993,509,0.06368072063055173
+T4,strain_features_changed x best_model_changed,False x True,12192,1139,0.09342191601049869
+T4,strain_features_changed x best_model_changed,True x False,7228,464,0.06419479800774765
+T4,strain_features_changed x best_model_changed,True x True,11022,1011,0.09172563962983124

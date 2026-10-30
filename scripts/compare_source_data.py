@@ -116,7 +116,7 @@ pd.DataFrame({"bacteria": e6b.index, "n_amr_genes": e6b.n_amr_genes.values, "gen
 e7 = sheet(12, "Extended_Data_Fig7", text_first=False)
 ours7 = pd.read_csv(f"{ROOT}/results/figures/ed7.csv")
 for k in (1, 3, 4):
-    add("ED7", f"coverage at k = {k} (%)", f"{e7.coverage[k - 1]:.1f} (Source Data)" + (f"; {'63' if k == 3 else '68'} in the text" if k in (3, 4) else ""), f"{ours7.coverage_pct[k - 1]:.1f}", "Source Data ED7; SI Text 10", "no threshold on the MLC scores reproduces the paper's curve (best single phage 172 of 403 strains in the Source Data; MLC>0 gives 264, MLC>=2 gives 175); the text (63 %) also disagrees with the Source Data (67 %)", "differs")
+    add("ED7", f"coverage at k = {k} (%)", f"{e7.coverage[k - 1]:.1f} (Source Data)" + (f"; {'63 in the published text' if k == 3 else '68 in the preprint text only'}" if k in (3, 4) else ""), f"{ours7.coverage_pct[k - 1]:.1f}", "Source Data ED7; SI Text 10", "no threshold on the MLC scores reproduces the paper's curve (best single phage 172 of 403 strains in the Source Data; MLC>0 gives 264, MLC>=2 gives 175); the text (63 %) also disagrees with the Source Data (67 %)", "differs")
 add("ED7", "coverage when all phages are used (%)", f"{e7.coverage.max():.1f}", f"{100 * (st3.fillna(0) > 0).any(axis=1).mean():.1f} (lysis at any concentration)", "Source Data ED7", "", "differs")
 
 # ---- ED2 numbers printed in the Supplementary Information

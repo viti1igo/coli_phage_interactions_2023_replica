@@ -74,7 +74,7 @@ for a in axs: style(a)
 fig.tight_layout()
 save(fig, "fig2_d_e", pd.concat([pct_strain.rename("pct_phages_infecting_strain").reset_index().rename(columns={"index": "bacteria"}),
                                   pct_phage.rename("pct_strains_infected").reset_index().rename(columns={"index": "phage"})], axis=1))
-stat("Fig 2", "mean % of strains infected per phage", "not stated", round(pct_phage.mean(), 1), "-")
+stat("Fig 2", "mean % of strains infected per phage", 20.6, round(pct_phage.mean(), 1), "Results (published.txt l.99-100: 83 +/- 70 strains, 20.6 % of the collection)")
 
 # ---------------- Fig 2 f: host range by morphotype, one-way ANOVA
 g = {m: pct_phage[ph.loc[pct_phage.index, "Morphotype"] == m] for m in ["Myoviridae", "Podoviridae", "Siphoviridae"]}

@@ -10,7 +10,8 @@ Fig 5a,mean AUROC per phage (preprint),0.77,0.787,Results (preprint.txt l.521)
 Fig 5,pooled AUROC,0.86,0.856,Fig 5b
 Fig 5,average precision,0.6,0.598,Fig 5b
 Fig 5d,F1 at p >= 0.5 (all pairs pooled),0.6,0.599,Results
-Fig 5d,TP / FP / FN (pairs),not stated,4669 / 2940 / 3307,-
+Fig 5d,false negatives (pairs),3379,3307,"Results (published.txt l.633; preprint.txt l.529): 3,379 false negatives and 2,922 false positives over 38,688 interactions"
+Fig 5d,false positives (pairs),2922,2940,Results (published.txt l.633-634; preprint.txt l.529)
 Fig 5c,"Spearman(AUROC, n lytic) per strain",not stated,-0.191,-
 Fig 6d,"success rate, tailored (%)",91.67,91.67,Results p.2855
 Fig 6d,"success rate, generic (%)",78.95,78.95,Results p.2855

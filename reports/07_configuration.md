@@ -1,12 +1,12 @@
 # 7. Configuration: what the paper specifies and what was run
 
-`config/paper_config.yaml` records every tool version and parameter the paper states, each with its line in the published text. Settings the paper leaves out are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what I ran (32 rows, reproduced below). `config/references.yaml` holds the two reference sequences I downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported specifications of the eight tool environments.
+`config/paper_config.yaml` records every tool version and parameter the paper states, each with its line in the published text. Settings the paper leaves out are marked `unspecified`. `config/config_diff.csv` lists every difference between that file and what I ran (37 rows, reproduced below). `config/references.yaml` holds the two reference sequences I downloaded separately (UniProt P27243 *waaL*, P76115 *yncD*). `config/envs/*.yml` are the exported specifications of the eight tool environments.
 
 ## Differences
 
 | Component | Parameter | Paper | Used | Reason | Expected effect |
 |---|---|---|---|---|---|
-| prediction | scikit-learn | 1.1.2 | 1.9.1 | 1.1.2 not installable on Python 3.14 | none expected; L1 penalty arg replaced by l1_ratio=1, sparse solution checked identical |
+| prediction | scikit-learn | 1.1.2 | 1.9.1 in the main runs (T2, T3, T4); 1.1.2 on Python 3.10 in the pinned reruns (T2.1, T3.1, Phase 20) | 1.1.2 is not installable on Python 3.14; it installs on Python 3.10 only (conda-forge osx-arm64 has no 3.12 build) | pinned rerun: mean per-phage AUROC 0.7813 against 0.7812 (the authors' folds); the version alone changes the fold partition (adjusted Rand 0.047); penalty="l1" restored in the pinned run (l1_ratio=1 would fit L2 in 1.1.2) |
 | prediction | random seeds | unspecified | RF random_state=0; saga solver random_state=0 | unseeded saga gave tiny run-to-run changes | reruns identical |
 | prediction | interaction label | N/P/F/U matrix used by the original script | lytic = MLC > 0 on the public 0-4 matrix | private matrix not public | 20.7% positives (README says 19%) |
 | prediction | CV groups | authors' file (1e-4 substitutions/site) | rebuilt: single linkage on the shipped tree at 1e-4 | file no longer public | 0.3% of our groups split across the authors' folds |
@@ -38,6 +38,11 @@
 | notebooks | the authors' four notebooks | - | run on a scratch copy, as shipped and with path/compatibility patches (scripts/notebook_patches.py) | Windows and private paths, a moved file, a missing package, newer pandas and matplotlib | no analysis changed; one cell of the authors' still fails |
 | modelling | PERMANOVA covariates (SI Text 8) | adsorption factors and defense subfamilies as presence/absence, traits with fewer than 8 observations lumped, 8 PCoA phylogeny axes first | indicators of the levels with at least 8 strains (O, H, LPS, Klebsiella, ABC, 12 outer-membrane variants; defense subfamilies at 80/80), Jaccard distance of the lytic profiles, AIC = n ln(SS_res/n) + 2 rank | covariate lists and the distance are not given | AF and full adjusted R2 agree (0.26, 0.27 vs 0.27, 0.28); defense 0.17 vs 0.05 |
 | data | genome set for tree | 403 strains + references | 402 strains in common with the shipped tree | ESCO.All.prt is a proteome file, not a genome | - |
+| prediction | Python | not stated (only the plotting notebook's kernel metadata says 3.12.2; the prediction script records none) | 3.14.7 (main runs); 3.10.22 (pinned reruns) | authors' Python for the model step is unknown; scikit-learn 1.1.2 has no Python 3.12 build |  so Python follows scikit-learn |
+| prediction | scipy | 1.11.2 (Methods, scipy.stats) | 1.18.1 (main runs); 1.11.2 (pinned reruns) | - | none expected |
+| prediction | numpy / pandas / joblib | not stated | 2.5.4 / 3.0.6 / 1.6.0 (main); 1.23.5 / 1.5.3 / 1.2.0 (pinned) | not stated; pinned versions are contemporary with scikit-learn 1.1.2 and compatible with it | unknown, small |
+| prediction | model randomness | np.random.seed(0) once; RandomForest, Dummy and saga have no random_state; phages run in sequence | random_state=0 per RF and Dummy; saga unseeded; phages in parallel | the global random stream cannot be replayed: it depends on private labels and on row order | RF probabilities differ (median abs 0.008-0.018 with their folds); mean AUROC noise 0.0011 |
+| prediction | operating system | Windows (script paths D:\...) | macOS arm64 (Apple M2) | no Windows machine | floating-point differences about 1e-4 on a few LogReg L2 phages |
 
 ## Settings the paper does not state
 
@@ -58,8 +63,9 @@ The paper leaves these out: UMAP hyperparameters, how the tree becomes a distanc
 | Alignment (Fig 3b) | `aln` | MAFFT 7.526 |
 | Models and figures | `.venv` | Python 3.14, scikit-learn 1.9.1, scipy 1.18.1, pandas 3.0.6, numpy 2.5.4, umap-learn 0.5.12, matplotlib 3.11.2, biopython 1.88, pyrodigal, statsmodels 0.15, bokeh 3.10, nbclient |
 | Mixed models | R 4.3.0 | MCMCglmm 2.36, ape 5.8.1 |
+| Pinned model rerun (T2.1, T3.1) | `ml_pinned` ([`environment.yml`](../environment.yml)) | Python 3.10.22, scikit-learn 1.1.2, scipy 1.11.2, numpy 1.23.5, pandas 1.5.3, joblib 1.2.0, OpenBLAS 0.3.25 |
 
-`scripts/setup_envs.sh <env>` creates the environments with micromamba. On an Apple-silicon Mac the osx-64 environments need Rosetta. The `conda` installation on my machine was broken, which is why I used micromamba.
+`scripts/setup_envs.sh <env>` creates the environments with micromamba, and `scripts/setup_pinned_env.sh` creates `ml_pinned`. [`results/audit/env_match.csv`](../results/audit/env_match.csv) lists 13 components of the authors' environment with what was matched and the reason for each mismatch. The paper states scikit-learn 1.1.2 and scipy but no Python version for the model step (3.12.2 appears only in the kernel metadata of the authors' plotting notebook), so Python 3.10 follows scikit-learn 1.1.2, which has no build for 3.12. On an Apple-silicon Mac the osx-64 environments need Rosetta. The `conda` installation on my machine was broken, which is why I used micromamba.
 
 ## Platform notes
 

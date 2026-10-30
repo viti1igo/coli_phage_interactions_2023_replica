@@ -1,0 +1,12 @@
+item,preprint,this audit,verdict,note
+Strains in the E. coli matrix,402 (Table 1),402 (public matrix),agrees,both lack strain LF110; the paper has 403
+Phages,94 (Table 1),96,differs,the preprint drops 2 phages and does not name them; 11 pairs of phages would give its positive count
+Interactions,"37,788 = 402 x 94 (Table 1)","37,788 cells for 94 phages",agrees,arithmetic only
+Positive interactions,"7,813 (20.7 %) (Table 1)","7,976 of 38,592 cells (20.7%); 7,813 after removing two phages with 163 lytic pairs",agrees,"the README's '19 % positive' is the odd one out (report 11, item 8)"
+Definition of a positive,any non-zero interaction (Methods),MLC > 0,agrees,the same convention as the authors' script
+AUROC for unseen strains,0.869 (Table 2); 0.87 in the text against 0.86 for the original study,"pooled AUROC 0.857 (authors), 0.856 (this run), 0.86 (paper)",agrees within 0.013,"different method (CatBoost on protein families, 20-fold hierarchical-cluster CV with 10 % of strains held out); the text does not say how the AUROC is pooled, and Table 2 does not say whether 'E. coli' is the 402-strain or the 177-strain set"
+"Best fixed single phage, share of strains infected","about 61 % implied (66.9 % for the model's pick, 1.1-fold over promiscuity; rounding gives 58 to 64 %)","65.4% (promiscuity chosen on training strains, 20-fold CV, 50 repeats); ED7 Source Data says 42.7 %","supports this audit, not ED7","with 'any non-zero' as positive, one promiscuous phage covers 61 to 65 % of strains in both analyses, far above ED7's 42.7 %"
+"Promiscuity baseline, 5 phages","about 81 % implied (97.5 % for the model, 1.2-fold; rounding gives 78 to 85 %)","84.6% (top 5 by promiscuity, no clustering)",consistent,"the preprint's baseline picks one phage per cluster, so it is expected to sit slightly lower"
+Model-guided 5-phage cocktail,97.5 % of E. coli strains,no counterpart,not comparable,per-strain selection by a model; ED7 is a fixed set
+Experimental validation,"AUROC 0.84 on 1,240 interactions (52 BASEL phages x 25 ECOR strains)",no counterpart,not comparable,"new phages, a different laboratory"
+Arithmetic inside the preprint,"totals 115,037 interactions, 949 strains, 27,081 and 4,304 development, 1,240 validation",recomputed from its Table 1 and Methods,"reconciles, with one slip",Klebsiella-3 has 25 phages in Methods and 52 in Table 1; only 52 gives the stated 518 phages

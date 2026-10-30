@@ -2,7 +2,7 @@
 Faithful to the original incl. its quirks (see docs/FEATURES.md); run(drop=...) is reused by ablate.py.
     python scripts/predict.py            -> results/repro/{per_phage,predictions}.csv + comparison to published"""
 import glob, os, re, sys, warnings
-import numpy as np, pandas as pd
+import numpy as np, pandas as pd, sklearn
 from joblib import Parallel, delayed
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -14,34 +14,62 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 G = f"{ROOT}/data/genomics"
 # FEATURE_SET=shipped (default) | regenerated (our features, tree-based UMAP and CV groups) | regenerated+matrix (also our MLC matrix where we have raw data)
 SET = os.environ.get("FEATURE_SET", "shipped"); SUFFIX = "" if SET == "shipped" else "_" + SET.replace("+", "_")
-RES = f"{ROOT}/results/repro{SUFFIX}"
+# Audit switches (scripts/run_audit_runs.sh), all off by default: TAG writes to results/audit_runs/<TAG>; SEED seeds RF, Dummy and LogReg(saga);
+# FOLDS=<csv phage,bacteria,fold> reuses the authors' folds on the pairs in that file, FOLDS=shuffle draws a random partition of the groups with SEED;
+# SWAP=<O-type,ST,LPS,Klebsiella,ABC,UMAP,host> puts those regenerated feature groups into the shipped inputs.
+TAG, SEED, FOLDS = os.environ.get("TAG"), os.environ.get("SEED"), os.environ.get("FOLDS")
+SWAP = [g for g in os.environ.get("SWAP", "").split(",") if g]
+RES = f"{ROOT}/results/audit_runs/{TAG}" if TAG else f"{ROOT}/results/repro{SUFFIX}"
+RS = int(SEED) if SEED else 0
 warnings.filterwarnings("ignore")
 
 M = pd.read_csv(f"{ROOT}/data/interactions/interaction_matrix.csv", sep=";", index_col=0)
 BACT = pd.read_csv(f"{G}/bacteria/picard_collection.csv", sep=";", index_col=0)
 UMAP = pd.read_csv(f"{G}/bacteria/umap_phylogeny/coli_umap_8_dims.tsv", sep="\t", index_col=0)
 GROUPS = pd.read_csv(f"{ROOT}/data/derived/cv_groups_1e-4.csv", sep=";", index_col=0)["group"]
-if SET != "shipped":
+def regenerated_tables():
     reg = pd.read_csv(f"{ROOT}/replication/T25_features/picard_collection_regenerated.csv", sep=";", index_col=0, dtype={"ST_Warwick": str})
-    BACT = reg.rename(columns={"LPS_type (cross-validated markers)": "LPS_type", "ABC_model (best system)": "ABC_serotype"})
-    BACT["ST_Warwick"] = BACT["ST_Warwick"].str.replace(r"^~|\*$", "", regex=True)   # mlst marks approximate / novel alleles
-    UMAP = pd.read_csv(f"{ROOT}/replication/T14_panacota/umap_8_dims_our_tree.tsv", sep="\t", index_col=0)
+    b = reg.rename(columns={"LPS_type (cross-validated markers)": "LPS_type", "ABC_model (best system)": "ABC_serotype"})
+    b["ST_Warwick"] = b["ST_Warwick"].str.replace(r"^~|\*$", "", regex=True)   # mlst marks approximate / novel alleles
+    return b, pd.read_csv(f"{ROOT}/replication/T14_panacota/umap_8_dims_our_tree.tsv", sep="\t", index_col=0)
+
+
+if SET != "shipped":
+    BACT, UMAP = regenerated_tables()
     GROUPS = pd.read_csv(f"{ROOT}/data/derived/cv_groups_1e-4_regenerated.csv", sep=";", index_col=0)["group"]
 if SET == "regenerated+matrix":
     mine = pd.read_csv(f"{ROOT}/replication/T26_matrix/mlc_matrix_regenerated.csv", sep=";", index_col=0)
     M = mine.combine_first(M)  # our matrix where the raw table gives a value, the shipped one elsewhere (the 33 host strains, uninterpretable cells)
+BACT_HOST = BACT   # table the host-sharing features are built from
+if SWAP:
+    rb, ru = regenerated_tables()
+    rb["ST_Warwick"] = rb["ST_Warwick"].str.replace(r"\.0$", "", regex=True)   # shipped ST is '1163', regenerated '1163.0'
+    BACT = BACT.copy()
+    COLS = {"O-type": ["O-type"], "ST": ["ST_Warwick"], "LPS": ["LPS_type"], "Klebsiella": ["Klebs_capsule_type"], "ABC": ["ABC_serotype"]}
+    for g in SWAP:
+        if g == "UMAP": UMAP = ru
+        elif g == "host": BACT_HOST = rb
+        else: BACT[COLS[g]] = rb[COLS[g]].reindex(BACT.index)
+    if "host" not in SWAP: BACT_HOST = BACT
 Y = (M > 0).astype(float).where(M.notna())  # lytic = MLC > 0 (paper: MLC is null for non-lytic)
 PHAGE_HOST = pd.read_csv(f"{G}/phages/guelin_collection.csv", sep=";", index_col=0)["Phage_host"]
 FEAT = BACT[["O-type", "LPS_type", "ST_Warwick", "Klebs_capsule_type", "ABC_serotype"]].join(UMAP, how="inner")
 UMAP_COLS = [c for c in FEAT if c.startswith("UMAP")]
 # original regex dropped H-type and phylogroup before the host merge, so host features = ST_host, O_host only
+# the authors' penalty="l1" is deprecated in scikit-learn >= 1.8 (l1_ratio=1 is the same solution); in 1.1.2 l1_ratio=1 without penalty="l1" silently fits L2
+L1 = {"penalty": "l1"} if tuple(map(int, sklearn.__version__.split(".")[:2])) < (1, 8) else {"l1_ratio": 1}
 MODELS = {
-    "RF_250_3": lambda cw: RandomForestClassifier(max_depth=3, n_estimators=250, class_weight=cw, random_state=0),
-    "RF_250_6": lambda cw: RandomForestClassifier(max_depth=6, n_estimators=250, class_weight=cw, random_state=0),
+    "RF_250_3": lambda cw: RandomForestClassifier(max_depth=3, n_estimators=250, class_weight=cw, random_state=RS),
+    "RF_250_6": lambda cw: RandomForestClassifier(max_depth=6, n_estimators=250, class_weight=cw, random_state=RS),
     "LogReg_l2": lambda cw: LogisticRegression(class_weight=cw, max_iter=10000),
-    "LogReg_l1": lambda cw: LogisticRegression(class_weight=cw, l1_ratio=1, solver="saga", max_iter=10000),
-    "Dummy": lambda cw: DummyClassifier(strategy="stratified", random_state=0),
+    "LogReg_l1": lambda cw: LogisticRegression(class_weight=cw, **L1, solver="saga", max_iter=10000, random_state=int(SEED) if SEED else None),
+    "Dummy": lambda cw: DummyClassifier(strategy="stratified", random_state=RS),
 }
+
+
+if FOLDS and FOLDS != "shuffle":
+    _f = pd.read_csv(FOLDS)
+    AUTHOR_FOLDS = {ph: g.set_index("bacteria").fold for ph, g in _f.groupby("phage")}
 
 
 def class_weight(y):
@@ -56,7 +84,7 @@ def design(phage, drop=()):
         rare = FEAT.groupby(c).filter(lambda x: len(x) < 3)[c].unique()
         d.loc[d[c].isin(rare), c] = "Other"
     if not phage.startswith("LF110"):  # no host genome for LF110
-        h = BACT.loc[PHAGE_HOST[phage]]
+        h = BACT_HOST.loc[PHAGE_HOST[phage]]
         d["same_O_as_host"] = d["O-type"] == h["O-type"]
         d["same_ST_as_host"] = d["ST_Warwick"] == h["ST_Warwick"]
         d["same_ABC_as_host"] = d["ABC_serotype"] == d["ABC_serotype"]  # original bug: x==x -> "ABC serotype is not missing"
@@ -71,9 +99,16 @@ def design(phage, drop=()):
 
 def run_phage(phage, drop=()):
     X, y, g = design(phage, drop)
+    if FOLDS and FOLDS != "shuffle":
+        f = AUTHOR_FOLDS[phage].reindex(y.index)
+        keep = f.notna().to_numpy()   # pairs the authors' run had
+        X, y, g, f = X[keep], y[keep], g[keep], f[keep].to_numpy()
+        splits = [(np.where(f != k)[0], np.where(f == k)[0]) for k in sorted(set(f))]
+    else:
+        splits = GroupKFold(10, shuffle=True, random_state=RS).split(X, y, g) if FOLDS == "shuffle" else GroupKFold(10).split(X, y, g)
     cw = class_weight(y)
     perf, preds = [], []
-    for k, (tr, te) in enumerate(GroupKFold(10).split(X, y, g)):
+    for k, (tr, te) in enumerate(splits):
         for name, make in MODELS.items():
             if y.iloc[tr].nunique() < 2:  # very rare phage: every lytic strain sits in the test fold, nothing to learn -> constant prediction
                 p = np.full(len(te), float(y.iloc[tr].iloc[0]))

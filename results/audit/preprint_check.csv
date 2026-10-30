@@ -1,0 +1,24 @@
+item,preprint v1,published paper (T0),repository (T1),verdict
+Matrix size,"403 x 96 = 38,688 [l.242]",403 x 96 [l.570],"402 x 96 public matrix: 38,592 cells, 38,435 tested; the shipped predictions cover 38,378 pairs",preprint and paper agree; T1 lacks LF110
+Share of interactions that are lytic,20.3 % [l.245],20.3 % [l.344],20.75% of tested cells,T1 is 0.5 points higher; the paper's own 20.6 % and 20.8 % imply 20.7 %
+Strains infected per phage,83 +/- 70 (20.6 %) [l.246],83 +/- 70 (20.6 %) [l.99],83.1 +/- 69.7 (20.7%),same in all three
+Phages lysing a strain,20 +/- 15 (20.8 %) [l.247],20 +/- 15 (20.8 %) [l.100],19.8 +/- 15.2 (20.7%),same in all three
+Strains lysed by no phage,12 (3.0 %) [l.248],12 (3.0 %) [l.102],12,same in all three
+One-way ANOVA of host range by morphotype,"F = 114.7, P < 1e-3 [l.256]",F = 114.7 [l.339]; P = 1.44e-26 in the Fig 2f legend [l.460],"F = 113.9 on the public matrix, 114.66 with LF110",same once LF110 is added
+PERMANOVA of phage host range (adjusted R2),"genus 0.13, isolation strain 0.53, both 0.65, defense 0.02 [l.308-311, l.432]","same [l.365-369, l.424]",no code in the repository,same in both texts; T1 has no code
+LPS types,"K-12 43, R1 206, R2 22, R3 61, R4 35 [l.206]",not in the extracted text,"K-12 43, R1 206, R2 22, R3 61, R4 35",T1 matches the preprint
+Strains with a Klebsiella capsule,22 of 403 (5.4 %) [l.149],not stated,22 of 403,match (22/403 is 5.5 %)
+Mean AUROC of Fig 5a,"77 %, per phage [l.521]","85 %, per strain [l.623]","per-phage mean 0.781, per-strain mean 0.881",T1 matches the preprint's per-phage 77 %; the paper changed the unit
+Overall AUROC,"86 % in the Results [l.522], 85 % in the Discussion [l.672]","86 % in the Results and the Discussion [l.625, l.824]",pooled 0.857,the preprint contradicts itself; paper and T1 agree on 86 %
+Average precision and F1,not reported,60 % and 60 % [l.625],0.601 and 0.596,paper and T1 agree
+False negatives and false positives,"3,379 and 2,922 of 38,688 [l.529]","3,379 and 2,922 of 38,688 [l.633]","3,318 and 2,980 of 38,378 pairs at p >= 0.5","within 2 %; the totals of errors are 6,301 (paper) and 6,298 (T1)"
+Most covering triplet and 4-set,63 % and 68 % [l.575-576],63 % [l.802]; 4-set not stated; ED7 Source Data 67.0 % and 73.7 %,no code; the matrix gives 87.6 % and 90.8 % (any lysis),the published text drops the 68 %; the Source Data disagrees with both texts
+"K1 rule: the three phages, then the other Vectreviruses and Kayfunaviruses","precision 73 %, recall 72 %; 7 % and 14 % [l.343-345]","same, in Supplementary Text 6",87 % and 55 %; 18 % and 18 %,same in both texts; T1 differs
+Tailored and generic recommendations,"15 cocktails for 24 strains, 3 cocktails for 76 [l.607-609]",same [l.783-786]; Supplementary Table 7 gives 28 and 72,24 / 76,both texts match T1; Supplementary Table 7 differs
+"Cocktail success: tailored, generic, baseline","91.67, 78.95 and 81.00 % [l.628-630]",91.67 %; 'baseline and generic 81 % and 78 %' [l.806-811]; 78.95 % in Fig 6d,"91.67, 78.95 and 81 %",same; the published text truncates 78.95
+Mann-Whitney tests,"U = 399.5, P = 0.02; U = 1171.5, P = 0.02 [l.631-632]",same text [l.812-815]; Source Data P = 0.019 and 0.034,U = 399.5 and 1171.5; P = 0.019 and 0.034,the U values agree; the text's 0.02 for tailored against generic should read 0.03
+Phylogroups covered by the isolation strains,75 % [l.176],66 % [l.73],not checkable,changed between versions
+Agreement of annotated scores across replicates,"88.64 %, 9.71 %, 98.35 % [l.815-817]","88.6 %, 9.7 %, 98.3 %","the raw table is binary: 90.7 %, 9.3 %, 100 %",not checkable: the finer scores are not shipped
+Per-phage models,"LogReg L2 and L1, RF depth 3 and 6 with 250 trees, class weights by prevalence, scikit-learn 1.1.2 [l.984-992]",same [l.1526-1562],same four models plus a Dummy baseline (never best in T1); our rerun uses scikit-learn 1.9.1,"texts agree; the code has 5 models, the texts 4"
+Recommender random forests,"depth 4, 80 trees, class weight 1.5 [l.1014, l.1021]","same [l.1608, l.1629]",README the same,same in all three
+Rule that picks the best model,mean AUROC [l.1002],"mean AUROC (report 11, item 15)",the script uses mean AUPR,"texts say AUROC, code uses AUPR"

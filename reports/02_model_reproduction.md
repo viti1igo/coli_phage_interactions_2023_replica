@@ -76,7 +76,7 @@ Every estimate falls inside the paper's intervals. Panel d is significant in all
 
 1. The authors' cross-validation group file is no longer public, so the groups were rebuilt from the tree. Against the authors' fold logs (50 phages whose row counts agree), 50 of 14,994 rebuilt groups (0.3 %) are split across their folds.
 2. The public matrix holds MLC scores from 0 to 4, while the original script used a private N/P/F/U matrix. Calling a pair lytic when its score is above 0 gives 20.7 % positives (the README says 19 %).
-3. scikit-learn is 1.9.1 instead of 1.1.2.
+3. scikit-learn is 1.9.1 in the main runs instead of 1.1.2. A second run set on scikit-learn 1.1.2 (Python 3.10, environment `ml_pinned`) is described in [report 12](12_gap_audit.md): with the authors' fold assignment the mean change in per-phage AUROC is 0.0042 (0.0065 on 1.9.1), and LogReg L2 probabilities match for 72.2 % of pairs. Random forests cannot match because the authors did not seed them.
 4. The original keeps Windows paths and private files, so it was rewritten as `scripts/predict.py`. Training-set metrics, pickled models and self-computed importances were dropped.
 5. The best model per phage is chosen by mean AUPR, as in the script and the README, although the paper's text says AUROC.
 6. For Fig 6 only the statistics were repeated. For Fig 4 the Rmd bugs were fixed and a prior was added for five phages.

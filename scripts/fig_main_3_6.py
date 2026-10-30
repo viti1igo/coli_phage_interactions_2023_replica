@@ -93,7 +93,8 @@ stat("Fig 5a", "mean AUROC per phage (preprint)", 0.77, round(pp.auroc.mean(), 3
 stat("Fig 5", "pooled AUROC", 0.86, round(roc_auc_score(pr.y, pr.p), 3), "Fig 5b")
 stat("Fig 5", "average precision", 0.60, round(average_precision_score(pr.y, pr.p), 3), "Fig 5b")
 stat("Fig 5d", "F1 at p >= 0.5 (all pairs pooled)", 0.60, round(f1_score(pr.y, pr.yhat), 3), "Results")
-stat("Fig 5d", "TP / FP / FN (pairs)", "not stated", f"{tp} / {fp} / {fn}", "-")
+stat("Fig 5d", "false negatives (pairs)", 3379, fn, "Results (published.txt l.633; preprint.txt l.529): 3,379 false negatives and 2,922 false positives over 38,688 interactions")
+stat("Fig 5d", "false positives (pairs)", 2922, fp, "Results (published.txt l.633-634; preprint.txt l.529)")
 stat("Fig 5c", "Spearman(AUROC, n lytic) per strain", "not stated", round(strain_auc.corr(n_lytic, method="spearman"), 3), "-")
 
 # ---------------- Fig 6 c-e

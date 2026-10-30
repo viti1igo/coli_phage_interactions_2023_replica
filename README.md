@@ -29,10 +29,11 @@ The authors share their final feature tables and models. For most preprocessing 
 ## Comparison with the paper
 
 - The publisher's Supplementary Information, Supplementary Tables 1 to 7 and Source Data workbooks (13 files, 8.7 MB) are fetched by `scripts/download_supplement.sh` and compared with this replication by `scripts/compare_source_data.py`. They are not redistributed here. They settled several open differences: strain LF110 is missing from the public matrix, the paper's new phage names map exactly to the public ones, one headline AUROC is an average per strain, the Source Data counts significant terms at a threshold of 0.01, and the AMR counts needed for two extended-data panels are in the Source Data.
-- [`results/comparison/paper_vs_replication.csv`](results/comparison/paper_vs_replication.csv) compares 97 numbers one by one, each with its place in the article. 33 match within 5 %, 12 match, 1 matches once explained, 4 agree with the paper's confidence interval or item list, 23 differ, and 24 are qualitative. [reports/05_paper_comparison.md](reports/05_paper_comparison.md) discusses the ones that differ.
+- [`results/comparison/paper_vs_replication.csv`](results/comparison/paper_vs_replication.csv) compares 98 numbers one by one, each with its place in the article. 36 match within 5 %, 12 match, 1 matches once explained, 4 agree with the paper's confidence interval or item list, 23 differ, and 22 are qualitative. [reports/05_paper_comparison.md](reports/05_paper_comparison.md) discusses the ones that differ.
 - I ran the authors' repository itself: its four notebooks (as shipped, where 27 of 61 code cells fail, and with path and compatibility patches), the supplementary analyses whose data it holds, and the genome maps. [reports/11_repository_vs_paper.md](reports/11_repository_vs_paper.md) lists every difference found between the repository and the paper. [reports/10_repository_analyses.md](reports/10_repository_analyses.md) describes the runs.
-- [`config/config_diff.csv`](config/config_diff.csv) lists 32 differences between the paper's settings and the settings used, each with a reason and an expected effect. [`config/paper_config.yaml`](config/paper_config.yaml) holds the paper's own settings with line numbers and marks the ones it leaves unspecified.
+- [`config/config_diff.csv`](config/config_diff.csv) lists 37 differences between the paper's settings and the settings used, each with a reason and an expected effect. [`config/paper_config.yaml`](config/paper_config.yaml) holds the paper's own settings with line numbers and marks the ones it leaves unspecified.
 - 18 figures and extended-data figures are redrawn from the data, plus three schematics redrawn from the legends. Each comes as PNG, SVG and CSV, and [reports/06_figures.md](reports/06_figures.md) annotates every one. Figures that need data nobody has shared (the 1,026-genome phage network, the test-strain tree) are listed with the reason.
+- [reports/12_gap_audit.md](reports/12_gap_audit.md) gives every gap one cause code with its evidence. The unpublished cross-validation groups explain the per-phage differences from the authors' run, and with their fold assignment the mean change in per-phage AUROC falls from 0.026 to 0.0065. Regenerated features cost 0.018 mean per-phage AUROC, mostly in phages with few lytic strains. Eight rows of the paper comparison stay unexplained. A rerun in a conda environment pinned to the paper's scikit-learn 1.1.2 (Python 3.10; T2.1 on the shipped inputs, T3.1 on the regenerated ones) brings the mean change in per-phage AUROC with the authors' folds to 0.0042 and shows that the version alone does not close the gap with our own groups. `results/audit/env_match.csv` records which parts of the authors' environment could be matched and why the others could not.
 - The paper's cocktail recommender has no published code. `scripts/recommender.py` re-implements it from the README and the Methods, and it does not reproduce the authors' cocktails (see reports/05).
 - Four things would have to come from the authors: the cross-validation group file, the recommender code, the test-strain genomes and the genomes of the phage network. [reports/05_paper_comparison.md](reports/05_paper_comparison.md) says what each would settle.
 
@@ -51,24 +52,27 @@ The authors share their final feature tables and models. For most preprocessing 
 | [09_task_log.md](reports/09_task_log.md) | One line per task with its outcome |
 | [10_repository_analyses.md](reports/10_repository_analyses.md) | The authors' notebooks, the supplementary analyses and the genome maps |
 | [11_repository_vs_paper.md](reports/11_repository_vs_paper.md) | Every difference found between the authors' repository and the paper |
+| [12_gap_audit.md](reports/12_gap_audit.md) | The reason for each gap between the paper, the repository and this replication, overall, per phage and per pair |
 
 ## Layout
 
 ```
+environment.yml   the pinned model environment (scikit-learn 1.1.2, Python 3.10), same as config/envs/ml_pinned.yml
+requirements.txt  the main Python environment (3.14)
 config/       paper_config.yaml, config_diff.csv, references.yaml, envs/*.yml (tool environments)
 scripts/      all code (Python, R, shell)
 replication/  regenerated tables: features, interaction matrix, tree, UMAP, typing outputs
 notebooks/    the authors' notebooks executed (as shipped and patched), their errors and outputs
-results/      replication/ (agreement tables), comparison/, figures/, model outputs
+results/      replication/ (agreement tables), comparison/, audit/ (gap audit tables), figures/, model outputs
 data/derived/ cross-validation groups, genome sizes
-reports/      the eleven reports above
+reports/      the twelve reports above
 ```
 
 The authors' data, the genome assemblies and the paper's PDFs are not redistributed. The authors' repository has no licence file, so check its terms before reusing their material.
 
 ## Reproduce from scratch
 
-You need Python 3.14 with `requirements.txt`, R 4.3 with MCMCglmm, and micromamba for the tool environments. Plan for about 10 GB of disk for the intermediate files (the PanACoTA run alone takes 4 GB), 2 GB for the assemblies and several GB for the tool environments. Run everything from the repository root.
+You need Python 3.14 with `requirements.txt`, R 4.3 with MCMCglmm, and micromamba for the tool environments (`environment.yml` holds the pinned model environment, `micromamba env create -f environment.yml`). Plan for about 10 GB of disk for the intermediate files (the PanACoTA run alone takes 4 GB), 2 GB for the assemblies and several GB for the tool environments. Run everything from the repository root.
 
 ```bash
 # 0. Environment
@@ -97,6 +101,14 @@ scripts/run_proteome_tools.sh all          # defense systems, ABC capsule
 .venv/bin/python scripts/make_groups.py
 .venv/bin/python scripts/make_groups.py replication/T14_panacota/tree/ESCO.nucl.grp.aln.fasttree_tree.nwk data/derived/cv_groups_1e-4_regenerated.csv
 scripts/run_seeded_models.sh
+
+# 3b. Gap audit and the pinned-environment reruns (T2.1, T3.1; about 2 minutes each)
+scripts/setup_pinned_env.sh                # or: micromamba env create -f environment.yml
+scripts/run_pinned_env.sh
+.venv/bin/python scripts/fold_version_check.py
+.venv/bin/python scripts/audit_gaps.py
+.venv/bin/python scripts/audit_pinned.py
+.venv/bin/python scripts/audit_report.py
 
 # 4. Mixed models (R)
 Rscript scripts/fig4_mcmc.R results/fig4 500000 250 50000 6   # about 4.5 hours on 6 cores

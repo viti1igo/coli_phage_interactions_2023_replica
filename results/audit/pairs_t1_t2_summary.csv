@@ -1,0 +1,17 @@
+,value
+pairs,38377.0
+spearman_all,0.9270350153751843
+spearman_phage_median,0.8935522201957793
+spearman_phage_min,0.5357183406944371
+call_agreement,0.9449409802746437
+flipped_pairs,2113.0
+flips_to_lytic,1044.0
+flips_to_nonlytic,1069.0
+same_best_model_family_share,0.7604166666666666
+same_best_model_share,0.5
+flip_rate_same_model,0.03671875
+flip_rate_same_family_other_model,0.045955146175410494
+flip_rate_different_family,0.10327565567526391
+groups_split_across_authors_folds,0.0033415712346409553
+fold_partition_adjusted_rand_mean,0.021962764256543532
+fold_partition_adjusted_rand_max,0.029904866211398876
