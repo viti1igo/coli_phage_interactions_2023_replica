@@ -41,6 +41,7 @@ The authors share their final feature tables and models. For most preprocessing 
 
 | Date | What was added or changed |
 |---|---|
+| 2026-11-01 | [Report 13](reports/13_cv_folds.md) and `results/audit/our_folds.csv`: our fold assignment per (phage, strain) pair under scikit-learn 1.9.1 and 1.1.2, with the source of the authors' fold table and a comparison. `scripts/build_our_folds.py` builds it. `GroupKFold` is not random: the order of equal-size groups follows the order of the group labels, which explains why our folds differ from the authors'. One group of ours (IAI15 and IAI17, tree distance 0) is split by the authors' folds in all 96 phages. |
 | 2026-10-30 | Gap audit pushed: [report 12](reports/12_gap_audit.md), `results/audit/` (34 tables) and the `audit_*.py` scripts. Pinned-environment reruns T2.1 and T3.1 on scikit-learn 1.1.2 and Python 3.10 (`environment.yml`, `scripts/setup_pinned_env.sh`, `scripts/run_pinned_env.sh`, `results/audit/env_match.csv`). `predict.py` gained the `TAG`, `SEED`, `FOLDS` and `SWAP` switches (defaults unchanged) and `penalty="l1"` for scikit-learn below 1.8. [Report 07](reports/07_configuration.md) now lists the libraries used for every tier next to the authors'. `config/config_diff.csv` has 37 rows. Corrected: the authors state no Python version for the model step (3.12.2 is only the kernel metadata of their plotting notebook). |
 | 2026-10-27 | Checked the audit against the Noonan et al. preprint and the original preprint (`external_check.csv`, `preprint_check.csv`). The register has 45 rows, after two rows were corrected to compare numerically. |
 | 2026-10-26 | Gap audit built: tier alignment, overall, per-phage and per-pair comparisons, noise floor, fixed-fold run and feature-swap runs. |
@@ -62,6 +63,7 @@ The authors share their final feature tables and models. For most preprocessing 
 | [10_repository_analyses.md](reports/10_repository_analyses.md) | The authors' notebooks, the supplementary analyses and the genome maps |
 | [11_repository_vs_paper.md](reports/11_repository_vs_paper.md) | Every difference found between the authors' repository and the paper |
 | [12_gap_audit.md](reports/12_gap_audit.md) | The reason for each gap between the paper, the repository and this replication, overall, per phage and per pair |
+| [13_cv_folds.md](reports/13_cv_folds.md) | The fold table of the authors' run against ours, where each comes from, and why the partitions differ |
 
 ## Layout
 
@@ -74,7 +76,7 @@ replication/  regenerated tables: features, interaction matrix, tree, UMAP, typi
 notebooks/    the authors' notebooks executed (as shipped and patched), their errors and outputs
 results/      replication/ (agreement tables), comparison/, audit/ (gap audit tables), figures/, model outputs
 data/derived/ cross-validation groups, genome sizes
-reports/      the twelve reports above
+reports/      the thirteen reports above
 ```
 
 The authors' data, the genome assemblies and the paper's PDFs are not redistributed. The authors' repository has no licence file, so check its terms before reusing their material.
