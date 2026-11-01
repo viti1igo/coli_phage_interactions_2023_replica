@@ -384,7 +384,7 @@ What it cannot test. The preprint reports no per-phage numbers for E. coli in it
 - The 59 pairs that differ between the authors' predictions and ours have a cause I could not verify.
 - Eight rows of the register are residual, as listed above.
 - The pinned environment matches scikit-learn and scipy to the paper, but the authors do not state Python, numpy, pandas, joblib, the operating system or the BLAS for the model step, so those were chosen, not matched. The forests' random stream was not replayed. The effect of the unmatched parts is not isolated.
-- `results/audit_runs/` (88 MB of run outputs), `results/audit/authors_folds.csv` and the pair-level CSVs that hold the authors' predictions are not in this repository.
+- `results/audit_runs/` (88 MB of run outputs) and the pair-level CSVs that hold the authors' predictions are not in this repository. `results/audit/authors_folds.csv` is: it holds only the fold index of each pair, read from the authors' prediction files ([report 13](13_cv_folds.md) says how).
 
 ## Reproduce
 
