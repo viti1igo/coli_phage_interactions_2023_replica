@@ -37,6 +37,15 @@ The authors share their final feature tables and models. For most preprocessing 
 - The paper's cocktail recommender has no published code. `scripts/recommender.py` re-implements it from the README and the Methods, and it does not reproduce the authors' cocktails (see reports/05).
 - Four things would have to come from the authors: the cross-validation group file, the recommender code, the test-strain genomes and the genomes of the phage network. [reports/05_paper_comparison.md](reports/05_paper_comparison.md) says what each would settle.
 
+## Update log
+
+| Date | What was added or changed |
+|---|---|
+| 2026-10-30 | Gap audit pushed: [report 12](reports/12_gap_audit.md), `results/audit/` (34 tables) and the `audit_*.py` scripts. Pinned-environment reruns T2.1 and T3.1 on scikit-learn 1.1.2 and Python 3.10 (`environment.yml`, `scripts/setup_pinned_env.sh`, `scripts/run_pinned_env.sh`, `results/audit/env_match.csv`). `predict.py` gained the `TAG`, `SEED`, `FOLDS` and `SWAP` switches (defaults unchanged) and `penalty="l1"` for scikit-learn below 1.8. [Report 07](reports/07_configuration.md) now lists the libraries used for every tier next to the authors'. `config/config_diff.csv` has 37 rows. Corrected: the authors state no Python version for the model step (3.12.2 is only the kernel metadata of their plotting notebook). |
+| 2026-10-27 | Checked the audit against the Noonan et al. preprint and the original preprint (`external_check.csv`, `preprint_check.csv`). The register has 45 rows, after two rows were corrected to compare numerically. |
+| 2026-10-26 | Gap audit built: tier alignment, overall, per-phage and per-pair comparisons, noise floor, fixed-fold run and feature-swap runs. |
+| 2026-10-18 | Plain-prose rewrite of the README and reports 01 to 11. Analyses redone on the regenerated matrix; the authors' repository run end to end ([report 10](reports/10_repository_analyses.md), [report 11](reports/11_repository_vs_paper.md)); the publisher's supplement compared; the recommender re-implemented; the figures annotated. First publication of the replication. |
+
 ## Reports
 
 | File | Content |

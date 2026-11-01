@@ -67,6 +67,63 @@ The paper leaves these out: UMAP hyperparameters, how the tree becomes a distanc
 
 `scripts/setup_envs.sh <env>` creates the environments with micromamba, and `scripts/setup_pinned_env.sh` creates `ml_pinned`. [`results/audit/env_match.csv`](../results/audit/env_match.csv) lists 13 components of the authors' environment with what was matched and the reason for each mismatch. The paper states scikit-learn 1.1.2 and scipy but no Python version for the model step (3.12.2 appears only in the kernel metadata of the authors' plotting notebook), so Python 3.10 follows scikit-learn 1.1.2, which has no build for 3.12. On an Apple-silicon Mac the osx-64 environments need Rosetta. The `conda` installation on my machine was broken, which is why I used micromamba.
 
+## Libraries per tier against the authors'
+
+The tiers are defined in [report 12](12_gap_audit.md): T0 is the paper, T1 the authors' shipped predictions, T2 our model run on the shipped inputs, T3 on the regenerated features, T4 on the regenerated features and matrix. T2.1 and T3.1 repeat T2 and T3 in the pinned environment. "Not stated" means neither the paper, the authors' README nor their files give the version. Sources: the paper (Methods, `docs/paper/published.txt` line 1562 for scikit-learn and lines 1649 to 1651 for scipy), the authors' README (section 1.6), their scripts and notebooks, and the environments in `config/envs/`. [`results/audit/env_match.csv`](../results/audit/env_match.csv) holds the same comparison with the reason for each mismatch.
+
+### Model step (`scripts/predict.py`)
+
+| Tier | Python | scikit-learn | numpy | pandas | scipy | joblib | Linear algebra | System |
+|---|---|---|---|---|---|---|---|---|
+| T0 paper | not stated | 1.1.2 | not stated | not stated | 1.11.2 (scipy.stats only) | not stated | not stated | not stated |
+| T1 authors' predictions | not stated (3.12.2 is only the kernel metadata of their plotting notebook) | 1.1.2 (paper and README) | not stated | not stated | not stated | not stated | not stated | Windows (their scripts read `D:\These\...`) |
+| T2 shipped inputs | 3.14.7 | 1.9.1 | 2.5.4 | 3.0.6 | 1.18.1 | 1.6.0 | Apple Accelerate | macOS arm64, Apple M2, 8 cores |
+| T3 regenerated features | 3.14.7 | 1.9.1 | 2.5.4 | 3.0.6 | 1.18.1 | 1.6.0 | Apple Accelerate | same machine |
+| T4 regenerated features and matrix | 3.14.7 | 1.9.1 | 2.5.4 | 3.0.6 | 1.18.1 | 1.6.0 | Apple Accelerate | same machine |
+| T2.1 shipped inputs, pinned | 3.10.22 | 1.1.2 | 1.23.5 | 1.5.3 | 1.11.2 | 1.2.0 | OpenBLAS 0.3.25 (conda-forge) | same machine |
+| T3.1 regenerated features, pinned | 3.10.22 | 1.1.2 | 1.23.5 | 1.5.3 | 1.11.2 | 1.2.0 | OpenBLAS 0.3.25 (conda-forge) | same machine |
+
+- T2, T3 and T4 use the same libraries and differ in their inputs. T2.1 and T3.1 use the same libraries and differ in their inputs in the same way. T2.1 also has a variant with the authors' fold assignment.
+- scikit-learn and scipy match the paper only in T2.1 and T3.1. numpy, pandas and joblib are not stated anywhere, so the pinned versions (1.23.5, 1.5.3, 1.2.0) are contemporary with scikit-learn 1.1.2, not matched. threadpoolctl is 3.7.0 in `.venv` and 3.6.0 in `ml_pinned`.
+- Python 3.10 is the only Python with a scikit-learn 1.1.2 build on conda-forge for macOS arm64. The authors' Python for the model step is unknown, so it is a choice, not a mismatch.
+- The authors' script holds the same estimators in every tier. Only `penalty="l1"` is handled by version: scikit-learn 1.1.2 needs it and 1.8 and later drop it for `l1_ratio=1`.
+- T3 and T4 build their features with the tools below and then run the model step in `.venv`. T3.1 reuses the T3 feature files and only reruns the model step in `ml_pinned`, so the tools below did not change between T3 and T3.1. T4 adds `scripts/build_matrix.py`, which runs in `.venv` with numpy 2.5.4 and pandas 3.0.6.
+
+### Feature and matrix building (T3, T3.1, T4)
+
+| Step | Paper | Used | Environment | Same |
+|---|---|---|---|---|
+| Core-genome tree | PanACoTA 1.3.1, `--fasttree` | PanACoTA 1.3.1, Prodigal 2.6.3, FastTree 2.2.0, MAFFT 7.526, Mash 2.3, BLAST 2.16.0, Python 3.6 | `pan` | tool yes; the rest not stated |
+| Tree to 8-D UMAP | umap, version and parameters not stated | umap-learn 0.5.12 with numba 0.68.0, pynndescent 0.6.0, scikit-learn 1.9.1 | `.venv` | not stated |
+| Sequence type | SRST2, version not stated | mlst 2.33.1, scheme `ecoli_achtman_4`, BLAST 2.17.0 | `mlst` | no (SRST2 needs reads) |
+| Phylogroup | ClermonTyping, version not stated | ClermonTyping 24.02, Mash 2.3, BLAST 2.17.0 | `clermont` | tool yes; version not stated |
+| O and H type | ECTyper 1.0.0 | ECTyper 1.0.0 | `ectyper` | yes |
+| Klebsiella capsule | Kaptive 2.0.6 | Kaptive 2.0.6 (tag v2.0.6), Python 3.8, BLAST 2.17.0 | `kaptive` | yes |
+| Defense systems | DefenseFinder 1.2.0, models 1.2.3 | DefenseFinder 1.2.0, models 1.2.3, MacSyFinder 2.1.4, HMMER 3.4 | `defense` | yes |
+| ABC capsule | CapsuleFinder v1 on MacSyFinder, mmseqs2 13.45111 for the custom models | MacSyFinder 2.1.6, MacSylib 1.0.4, HMMER 3.4, mmseqs2 13.45111 | `macsy`, `pan` | mmseqs2 yes; MacSyFinder version not stated |
+| LPS outer-core type | blastp of waaL and manual clustering | BLAST 2.17.0 and cross-validated pangenome markers | `blast`, `.venv` | no (manual step) |
+| Outer-membrane proteins | clusters above 99 % identity, tool not stated | BLAST 2.17.0 and mmseqs2 | `blast` | not stated |
+| Interaction matrix (T4) | median of replicates, rule partly stated | `scripts/build_matrix.py` | `.venv` | not applicable |
+
+### Statistics and figures (not part of the tiers)
+
+| Component | Paper | Used |
+|---|---|---|
+| scipy.stats | 1.11.2 | 1.18.1 (`.venv`) |
+| statsmodels | 0.14.1 | 0.15.0 (`.venv`) |
+| MCMCglmm | 2.35 | 2.36 (R 4.3.0, local library `.Rlib`) |
+| ape | not stated | 5.8.1 |
+| vegan | 2.6-4 for PERMANOVA | not installed; PERMANOVA is implemented in Python (`scripts/matrix_stats.py`) |
+| R | not stated | 4.3.0 |
+| matplotlib, seaborn, bokeh | not stated (the authors' notebooks import them) | 3.11.2, 0.13.2, 3.10.1 |
+
+Nothing in this table was rerun in the pinned environment, so the figures and mixed-model tables still use the newer packages.
+
+### What the numbers say about the environment
+
+- Only scikit-learn and scipy.stats are stated, and only T2.1 and T3.1 match them. The other libraries, the operating system, the linear-algebra library and the random stream are unknown or cannot be matched, so the effect of those parts is not isolated.
+- The authors' README says the cross-validation group file `370+host_cross_validation_groups_1e-4.csv` is no longer available. The name most likely refers to an earlier working set of 370 collection strains plus the phage-host strains; the authors do not explain it. The files in the repository that carry this name hold 402 or 404 strains, and the paper counts 369 collection strains plus 34 host strains (403). The model runs here use the 402 strains of the public matrix.
+
 ## Platform notes
 
 I ran everything on macOS arm64 with 16 GB of memory and kept all data on an exFAT external drive. exFAT creates a `._*` twin for every file. The twins broke DefenseFinder and MacSyFinder, which scan their model folders, and a Python package installed on the drive (matplotlib). The scripts therefore run DefenseFinder in a temporary directory on the internal disk and give MacSyFinder a clean models folder, and `scripts/cleanup_intermediates.sh` removes the twins.
