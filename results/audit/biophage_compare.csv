@@ -1,0 +1,5 @@
+run,what,mean_phage_auroc,mean_phage_aupr,pooled_auroc,pooled_auroc_known_labels,nan_cells_as_negative,mean_abs_d_auroc_vs_T1,corr_auroc_vs_T1,mean_abs_d_auroc_vs_T2_1,best_family_same_as_T2_1,groups_ari_vs_ours,n_groups,fold_ari_vs_authors,fold_ari_vs_ours_same_sklearn
+T1,"authors' shipped predictions (scikit-learn 1.1.2, their folds)",0.781222587624257,0.5863403288486381,0.85689769900018,,,,,,,,,,
+T2.1,"shipped inputs, scikit-learn 1.1.2, our groups",0.7835242229774639,0.5819762292789662,0.8545022852134327,,,,,,,,,,
+B1,"biophage as written: its training.yml (scikit-learn 1.9.1, pandas 3.1.1)",0.7058663035041443,0.4670392120661404,0.8213328846121588,0.8211544989872932,157.0,0.08358989546896879,0.3750360426136564,0.08343083372928284,0.4270833333333333,1.0,301.0,0.022471820082626232,0.03486907411260939
+B2,"biophage code in our ml_pinned + biopython 1.79 (scikit-learn 1.1.2, pandas 1.5.3)",0.7788698498823418,0.5704266500703444,0.8513850196395301,0.8511874266550268,157.0,0.03427901740308333,0.8432339750111961,0.033074859312631474,0.6666666666666666,1.0,301.0,0.023766196225599483,0.020485779971767305
