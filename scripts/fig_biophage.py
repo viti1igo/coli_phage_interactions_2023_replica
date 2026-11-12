@@ -1,5 +1,5 @@
 """Phase 21: figures and test-fold metrics for the four runs on the authors' shipped inputs:
-T1 (authors' predictions), T2.1 (ours, scikit-learn 1.1.2), B2 (biophage code, paper-like env), B1 (biophage as written).
+T1 (authors' predictions), T2.1 (my run, scikit-learn 1.1.2), B2 (biophage code, paper-like env), B1 (biophage as written).
 Metrics follow Fig 5 of the paper (cross-validated test folds, best model per phage by mean test AUPR, threshold 0.5).
 Needs scripts/compare_biophage.py run first.   .venv/bin/python scripts/fig_biophage.py"""
 import glob
@@ -10,7 +10,7 @@ from figlib import AXIS, BLUE, INK, MUTED, ORANGE, ROOT, SURF, save, style
 
 AQUA = "#1baf7a"  # palette slot 3
 COL = {"T1": INK, "T2.1": BLUE, "B2": AQUA, "B1": ORANGE}
-LAB = {"T1": "T1 authors' predictions", "T2.1": "T2.1 ours, scikit-learn 1.1.2", "B2": "B2 biophage, paper-like env", "B1": "B1 biophage as written"}
+LAB = {"T1": "T1 authors' predictions", "T2.1": "T2.1 my run, scikit-learn 1.1.2", "B2": "B2 biophage, paper-like env", "B1": "B1 biophage as written"}
 A = f"{ROOT}/results/audit"
 M = pd.read_csv(f"{ROOT}/data/interactions/interaction_matrix.csv", sep=";", index_col=0)
 
@@ -36,7 +36,7 @@ preds = {"T1": authors(), "T2.1": pd.read_csv(f"{ROOT}/results/audit_runs/T2_1_s
          "B2": biophage("bp_pinned"), "B1": biophage("bp_asis")}
 nan_pairs = {(b, ph) for ph in M for b in M.index[M[ph].isna()]}
 pp = pd.read_csv(f"{A}/biophage_compare_per_phage.csv", index_col=0)   # per-phage AUROC = mean of fold AUROCs, best model
-SD = f"{ROOT}/docs/paper/supplement/MOESM9.xlsx"   # Source Data of Fig 5 (plotted, not re-shipped in our CSVs)
+SD = f"{ROOT}/docs/paper/supplement/MOESM9.xlsx"   # Source Data of Fig 5 (plotted, not re-shipped in these CSVs)
 SD5A = pd.read_excel(SD, "Figure_5a", header=1).set_index("bacteria").auc   # AUROC per strain, 315 strains
 SD5B = pd.read_excel(SD, "Figure_5b", header=1)
 # the ROC columns are labelled the wrong way round (TPR < FPR along the whole curve gives AUROC 0.15); read swapped

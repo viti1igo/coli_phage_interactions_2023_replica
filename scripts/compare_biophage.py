@@ -25,7 +25,7 @@ for o in ["T1", "T2.1"]:
     rows.append(dict(run=o, what=overall.loc[o, "what"], mean_phage_auroc=overall.loc[o, "mean_phage_auroc"],
                      mean_phage_aupr=overall.loc[o, "mean_phage_aupr"], pooled_auroc=overall.loc[o, "pooled_auroc"]))
 for tag, env, what, ours_col in [("B1", "bp_asis", "biophage as written: its training.yml (scikit-learn 1.9.1, pandas 3.1.1)", "fold_sklearn_1_9_1"),
-                                 ("B2", "bp_pinned", "biophage code in our ml_pinned + biopython 1.79 (scikit-learn 1.1.2, pandas 1.5.3)", "fold_sklearn_1_1_2")]:
+                                 ("B2", "bp_pinned", "biophage code in my ml_pinned + biopython 1.79 (scikit-learn 1.1.2, pandas 1.5.3)", "fold_sklearn_1_1_2")]:
     d = R / "replication/T93_biophage" / env / "training_results"
     s = pd.read_csv(d / "per_phage_perf.csv").set_index("phage")
     pr = pd.read_csv(d / "predictions_named.csv")
